@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, Button, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Button, View, SafeAreaView,Image } from 'react-native';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
     <View style={styles.container}>
-    <Header/>
-    <StatusBar style="auto" />
+      <Header/>
+      <StatusBar style="auto" />
+      <View style={{ backgroundColor: "orange", flex: 0.55 }}></View>
+
+      <Footer/>
     </View>
   )
 }
