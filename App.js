@@ -9,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       <Header/>
       <View style={styles.middle}>
-         <Text style={styles.joshtext}>Josh is the best</Text>
+         <Text style={styles.joshtext}>Josh is the best!!!</Text>
       </View>
       <Footer/>
       <ExpoStatusBar style="auto" />
