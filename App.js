@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StatusBar  as ExpoStatus} from 'expo-status-bar';
+import { StyleSheet, Text, View, Button, StatusBar, Platform } from 'react-native';
+import Header from './components/Header';
+import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Josh is the laddiest </Text>
-      <StatusBar style="auto" />
+      <Header/>
+      <Text style={styles.joshtext}>Josh is the best</Text>
+      <ExpoStatus style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight
   },
+  joshtext: {
+    fontSize: 40
+  }
 });
