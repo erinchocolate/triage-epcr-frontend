@@ -3,13 +3,12 @@ import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-
 export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
       <View style={styles.middle}>
-         <Text style={styles.joshtext}>Josh is the best!!!</Text>
+         <Text style={styles.joshtext}>Josh is the best</Text>
       </View>
       <Footer/>
       <ExpoStatusBar style="auto" />
@@ -39,3 +38,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
   }
 });
+
