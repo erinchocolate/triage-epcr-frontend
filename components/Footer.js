@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
+import stjohn from '../assets/st_john.png';
+import triage from '../assets/triage_logo.jpg';
 
 export default function Footer() {
   return (
     <View style={styles.layout}>
-        <Image style={styles.image} source={require('../assets/st_john.png') }/>
-        <Image style={styles.image} source={require('../assets/triage_logo.jpg')}/>
+        <Image style={styles.image} source={stjohn}/>
+        <Image style={styles.image} source={triage}/>
         <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
         </TouchableOpacity>
