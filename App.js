@@ -2,15 +2,14 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import IncidentDetails from './components/IncidentDetails';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
-      <View style={styles.middle}>
-         <Text style={styles.joshtext}>Josh is the best</Text>
-      </View>
+      <IncidentDetails />
       <Footer/>
       <ExpoStatusBar style="auto" />
     </View>
