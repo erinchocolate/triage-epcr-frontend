@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 
@@ -8,7 +8,7 @@ export default function DropDown(props) {
 
 
   return (
-    <View>
+    <View style={styles.dropdown}>
         <DropDownPicker 
         open={open}
         value={value}
@@ -19,3 +19,9 @@ export default function DropDown(props) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  dropdown: {
+    width: '50%'
+  }
+})

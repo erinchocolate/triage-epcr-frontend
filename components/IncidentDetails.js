@@ -8,6 +8,7 @@ export default function IncidentDetails() {
     return (
     <View style={styles.layout}>
         <Text>Wow, look! A Dropbox!</Text>
+        <View style={styles.dropdown}>
         <DropDown
                 placeholder = 'Josh'
                 items = {[
@@ -15,6 +16,8 @@ export default function IncidentDetails() {
                     {label: 'Harry', value: 'H'},
                     {label: 'Meiqiao', value: 'M'}
                 ]} />
+        </View>
+        
     </View>
   )
 }
