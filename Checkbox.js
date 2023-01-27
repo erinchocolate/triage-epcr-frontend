@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
 
-export default function Intervention() { 
+export default function Checkboxes() { 
     const [isChecked, setChecked] = useState(false);
 
     return(

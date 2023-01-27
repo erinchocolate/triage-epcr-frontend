@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Homepage from './Homepage';
 
+import Intervention from './Intervention'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Homepage/>
+     <Intervention/>
+     
       <StatusBar style="auto" />
     </View>
   );
