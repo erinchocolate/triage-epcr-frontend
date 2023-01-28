@@ -15,13 +15,15 @@ export default function DropDown(props) {
         items={props.items}
         setOpen={setOpen}
         setValue={setValue}
-        placeholder={props.placeholder}/>
+        placeholder={props.placeholder}
+        style={{height: '39%'}}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   dropdown: {
-    width: '50%'
+    width: '100%',
+    minHeight: '100%'
   }
 })
