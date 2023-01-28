@@ -3,13 +3,14 @@ import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IncidentDetails from './components/IncidentDetails';
+import PatientInformation from './components/PatientInformation';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
-      <IncidentDetails />
+      <PatientInformation/>
       <Footer/>
       <ExpoStatusBar style="auto" />
     </View>

@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, TextInput} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
@@ -102,7 +101,7 @@ export default function IncidentDetails() {
             <TextInput
                 value={hospitalLocation}
                 onChangeText={hospitalLocation=>setHospitalLocation(hospitalLocation)}
-                placeholder={'Start typing and thie will bring up options'}
+                placeholder={'Start typing and this will bring up options'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
             <TouchableOpacity style={styles.button}>
