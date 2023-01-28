@@ -8,7 +8,6 @@ export default function DropDown(props) {
 
 
   return (
-    <View style={styles.dropdown}>
         <DropDownPicker 
         open={open}
         value={value}
@@ -16,14 +15,9 @@ export default function DropDown(props) {
         setOpen={setOpen}
         setValue={setValue}
         placeholder={props.placeholder}
-        style={{height: '39%'}}/>
-    </View>
+        placeholderStyle ={{color: '#3b3b3b'}}
+        style={{ width: '100%', minHeight: '100%'}}
+        />
   )
 }
 
-const styles = StyleSheet.create({
-  dropdown: {
-    width: '100%',
-    minHeight: '100%'
-  }
-})

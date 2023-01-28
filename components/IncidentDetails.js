@@ -11,6 +11,7 @@ export default function IncidentDetails() {
     const [locatedTime, setLocatedTime] = useState('');
     const [departedTime, setDepartedTime] = useState('');
     const [destinationTime, setDestinationTime] = useState('');
+    const [hospitalLocation, setHospitalLocation] = useState('');
 
      
     return (
@@ -35,7 +36,7 @@ export default function IncidentDetails() {
                     {label: 'Transfer', value: 'transferIncident'},
                     {label: 'No EPCR', value: 'noepcrIncident'}
                 ]}
-                placeholder='Incident Type'/>
+                placeholder='Type'/>
             </View>
             
             <TextInput
@@ -94,6 +95,21 @@ export default function IncidentDetails() {
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
         </View>
+        <View style={styles.row}>
+            <View style={styles.title}>
+                <Text style={styles.myText}>Location </Text>
+            </View>
+            <TextInput
+                value={hospitalLocation}
+                onChangeText={hospitalLocation=>setHospitalLocation(hospitalLocation)}
+                placeholder={'Start typing and thie will bring up options'}
+                placeholderTextColor = '#b3b3b3'
+                style={styles.wideInput}/>
+            <TouchableOpacity style={styles.button}>
+                <Text>Save</Text>
+            </TouchableOpacity>
+
+        </View>
     </View>
   )
 }
@@ -109,14 +125,13 @@ const styles = StyleSheet.create({
     },
     row:{
         flexDirection: 'row',
-        width: '80%',
-        height: '30%'        
+        width: '90%',
+        height: '20%',
     },
     title:{
         borderColor: '#3b3b3b',
         borderWidth: 1,
-        width: '15%',
-        minHeight: '15%',
+        width: '13%',
         height: '50%',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -127,7 +142,10 @@ const styles = StyleSheet.create({
     },
     dropdown:{
         width: '15%',
-        margin: 10
+        margin: 10,
+        height: '50%',
+        zIndex: 1        
+        
     },
     input:{
         borderColor: '#3b3b3b',
@@ -146,7 +164,7 @@ const styles = StyleSheet.create({
     wideInput:{
         borderColor: '#3b3b3b',
         borderWidth: 1,
-        width: '35%',
+        width: '34%',
         height: '50%',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -156,5 +174,18 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         backgroundColor: 'white'
 
+    },
+    button:{
+        borderColor: '#3b3b3b',
+        borderWidth: 1,
+        width: '25%',
+        height: '50%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        margin: 10,
+        backgroundColor: '#93ff33',
+        marginLeft: 'auto'
     }
 })
