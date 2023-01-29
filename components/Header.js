@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 'react-native';
 
-export default function Header(){
+export default function Header({changeView}){
     return(
         <View style={styles.layout}>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Home</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>
                 <Text style={styles.myText}>Incident Details</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('patientInfo')} style={styles.button}>
                 <Text style={styles.myText}>Pateint Information</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
@@ -18,13 +18,13 @@ export default function Header(){
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Interventions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('procedures')} style={styles.button}>
                 <Text style={styles.myText}>Procedures</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('medications')} style={styles.button}>
                 <Text style={styles.myText}>Medications</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('assessment')} style={styles.button}>
                 <Text style={styles.myText}>Assessment & Transport</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>

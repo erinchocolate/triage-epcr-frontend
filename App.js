@@ -7,15 +7,24 @@ import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
 import Medications from './components/Medications';
 import Assessment from './components/Assessment';
+import { useState } from 'react';
 
 export default function App() {
 
-  
+  const [view, setView] = useState('medications');
+
+  function changeView(argument){
+    setView(argument);
+  }
 
   return (
     <View style={styles.container}>
-      <Header />
-      <Assessment/>
+      <Header changeView={changeView}/>
+      {view==='assessment'? <Assessment/>:<></>}
+      {view==='incident'?<IncidentDetails/>:<></>}
+      {view==='patientInfo'?<PatientInformation/>:<></>}
+      {view==='procedures'?<Procedures/>:<></>}
+      {view==='medications'?<Medications/>:<></>}
       <Footer />
       <ExpoStatusBar style="auto" />
     </View>
