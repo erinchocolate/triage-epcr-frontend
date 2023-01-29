@@ -6,6 +6,7 @@ import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
 import Medications from './components/Medications';
+import Assessment from './components/Assessment';
 
 export default function App() {
 
@@ -14,7 +15,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header />
-      <IncidentDetails/>
+      <Assessment/>
       <Footer />
       <ExpoStatusBar style="auto" />
     </View>
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingTop: StatusBar.currentHeight
+  },
+  joshtext: {
+    fontSize: 40
   },
   middle:{
     justifyContent: 'center',
