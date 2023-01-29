@@ -5,6 +5,10 @@ import Footer from './components/Footer';
 import Assessment from './components/assessment';
 
 export default function App() {
+  const [scene, setScene] = useState("");
+
+
+
   return (
     <View style={styles.container}>
       <Header/>
