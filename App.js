@@ -5,14 +5,15 @@ import Footer from './components/Footer';
 import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
+import Medications from './components/Medications';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header/>
-      <Procedures/>
-      <Footer/>
+      <Header />
+      <Medications />
+      <Footer />
       <ExpoStatusBar style="auto" />
     </View>
   );
