@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import { useState } from 'react';
 
 
@@ -9,21 +9,28 @@ export default function Medications() {
 
   return (
     <View style={styles.layout}>
-        <View style={styles.row}>
-            <TextInput
-                value={medication}
-                onChangeText={medication=>setMedication(medication)}
-                placeholder={'Start typing...'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.wideInput}/>
-            <TextInput
-                value={units}
-                onChangeText={units=>setUnits(units)}
-                placeholder={'mg/mcg/mls'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.input}/>
-            <TouchableOpacity style = {styles.button}>
-                <Text>Add Medication</Text>
+        <ScrollView style = {styles.scrollbox} contentContainerStyle ={styles.scrollcontent}>
+            <View style={styles.row}>
+                <TextInput
+                    value={medication}
+                    onChangeText={medication=>setMedication(medication)}
+                    placeholder={'Start typing...'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.wideInput}/>
+                <TextInput
+                    value={units}
+                    onChangeText={units=>setUnits(units)}
+                    placeholder={'mg/mcg/mls'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.input}/>
+                <TouchableOpacity style = {styles.button}>
+                    <Text>Add Medication</Text>
+                </TouchableOpacity>
+        </View>
+        </ScrollView>
+        <View style={styles.bottomRow}>
+            <TouchableOpacity style = {styles.saveButton}>
+                <Text>Save</Text>
             </TouchableOpacity>
         </View>
     </View>
@@ -42,8 +49,17 @@ const commonStyle = {
 }
 
 const styles = StyleSheet.create({
+    scrollcontent:{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+    },
+    scrollbox:{
+    },
     layout: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         height: '58%',
@@ -53,7 +69,13 @@ const styles = StyleSheet.create({
     row:{
         flexDirection: 'row',
         width: '90%',
-        height: '20%',
+        height: '25%',
+    },
+    bottomRow:{
+        flexDirection: 'row',
+        width: '90%',
+        height: '15%',
+        marginTop: 'auto'  
     },
     title:{
         ...commonStyle,
@@ -78,5 +100,12 @@ const styles = StyleSheet.create({
         width: '20%',
         height: '60%',
         backgroundColor: 'dodgerblue',
+    },
+    saveButton:{
+        ...commonStyle,
+        width: '20%',
+        height: '60%',
+        backgroundColor: '#93ff33',
+        marginLeft: 'auto'
     }
 })
