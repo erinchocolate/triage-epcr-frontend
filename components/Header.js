@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 'react-native';
 
 export default function Header(){
     return(
