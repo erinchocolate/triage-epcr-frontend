@@ -12,7 +12,7 @@ export default function Medications() {
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
-            return [...prevAllMedication, {key: medicationRowKey, medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units}]
+            return [...prevAllMedication, {medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units}]
         })
     }
 
@@ -45,12 +45,13 @@ export default function Medications() {
                 </TouchableOpacity>
             </View>
         <View style={styles.scrollcontent}>
-        <ScrollView style = {styles.scrollbox}>
+        <ScrollView style = {styles.scrollbox} >
+        {allMedication.length===0? <View style={styles.medication}><Text>No Medication administered yet</Text></View> : <></>}
         {allMedication.map(singleMedication=>{
                     return(
-                        <View key={medicationRowKey} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
+                        <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
                             <View style={styles.medicationBox}><Text  style={styles.medication}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
-                            <TouchableOpacity style={styles.deleteButton} ><Text>X</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteMedication(singleMedication.medicationRowId)} ><Text>X</Text></TouchableOpacity>
                         </View>
                     )
                 })}
