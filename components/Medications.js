@@ -1,16 +1,24 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import { useState } from 'react';
+import uuid from 'react-native-uuid';
 
 
 export default function Medications() {
 
     const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
+    const [allMedication, setAllMedication] = useState([]);
+
+    function addMedication(){
+        setAllMedication(prevAllMedication=>{
+            console.log(allMedication)
+            return [...prevAllMedication, {medicationName: medication, medicationAmount: units}]
+        })
+    }
 
   return (
     <View style={styles.layout}>
-        <ScrollView style = {styles.scrollbox} contentContainerStyle ={styles.scrollcontent}>
-            <View style={styles.row}>
+        <View style={styles.row}>
                 <TextInput
                     value={medication}
                     onChangeText={medication=>setMedication(medication)}
@@ -23,11 +31,20 @@ export default function Medications() {
                     placeholder={'mg/mcg/mls'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
-                <TouchableOpacity style = {styles.button}>
-                    <Text>Add Medication</Text>
+                <TouchableOpacity onPress={()=>addMedication()} style = {styles.button}>
+                    <Text >Add Medication</Text>
                 </TouchableOpacity>
-        </View>
+            </View>
+        <View style={styles.scrollcontent}>
+        <ScrollView style = {styles.scrollbox}>
+        {allMedication.map(singleMedication=>{
+                    return(
+                        <View key={uuid.v4()} style={styles.medicationBox}><Text  style={styles.medication}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
+                    )
+                })}
         </ScrollView>
+        </View>
+        
         <View style={styles.bottomRow}>
             <TouchableOpacity style = {styles.saveButton}>
                 <Text>Save</Text>
@@ -49,15 +66,7 @@ const commonStyle = {
 }
 
 const styles = StyleSheet.create({
-    scrollcontent:{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-    },
-    scrollbox:{
-    },
+    
     layout: {
         flexDirection: 'column',
         alignItems: 'center',
@@ -65,9 +74,25 @@ const styles = StyleSheet.create({
         height: '58%',
         width: '100%',
         backgroundColor: '#9dc8e2',  
+        flex: 1,
+
+    },
+    scrollcontent:{
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        
+    },
+    scrollbox:{
+        flex: 1
+        
     },
     row:{
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '90%',
         height: '25%',
     },
@@ -77,10 +102,12 @@ const styles = StyleSheet.create({
         height: '15%',
         marginTop: 'auto'  
     },
-    title:{
+    medicationBox:{
         ...commonStyle,
-        width: '30%',
-        height: '60%',
+        width: '90%'
+    },
+    medication:{
+        fontSize: '30%'
     },
     input:{
         ...commonStyle,
