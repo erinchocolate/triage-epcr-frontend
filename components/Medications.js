@@ -11,9 +11,18 @@ export default function Medications() {
 
     function addMedication(){
         setAllMedication(prevAllMedication=>{
-            console.log(allMedication)
-            return [...prevAllMedication, {medicationName: medication, medicationAmount: units}]
+            const medicationRowKey = uuid.v4();
+            return [...prevAllMedication, {key: medicationRowKey, medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units}]
         })
+    }
+
+    function deleteMedication(medicationRowId){
+        setAllMedication(prevAllMedication=>{
+            return (
+                prevAllMedication.filter(existingMedication=>existingMedication.medicationRowId != medicationRowId)
+            )
+        })
+        
     }
 
   return (
@@ -39,7 +48,10 @@ export default function Medications() {
         <ScrollView style = {styles.scrollbox}>
         {allMedication.map(singleMedication=>{
                     return(
-                        <View key={uuid.v4()} style={styles.medicationBox}><Text  style={styles.medication}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
+                        <View key={medicationRowKey} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
+                            <View style={styles.medicationBox}><Text  style={styles.medication}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
+                            <TouchableOpacity style={styles.deleteButton} ><Text>X</Text></TouchableOpacity>
+                        </View>
                     )
                 })}
         </ScrollView>
@@ -95,6 +107,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '90%',
         height: '25%',
+    },
+
+    deleteButton:{
+        ...commonStyle,
+        width: '5%',
+        height: '60%',
+        backgroundColor: '#FF5C5C'
     },
     bottomRow:{
         flexDirection: 'row',
