@@ -9,10 +9,13 @@ import Medications from './components/Medications';
 
 
 export default function App() {
+
+  
+
   return (
     <View style={styles.container}>
       <Header />
-      <Medications />
+      <IncidentDetails/>
       <Footer />
       <ExpoStatusBar style="auto" />
     </View>

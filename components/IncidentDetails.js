@@ -143,19 +143,22 @@ const styles = StyleSheet.create({
         width: '15%',
         margin: 10,
         height: '50%',
-        zIndex: 1        
+        zIndex: 1000,
+        elevation: 1000      
         
     },
     title:{
         ...commonStyle,
         width: '13%',
         backgroundColor: 'white'
+
     },
     input:{
         ...commonStyle,
         width: '15%',
         paddingLeft: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        zIndex: 1,
 
     },
     wideInput:{
