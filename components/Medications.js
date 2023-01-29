@@ -50,7 +50,7 @@ export default function Medications() {
         {allMedication.map(singleMedication=>{
                     return(
                         <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
-                            <View style={styles.medicationBox}><Text  style={styles.medication}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
+                            <View style={styles.medicationBox}><Text  style={styles.medicationText}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
                             <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteMedication(singleMedication.medicationRowId)} ><Text>X</Text></TouchableOpacity>
                         </View>
                     )
@@ -109,25 +109,25 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '25%',
     },
-
-    deleteButton:{
-        ...commonStyle,
-        width: '5%',
-        height: '60%',
-        backgroundColor: '#FF5C5C'
-    },
     bottomRow:{
         flexDirection: 'row',
         width: '90%',
         height: '15%',
         marginTop: 'auto'  
     },
+    medicationText:{
+        fontSize: '30%'
+    },
+    deleteButton:{
+        ...commonStyle,
+        width: '5%',
+        height: '60%',
+        backgroundColor: '#FF5C5C'
+    },
+   
     medicationBox:{
         ...commonStyle,
         width: '90%'
-    },
-    medication:{
-        fontSize: '30%'
     },
     input:{
         ...commonStyle,

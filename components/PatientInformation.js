@@ -188,6 +188,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '40%',
     },
+    dropdown:{
+        width: '15%',
+        margin: 10,
+        height: '50%',
+        zIndex: 1          
+    },
     title:{
         ...commonStyle
     },
@@ -236,13 +242,6 @@ const styles = StyleSheet.create({
         width: '30.5%',
         backgroundColor: 'dodgerblue',
     },
-    dropdown:{
-        width: '15%',
-        margin: 10,
-        height: '50%',
-        zIndex: 1        
-        
-    },
     input:{
         ...commonStyle,
         paddingLeft: 10,
@@ -254,16 +253,11 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     button:{
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
+        ...commonStyle,
         width: '50%',
         height: '16%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
     }
+
 })

@@ -113,6 +113,18 @@ export default function IncidentDetails() {
   )
 }
 
+const commonStyle = {
+        borderColor: '#3b3b3b',
+        borderWidth: 1,
+        height: '50%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        margin: 10,
+    
+}
+
 const styles = StyleSheet.create({
     layout: {
         justifyContent: 'center',
@@ -127,18 +139,6 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '20%',
     },
-    title:{
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
-        width: '13%',
-        height: '50%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
-        backgroundColor: 'white'
-    },
     dropdown:{
         width: '15%',
         margin: 10,
@@ -146,44 +146,28 @@ const styles = StyleSheet.create({
         zIndex: 1        
         
     },
+    title:{
+        ...commonStyle,
+        width: '13%',
+        backgroundColor: 'white'
+    },
     input:{
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
+        ...commonStyle,
         width: '15%',
-        height: '50%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
         paddingLeft: 10,
         backgroundColor: 'white'
 
     },
     wideInput:{
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
+        ...commonStyle,
         width: '34%',
-        height: '50%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
         paddingLeft: 10,
         backgroundColor: 'white'
 
     },
     button:{
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
+        ...commonStyle,
         width: '25%',
-        height: '50%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
     }
