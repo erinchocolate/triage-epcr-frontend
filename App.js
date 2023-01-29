@@ -4,13 +4,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
+import Procedures from './components/Procedures';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
-      <PatientInformation/>
+      <Procedures/>
       <Footer/>
       <ExpoStatusBar style="auto" />
     </View>
