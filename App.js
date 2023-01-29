@@ -7,7 +7,6 @@ import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
 import Medications from './components/Medications';
 
-
 export default function App() {
 
   
@@ -44,3 +43,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
   }
 });
+
