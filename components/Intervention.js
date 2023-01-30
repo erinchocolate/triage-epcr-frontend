@@ -114,8 +114,7 @@ export default function Intervention() {
       
               ]}
             />
-        </View>
-
+      </View>
     </View>
 
     
@@ -123,10 +122,12 @@ export default function Intervention() {
 </View>
 
 <View style={styles.component}>
-
-
     <IvPage/>
-
+    <View style={styles.bottomRow}>
+            <TouchableOpacity style = {styles.saveButton}>
+                <Text>Save</Text>
+            </TouchableOpacity>
+        </View>
 </View>
 
 
@@ -160,15 +161,23 @@ export default function Intervention() {
     },
 
     component: {
-      backgroundColor: "dodgerblue",
+      backgroundColor: '#9dc8e2',  
       flex:1,
       flexDirection: "column",
       height: '90%',
       width: '90%',
+      
     
-    },
-    
-    
+    },    
+    bottomRow:{
+      ...commonStyle,
+      flexDirection: 'row',
+      width: '80%',
+      height: '15%',
+      marginTop: 'auto',
+      backgroundColor: '#93ff33',
+      marginLeft: 'auto'  
+  },
     container: {
       flexDirection: "row",
       justifyContent: "space-around",
@@ -179,7 +188,8 @@ export default function Intervention() {
 
 
     smallDropdown: {
-      width: '40%'
+      width: '40%',
+      height:50,
   
     },
   
@@ -187,6 +197,7 @@ export default function Intervention() {
       width: '50%',
       zIndex: 1000,
       elevation:1000,
+      height:50,
     },
 
     button: {

@@ -7,7 +7,7 @@ import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
 import Medications from './components/Medications';
 import Intervention from './components/Intervention';
-import Assessment from './components/assessment';
+import Assessment from './components/Assessment';
 import { useState } from 'react';
 
 export default function App() {
@@ -41,9 +41,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingTop: StatusBar.currentHeight
-  },
-  joshtext: {
-    fontSize: 40
   },
   middle:{
     justifyContent: 'center',
