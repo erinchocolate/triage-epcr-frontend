@@ -1,5 +1,6 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
+import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Assessment from './components/assessment';

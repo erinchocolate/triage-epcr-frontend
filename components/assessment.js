@@ -7,7 +7,13 @@ export default function Assessment() {
   const [objective, setObjective] = useState('');
   const [assessment, setAssessment] = useState('');
   const [plan, setPlan] = useState('');
+  const sub = [];
 
+  function saveSubjective(subjective) {
+    setSubjective(subjective);
+    sub.push(subjective)
+    console.log(sub);
+  }
   return (
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
@@ -128,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginLeft: 20,
     marginTop: 20,
-    padding: 20,
+    height: '15%',
   },
   secondColumn: {
     width: '30%',
