@@ -8,6 +8,7 @@ import Procedures from './components/Procedures';
 import Medications from './components/Medications';
 import Intervention from './components/Intervention';
 import Assessment from './components/assessment';
+import Vital from './components/Vital';
 import { useState } from 'react';
 
 export default function App() {
@@ -25,7 +26,8 @@ export default function App() {
       {view==='patientInfo'?<PatientInformation/>:<></>}
       {view==='procedures'?<Procedures/>:<></>}
       {view === 'medications' ? <Medications /> : <></>}
-      {view==='intervention'?<Intervention/>:<></>}
+      {view === 'intervention' ? <Intervention /> : <></>}
+      {view==='vital'?<Vital/>:<></>}
       <Footer />
       <ExpoStatusBar style="auto" />
     </View>
