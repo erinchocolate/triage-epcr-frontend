@@ -7,7 +7,7 @@ import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
 import Medications from './components/Medications';
 import Intervention from './components/Intervention';
-import Assessment from './components/assessment';
+import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import { useState } from 'react';
 
