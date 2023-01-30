@@ -9,11 +9,6 @@ export default function Assessment({saveData}) {
   const [plan, setPlan] = useState('');
   const save = [];
 
-  function saveButtonPressed() {
-    save.push(subjective)
-    save.push(objective)
-    console.log(save);
-  }
   return (
     <View style={styles.layout}>
       <View style={styles.firstColumn}>

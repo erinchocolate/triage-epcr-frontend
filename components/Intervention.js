@@ -154,7 +154,7 @@ export default function Intervention() {
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100%',
+      height: '58%',
       width: '100%',
       backgroundColor: "dodgerblue",
     },
