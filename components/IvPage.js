@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       height: '40%',
       width: '100%',
-      backgroundColor: "dodgerblue",
+      backgroundColor: '#9dc8e2',  
     },
 
   

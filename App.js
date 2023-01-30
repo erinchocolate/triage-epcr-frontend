@@ -44,9 +44,6 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingTop: StatusBar.currentHeight
   },
-  joshtext: {
-    fontSize: 40
-  },
   middle:{
     justifyContent: 'center',
         alignItems: 'center',
