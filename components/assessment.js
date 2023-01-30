@@ -29,6 +29,7 @@ export default function Assessment({saveData}) {
            placeholder={'Assessment'}
            placeholderTextColor = '#b3b3b3'
            style={styles.input} />
+           
         <TextInput
           value={plan}
           onChangeText={plan=>setPlan(plan)}
