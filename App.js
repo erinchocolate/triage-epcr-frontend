@@ -3,18 +3,21 @@ import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Intervention from './components/Intervention';
 import Assessment from './components/assessment';
 
 export default function App() {
-  const [scene, setScene] = useState("");
-
-
+  const save = [];
+  function saveData(argument){
+    save.push(argument);
+    console.log(save);
+  }
 
   return (
     <View style={styles.container}>
       <Header/>
       <View style={styles.middle}>
-         <Assessment />
+         <Intervention />
       </View>
       <Footer/>
       <ExpoStatusBar style="auto" />

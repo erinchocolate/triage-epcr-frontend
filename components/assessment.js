@@ -2,17 +2,17 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function Assessment() {
+export default function Assessment({saveData}) {
   const [subjective, setSubjective] = useState('');
   const [objective, setObjective] = useState('');
   const [assessment, setAssessment] = useState('');
   const [plan, setPlan] = useState('');
-  const sub = [];
+  const save = [];
 
-  function saveSubjective(subjective) {
-    setSubjective(subjective);
-    sub.push(subjective)
-    console.log(sub);
+  function saveButtonPressed() {
+    save.push(subjective)
+    save.push(objective)
+    console.log(save);
   }
   return (
     <View style={styles.layout}>
@@ -90,7 +90,7 @@ export default function Assessment() {
           </TouchableOpacity>
         </View>
         <View style={styles.saveButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={saveData(subjective)}>
             <Text>Save</Text>
           </TouchableOpacity>
         </View>
