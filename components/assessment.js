@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: '100%',
+    height: '58%',
     width: '100%',
     backgroundColor: '#9dc8e2', 
   },  

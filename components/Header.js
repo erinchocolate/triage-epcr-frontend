@@ -1,36 +1,36 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 'react-native';
 
-export default function Header(){
+export default function Header({changeView}){
     return(
         <View style={styles.layout}>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Home</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>
                 <Text style={styles.myText}>Incident Details</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPress={()=>changeView('patientInfo')} style={styles.button}>
                 <Text style={styles.myText}>Pateint Information</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Vital Signs</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Interventions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPress={()=>changeView('procedures')} style={styles.button}>
                 <Text style={styles.myText}>Procedures</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPress={()=>changeView('medications')} style={styles.button}>
                 <Text style={styles.myText}>Medications</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity onPress={()=>changeView('assessment')} style={styles.button}>
                 <Text style={styles.myText}>Assessment & Transport</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Clinical Practice Guidelines</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Tools</Text>
             </TouchableOpacity>
         </View>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'dodgerblue'
     },
-    item:{
+    button:{
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
@@ -56,3 +56,4 @@ const styles = StyleSheet.create({
         width: '20%'
     }
 })
+
