@@ -2,10 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 import Intervention from './Intervention'
+import IvPage from './IvPage';
 
 export default function App() {
   return (
     <View style={styles.container}>
+  
      <Intervention/>
      
       <StatusBar style="auto" />
