@@ -7,7 +7,6 @@ export default function Assessment({saveData}) {
   const [objective, setObjective] = useState('');
   const [assessment, setAssessment] = useState('');
   const [plan, setPlan] = useState('');
-  const save = [];
 
   return (
     <View style={styles.layout}>
@@ -85,7 +84,7 @@ export default function Assessment({saveData}) {
           </TouchableOpacity>
         </View>
         <View style={styles.saveButton}>
-          <TouchableOpacity onPress={saveData(subjective)}>
+          <TouchableOpacity>
             <Text>Save</Text>
           </TouchableOpacity>
         </View>
