@@ -261,18 +261,18 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     column:{
-        height: '90%',
+        height: '65%',
         width: '33%',
         fontWeight: '700'
     },
     middleColumn:{
         flexDirection: 'column',
-      height: '90%',
+      height: '65%',
       width: '30%',
       fontWeight: '700'
     },
     wideColumn:{
-        height: '90%',
+        height: '65%',
         width: '36%',
         marginRight: 10,
         fontWeight: '700'
