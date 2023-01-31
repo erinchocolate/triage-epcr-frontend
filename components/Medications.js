@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto'  
     },
     medicationText:{
-        fontSize: '30%'
+        fontSize: 30
     },
     deleteButton:{
         ...commonStyle,
