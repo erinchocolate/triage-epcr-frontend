@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    paddingTop: StatusBar.currentHeight
+    paddingTop: 20
   },
   middle:{
     justifyContent: 'center',

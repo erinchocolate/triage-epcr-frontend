@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         marginRight: '4%'
     },
     myText:{
-        fontSize: '20%',
+        fontSize: 20,
     },
     button:{
         ...buttonStyle,
