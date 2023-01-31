@@ -228,10 +228,11 @@ export default function Vital() {
            
           
         </View>
-        
+        <View style={styles.row}>
         <TouchableOpacity style={styles.button}>
             <Text>Save</Text>
         </TouchableOpacity>
+        </View>
         </View>
     </View>
   )
@@ -263,66 +264,86 @@ const styles = StyleSheet.create({
     column:{
         height: '65%',
         width: '33%',
-        fontWeight: '700'
+        fontWeight: '700',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     middleColumn:{
         flexDirection: 'column',
       height: '65%',
       width: '30%',
-      fontWeight: '700'
+      fontWeight: '700',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     wideColumn:{
         height: '65%',
         width: '36%',
         marginRight: 10,
-        fontWeight: '700'
+        fontWeight: '700',
+        
     },
     row:{
         flexDirection: 'row',
         width: '90%',
         height: '20%',
-        fontWeight: '700'
+        fontWeight: '700',
+        justifyContent: 'center',
+        alignItems: 'center',
+   
     },
     row2:{
         flexDirection: 'row',
         width: '90%',
         height: '30%',
-        fontWeight: '700'
+        fontWeight: '700',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
   
-
       smallDropdown1:{
       
         height: '20%',
         width: '25%',
         zIndex:6,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       smallDropdown2:{
        
         height: '20%',
         width: '25%',
         zIndex:5,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       smallDropdown3:{
        
         height: '20%',
         width: '25%',
         zIndex:4,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       longDropDown1: {
         height: '20%',
         width: '40%',
         zIndex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
   
       },
       longDropDown2: {
         height: '20%',
         width: '40%',
         zIndex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
   
       },
     title:{
-        ...commonStyle
+        ...commonStyle,
+        backgroundColor: 'white'
     },
     smallTitle:{
         ...commonStyle,
@@ -331,7 +352,8 @@ const styles = StyleSheet.create({
     smallInput:{
         ...commonStyle,
         width: '17%',
-        paddingLeft: 10
+        paddingLeft: 10,
+        backgroundColor: 'white'
     },
    
  
@@ -340,7 +362,9 @@ const styles = StyleSheet.create({
     input:{
         ...commonStyle,
         paddingLeft: 10,
-        width: '65%'
+        width: '65%',
+        backgroundColor: 'white'
+
     },
     wideInput:{
         ...commonStyle,
@@ -350,7 +374,7 @@ const styles = StyleSheet.create({
     button:{
         ...commonStyle,
         width: '50%',
-        height: '20%',
+        height: '80%',
         backgroundColor: '#93ff33',
       
     },
