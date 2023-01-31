@@ -7,6 +7,7 @@ import CheckBox from './Checkbox';
 import IvPage from './IvPage';
 
 
+
 export default function Intervention() { 
 
     //this is used for the state of the keypad
@@ -128,9 +129,10 @@ export default function Intervention() {
 
     <IvPage/>
 
+
 </View>
 
-
+              
 </View>
 
     );
@@ -180,7 +182,9 @@ export default function Intervention() {
 
 
     smallDropdown: {
-      width: '40%'
+      width: '40%',
+      height:50,
+      
   
     },
   
@@ -188,6 +192,7 @@ export default function Intervention() {
       width: '50%',
       zIndex: 1000,
       elevation:1000,
+      height:50,
     },
 
     button: {
