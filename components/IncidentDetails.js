@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function IncidentDetails() {
+export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
 
-    const [incidentNotes, setIncidentNotes] = useState('');
+    const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
     const [notifiedTime, setNotifiedTime] = useState('');
     const [respondedTime, setRespondedTime] = useState('');
     const [locatedTime, setLocatedTime] = useState('');
@@ -40,7 +40,9 @@ export default function IncidentDetails() {
             
             <TextInput
                 value={incidentNotes}
-                onChangeText={incidentNotes=>setIncidentNotes(incidentNotes)}
+                onChangeText={incidentNotes=>{
+                    setIncidentNotes(incidentNotes)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notes: incidentNotes}))}}
                 placeholder={'Notes'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>

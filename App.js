@@ -13,7 +13,12 @@ import { useState } from 'react';
 
 export default function App() {
 
-  //Data to be stored
+
+  //Data to be stored - Incident Details
+
+  const [incidentDetails, setIncidentDetails] = useState({});
+
+  //Data to be stored - Medication
   const [allMedication, setAllMedication] = useState([]);
 
 
@@ -29,7 +34,7 @@ export default function App() {
     <View style={styles.container}>
       <Header changeView={changeView}/>
       {view==='assessment'? <Assessment/>:<></>}
-      {view==='incident'?<IncidentDetails/>:<></>}
+      {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
       {view==='patientInfo'?<PatientInformation/>:<></>}
       {view==='procedures'?<Procedures/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
