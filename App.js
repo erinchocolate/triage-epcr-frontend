@@ -16,7 +16,8 @@ export default function App() {
 
   //Data to be stored - Incident Details
   const [incidentDetails, setIncidentDetails] = useState({});
-
+  //Data to be stored - Patient Info
+  const [patientInfo, setPatientInfo] = useState({});
   //Data to be stored - Medication
   const [allMedication, setAllMedication] = useState([]);
 
@@ -34,7 +35,7 @@ export default function App() {
       <Header changeView={changeView}/>
       {view==='assessment'? <Assessment/>:<></>}
       {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
-      {view==='patientInfo'?<PatientInformation/>:<></>}
+      {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention /> : <></>}
