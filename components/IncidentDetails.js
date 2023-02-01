@@ -4,6 +4,7 @@ import DropDown from '../utility/DropDown';
 
 export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
 
+    const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
     const [notifiedTime, setNotifiedTime] = useState(incidentDetails.notifyT || '');
     const [respondedTime, setRespondedTime] = useState(incidentDetails.responseT || '');
@@ -29,6 +30,10 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <View style={styles.dropdown}>
             <DropDown
+                value={incidentType}
+                setValue={incidentType=>{
+                    setIncidentType(incidentType);
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, type: incidentType}))}}
                 items={[
                     {label: 'Medical', value: 'medicalIncident'},
                     {label: 'ACC', value: 'accIncident'},
@@ -158,7 +163,7 @@ const styles = StyleSheet.create({
         margin: 10,
         height: '50%',
         zIndex: 1000,
-        elevation: 1000      
+        elevation: 1000   
         
     },
     title:{
@@ -173,6 +178,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         backgroundColor: 'white',
         zIndex: 1,
+        elevation: 1
 
     },
     wideInput:{

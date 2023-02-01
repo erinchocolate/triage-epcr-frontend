@@ -4,16 +4,15 @@ import { useState } from 'react';
 
 export default function DropDown(props) {
     const [open, setOpen] = useState(false);
-    const[value, setValue] = useState(null);
 
 
   return (
         <DropDownPicker 
         open={open}
-        value={value}
+        value={props.value}
         items={props.items}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={props.setValue}
         placeholder={props.placeholder}
         placeholderStyle ={{color: '#3b3b3b'}}
         style={{ width: '100%', minHeight: '100%'}}
