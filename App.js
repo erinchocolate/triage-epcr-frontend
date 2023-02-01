@@ -12,6 +12,13 @@ import Vital from './components/Vital';
 import { useState } from 'react';
 
 export default function App() {
+
+  //Data to be stored
+  const [allMedication, setAllMedication] = useState([]);
+
+
+
+
   const [view, setView] = useState('medications');
 
   function changeView(argument){
@@ -25,7 +32,7 @@ export default function App() {
       {view==='incident'?<IncidentDetails/>:<></>}
       {view==='patientInfo'?<PatientInformation/>:<></>}
       {view==='procedures'?<Procedures/>:<></>}
-      {view === 'medications' ? <Medications /> : <></>}
+      {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention /> : <></>}
       {view==='vital'?<Vital/>:<></>}
       <Footer />
