@@ -3,11 +3,10 @@ import { useState } from 'react';
 import uuid from 'react-native-uuid';
 
 
-export default function Medications() {
+export default function Medications({allMedication, setAllMedication}) {
 
     const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
-    const [allMedication, setAllMedication] = useState([]);
 
     function addMedication(){
         setAllMedication(prevAllMedication=>{
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto'  
     },
     medicationText:{
-        fontSize: '30%'
+        fontSize: 30
     },
     deleteButton:{
         ...commonStyle,

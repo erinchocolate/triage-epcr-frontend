@@ -5,18 +5,18 @@ import DropDown from '../utility/DropDown';
 
 
 
-export default function PatientInformation() {
+export default function PatientInformation({patientInfo, setPatientInfo}) {
 
-        const [firstName, setFirstName] = useState('');
-        const [middleName, setMiddleName] = useState('');
-        const [surname, setSurname] = useState('');
-        const [address, setAddress] = useState('');
-        const [nhiNumber, setNhiNumber] = useState('');
-        const [dateOfBirth, setDateOfBirth] = useState('');
-        const [age, setAge] = useState('');
-        const [gender, setGender] = useState('');
-        const [medications, setMedications] = useState('');
-        const [allergies, setAllergies] = useState('');
+        const [firstName, setFirstName] = useState(patientInfo.fName || '');
+        const [middleName, setMiddleName] = useState(patientInfo.mName || '');
+        const [surname, setSurname] = useState(patientInfo.lName || '');
+        const [address, setAddress] = useState(patientInfo.address || '');
+        const [nhiNumber, setNhiNumber] = useState(patientInfo.nhiNo || '');
+        const [dateOfBirth, setDateOfBirth] = useState(patientInfo.dob || '');
+        const [age, setAge] = useState(patientInfo.age || '');
+        const [gender, setGender] = useState(patientInfo.gender || '');
+        const [medications, setMedications] = useState(patientInfo.medications || '');
+        const [allergies, setAllergies] = useState(patientInfo.allergies || '');
 
   return (
     <View style={styles.layout}>
@@ -27,8 +27,10 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={firstName}
-                    onChangeText={firstName=>setFirstName(firstName)}
-                    placeholder={'First Name'}
+                    onChangeText={firstName=>{
+                        setFirstName(firstName)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, fName: firstName}))}}
+                        placeholder={'First Name'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
             </View>
@@ -38,7 +40,9 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={middleName}
-                    onChangeText={middleName=>setMiddleName(middleName)}
+                    onChangeText={middleName=>{
+                        setMiddleName(middleName)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, mName: middleName}))}}
                     placeholder={'Middle Name'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -49,7 +53,10 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={surname}
-                    onChangeText={surname=>setSurname(surname)}
+                    onChangeText={surname=>{
+                        setSurname(surname)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, lName: surname}))}}
+
                     placeholder={'Surname'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -66,7 +73,9 @@ export default function PatientInformation() {
                 <View style={styles.addressInputContainer}>
                     <TextInput
                             value={address}
-                            onChangeText={address=>setAddress(address)}
+                            onChangeText={address=>{
+                                setAddress(address)
+                                setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                             placeholder={'Address'}
                             placeholderTextColor = '#b3b3b3'
                             style={styles.addressInput}/>
@@ -81,7 +90,9 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={nhiNumber}
-                    onChangeText={nhiNumber=>setNhiNumber(nhiNumber)}
+                    onChangeText={nhiNumber=>{
+                        setNhiNumber(nhiNumber)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, nhiNo: nhiNumber}))}}
                     placeholder={'NHI Number'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.nhiInput}/>
@@ -95,7 +106,9 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={dateOfBirth}
-                    onChangeText={dateOfBirth=>setDateOfBirth(dateOfBirth)}
+                    onChangeText={dateOfBirth=>{
+                        setDateOfBirth(dateOfBirth)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, dob: dateOfBirth}))}}
                     placeholder={'DOB'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.smallInput}/>
@@ -104,7 +117,9 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={age}
-                    onChangeText={age=>setAge(age)}
+                    onChangeText={age=>{
+                        setAge(age)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, age: age}))}}
                     placeholder={'Age'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.smallInput}/>
@@ -113,7 +128,9 @@ export default function PatientInformation() {
                 </View>
                 <TextInput
                     value={gender}
-                    onChangeText={gender=>setGender(gender)}
+                    onChangeText={gender=>{
+                        setGender(gender)
+                        setPatientInfo(prevPatientInfo=>({...prevPatientInfo, gender: gender}))}}
                     placeholder={'Gender'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.smallInput}/>
@@ -124,7 +141,9 @@ export default function PatientInformation() {
             </View>
             <TextInput
                 value={medications}
-                onChangeText={medications=>setMedications(medications)}
+                onChangeText={medications=>{
+                    setMedications(medications)
+                    setPatientInfo(prevPatientInfo=>({...prevPatientInfo, medications: medications}))}}
                 placeholder={'Start typing to add'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
@@ -135,7 +154,9 @@ export default function PatientInformation() {
             </View>
             <TextInput
                 value={allergies}
-                onChangeText={allergies=>setAllergies(allergies)}
+                onChangeText={allergies=>{
+                    setAllergies(allergies)
+                    setPatientInfo(prevPatientInfo=>({...prevPatientInfo, allergies: allergies}))}}
                 placeholder={'Allergies'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>

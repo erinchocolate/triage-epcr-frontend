@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 20,
     height: '15%',
+    paddingLeft: 10,
   },
   secondColumn: {
     width: '30%',

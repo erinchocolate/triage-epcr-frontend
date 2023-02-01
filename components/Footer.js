@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
-import stjohn from '../assets/st_john.png';
+import fernmark from '../assets/fernmark.jpg';
 import triage from '../assets/triage_logo.jpg';
 
 export default function Footer() {
   return (
     <View style={styles.layout}>
-        <Image style={styles.image} source={stjohn}/>
+        <Image style={styles.image} source={fernmark}/>
         <Image style={styles.image} source={triage}/>
         <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
@@ -15,6 +15,9 @@ export default function Footer() {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>Review EPCR</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}>Print EPCR</Text>
         </TouchableOpacity>
     </View>
   )
@@ -30,8 +33,8 @@ const styles =StyleSheet.create({
         backgroundColor: 'dodgerblue'
     },
     image: {
-      width: 80,
-      height: 80,
+      width: 120,
+      height: 100,
       resizeMode: 'contain'
     },
     button:{
@@ -40,5 +43,4 @@ const styles =StyleSheet.create({
       justifyContent: 'center',
       height: '60%',
       width: '13%'
-
 }})

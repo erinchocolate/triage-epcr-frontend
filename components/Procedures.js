@@ -2,22 +2,46 @@ import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 
-export default function Procedures() {
+export default function Procedures({procedures, setProcedures}) {
+
+    const [cardioversion, setCardioversion] = useState(procedures.cardioversion || false);
+    const [pacing, setPacing] = useState(procedures.pacing || false);
+    const [cardiacArrest, setCardiacArrest] = useState(procedures.cardiacArrest || false);
+    const [rsi, setRsi] = useState(procedures.rsi || false);
+    const [mechVent, setMechVent] = useState(procedures.mechVent || false);
+    const [cpap, setCpap] = useState(procedures.cpap || false);
+    const [cric, setCric] = useState(procedures.cric || false);
+    const [needleDecomp, setNeedleDecomp] = useState(procedures.needleDecomp || false);
+    const [fingerThorac, setFingerThorac] = useState(procedures.fingerThorac || false);
+    const [fiBlock, setFiBlock] = useState(procedures.fiBlock || false);
      
     return (
     <View style={styles.layout}>
         
         <View style={styles.row}>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={cardioversion}
+                    setChecked={cardioversion=>{
+                        setCardioversion(cardioversion);
+                        setProcedures(prevProcedures=>({...prevProcedures, cardioversion: cardioversion}))}}
+                    />
                 <Text style={styles.myText}>Cardioversion</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={pacing}
+                    setChecked={pacing=>{
+                        setPacing(pacing);
+                        setProcedures(prevProcedures=>({...prevProcedures, pacing: pacing}))}}/>
                 <Text style={styles.myText}>Pacing</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={cardiacArrest}
+                    setChecked={cardiacArrest=>{
+                        setCardiacArrest(cardiacArrest);
+                        setProcedures(prevProcedures=>({...prevProcedures, cardiacArrest: cardiacArrest}))}}/>
                 <Text style={styles.myText}>Cardiac Arrest</Text>
             </View>
             <TouchableOpacity style={styles.button}>
@@ -27,19 +51,35 @@ export default function Procedures() {
 
         <View style={styles.row}>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={rsi}
+                    setChecked={rsi=>{
+                        setRsi(rsi);
+                        setProcedures(prevProcedures=>({...prevProcedures, rsi: rsi}))}}/>
                 <Text style={styles.myText}>RSI</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={mechVent}
+                    setChecked={mechVent=>{
+                        setMechVent(mechVent);
+                        setProcedures(prevProcedures=>({...prevProcedures, mechVent: mechVent}))}}/>
                 <Text style={styles.myText}>Mechanical Ventilation</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={cpap}
+                    setChecked={cpap=>{
+                        setCpap(cpap);
+                        setProcedures(prevProcedures=>({...prevProcedures, cpap: cpap}))}}/>
                 <Text style={styles.myText}>CPAP</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={cric}
+                    setChecked={cric=>{
+                        setCric(cric);
+                        setProcedures(prevProcedures=>({...prevProcedures, cric: cric}))}}/>
                 <Text style={styles.myText}>Surgical CRIC</Text>
             </View>
             <TouchableOpacity style={styles.button}>
@@ -49,11 +89,19 @@ export default function Procedures() {
 
         <View style={styles.row}>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={needleDecomp}
+                    setChecked={needleDecomp=>{
+                        setNeedleDecomp(needleDecomp);
+                        setProcedures(prevProcedures=>({...prevProcedures, needleDecomp: needleDecomp}))}}/>
                 <Text style={styles.myText}>Needle Decompression</Text>
             </View>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={fingerThorac}
+                    setChecked={fingerThorac=>{
+                        setFingerThorac(fingerThorac);
+                        setProcedures(prevProcedures=>({...prevProcedures, fingerThorac: fingerThorac}))}}/>
                 <Text style={styles.myText}>Finger Thoracostomy</Text>
             </View>
             <TouchableOpacity style={styles.button}>
@@ -63,7 +111,11 @@ export default function Procedures() {
 
         <View style={styles.row}>
             <View style={styles.checkboxGroup}>
-                <CheckBox/>
+                <CheckBox
+                    isChecked={fiBlock}
+                    setChecked={fiBlock=>{
+                        setFiBlock(fiBlock);
+                        setProcedures(prevProcedures=>({...prevProcedures, fiBlock: fiBlock}))}}/>
                 <Text style={styles.myText}>FI Block</Text>
             </View>
             <TouchableOpacity style={styles.saveButton}>
@@ -107,7 +159,7 @@ const styles = StyleSheet.create({
         marginRight: '4%'
     },
     myText:{
-        fontSize: '20%',
+        fontSize: 20,
     },
     button:{
         ...buttonStyle,
