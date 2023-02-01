@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import React from 'react';
@@ -212,16 +212,7 @@ export default function Intervention() {
       height:50,
     },
 
-    button: {
-    
-      backgroundColor: "#EBEBEB",
-      borderRadius: 10,
-      width: 70,
-      height: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
- 
-    },
+   
 
     input: {
       height: 50,

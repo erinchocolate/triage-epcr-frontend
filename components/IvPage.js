@@ -38,7 +38,6 @@ export default function IvPage() {
         
     }
 
-
     return(
 <View style={styles.layout}>
 
@@ -123,9 +122,9 @@ export default function IvPage() {
                 {allIV.map(singleIV=>{
 
                 return(
-                <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '80%', zIndex:-1, marginLeft: '10%'}}>
+                <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '78%', zIndex:-1, marginLeft: '10%'}}>
                      
-                        <TextBox/>
+                     <TextBox/> 
                     <View style={styles.IVBox}><Text  style={styles.IVText}>{singleIV.IVSize} {singleIV.IVLocation}</Text></View>
                     <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteIV(singleIV.IVRowId)} ><Text>X</Text></TouchableOpacity>
 
@@ -225,6 +224,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
 
+    
+
     deleteButton:{
         width: '8%',
         height: '65%',
@@ -239,15 +240,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
 
-    input: {
-        marginTop: 10,
-        height: '53%',
-        width:'40%',
-        borderWidth: 1,
-        backgroundColor: "white",
-        margin: 12,
-        padding:10,
-     
-        
-      },
+
+    
+
+      
 });

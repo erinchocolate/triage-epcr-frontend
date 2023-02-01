@@ -19,9 +19,10 @@ export default function TextBox() {
 
 const styles = StyleSheet.create({
     input: {
-        marginTop: 10,
-        height: '53%',
-        width:'40%',
+        marginTop: 20,
+        marginLeft: 20,
+        height: '50%',
+        width:'43%',
         borderWidth: 1,
         backgroundColor: "white",
         margin: 12,
