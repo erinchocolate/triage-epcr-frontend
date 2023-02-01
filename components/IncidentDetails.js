@@ -5,12 +5,12 @@ import DropDown from '../utility/DropDown';
 export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
 
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
-    const [notifiedTime, setNotifiedTime] = useState('');
-    const [respondedTime, setRespondedTime] = useState('');
-    const [locatedTime, setLocatedTime] = useState('');
-    const [departedTime, setDepartedTime] = useState('');
-    const [destinationTime, setDestinationTime] = useState('');
-    const [hospitalLocation, setHospitalLocation] = useState('');
+    const [notifiedTime, setNotifiedTime] = useState(incidentDetails.notifyT || '');
+    const [respondedTime, setRespondedTime] = useState(incidentDetails.responseT || '');
+    const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
+    const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
+    const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
+    const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
 
      
     return (
@@ -53,7 +53,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={notifiedTime}
-                onChangeText={notifiedTime=>setNotifiedTime(notifiedTime)}
+                onChangeText={notifiedTime=>{
+                    setNotifiedTime(notifiedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notifyT: notifiedTime}))}}
                 placeholder={'Notified Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -62,7 +64,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={respondedTime}
-                onChangeText={respondedTime=>setRespondedTime(respondedTime)}
+                onChangeText={respondedTime=>{
+                    setRespondedTime(respondedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, responseT: respondedTime}))}}
                 placeholder={'Responded Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -71,7 +75,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={locatedTime}
-                onChangeText={locatedTime=>setLocatedTime(locatedTime)}
+                onChangeText={locatedTime=>{
+                    setLocatedTime(locatedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, locatedT: locatedTime}))}}
                 placeholder={'Located Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -82,7 +88,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={departedTime}
-                onChangeText={departedTime=>setDepartedTime(departedTime)}
+                onChangeText={departedTime=>{
+                    setDepartedTime(departedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, departedT: departedTime}))}}
                 placeholder={'Departed Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -91,7 +99,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={destinationTime}
-                onChangeText={destinationTime=>setDestinationTime(destinationTime)}
+                onChangeText={destinationTime=>{
+                    setDestinationTime(destinationTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, destinationT: destinationTime}))}}
                 placeholder={'Destination Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -102,7 +112,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 value={hospitalLocation}
-                onChangeText={hospitalLocation=>setHospitalLocation(hospitalLocation)}
+                onChangeText={hospitalLocation=>{
+                    setHospitalLocation(hospitalLocation)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: hospitalLocation}))}}
                 placeholder={'Start typing and this will bring up options'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>

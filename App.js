@@ -15,7 +15,6 @@ export default function App() {
 
 
   //Data to be stored - Incident Details
-
   const [incidentDetails, setIncidentDetails] = useState({});
 
   //Data to be stored - Medication
