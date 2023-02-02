@@ -12,12 +12,27 @@ export default function Vital() {
         const [BSL, setBSL] = useState('');
         const [SPo2, setSPo2] = useState('');
         const [ETCo2, setETCo2] = useState('');
-       
+        const [BP, setBP] = useState('');
 
   return (
     <View style={styles.layout}>
         <View style = {styles.column}>
+        <View style={styles.row}>
+
+        <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
+                <View style={styles.title}>
+                    <Text style={styles.myText}>BP: </Text>
+                </View>
+                <TextInput
+                    value={BP}
+                    onChangeText={BP=>setBP(BP)}
+                    placeholder={'BP'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.input}/>
+            </View>
+          
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>Heart Rate: </Text>
                 </View>
@@ -29,6 +44,7 @@ export default function Vital() {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>Resp Rate: </Text>
                 </View>
@@ -40,6 +56,7 @@ export default function Vital() {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>Temp: </Text>
                 </View>
@@ -51,6 +68,7 @@ export default function Vital() {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>BSL: </Text>
                 </View>
@@ -62,6 +80,7 @@ export default function Vital() {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>SPo2: </Text>
                 </View>
@@ -73,6 +92,7 @@ export default function Vital() {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>ETCo2: </Text>
                 </View>
@@ -85,7 +105,7 @@ export default function Vital() {
             </View>
         </View>
     <View style={styles.middleColumn}>
-        <View style={styles.row}>
+        <View style={styles.row4}>
             <CheckBox/>
         
                 <Text>Monitor</Text>
@@ -97,7 +117,7 @@ export default function Vital() {
                 <Text>Palpatation</Text>
         
        </View>
-    <View style={styles.row}>
+    <View style={styles.row4}>
     
        
             <TouchableOpacity style={styles.button2}>
@@ -118,7 +138,7 @@ export default function Vital() {
         
 
         <View style={styles.wideColumn}>
-            <View style={[styles.row,{zIndex:5}]}>
+            <View style={[styles.row5,{zIndex:5}]}>
                 <View style={styles.title}>
                     <Text style={styles.myText}>GCS: </Text>
                 </View>
@@ -169,7 +189,7 @@ export default function Vital() {
       </View>
 
           
-            <View style={[styles.row2,{zIndex:4}]}>
+            <View style={[styles.row5,{zIndex:4}]}>
             <View style={styles.title}>
                     <Text style={styles.myText}>4 Lead ECG or Pads</Text>
             </View>
@@ -194,7 +214,7 @@ export default function Vital() {
             </View>
             
         </View>
-        <View style={[styles.row2,{zIndex:2}]}>
+        <View style={[styles.row5,{zIndex:2}]}>
             <View style={styles.title}>
                     <Text style={styles.myText}>12 Lead ECG</Text>
             </View>
@@ -222,9 +242,7 @@ export default function Vital() {
         </View>
         <View style={styles.row}>
            
-            <TouchableOpacity style={styles.button1}>
-                             <Text>Take Photo</Text>
-        </TouchableOpacity>
+            
            
           
         </View>
@@ -263,29 +281,34 @@ const styles = StyleSheet.create({
     },
     column:{
         height: '65%',
-        width: '33%',
+        width: '25%',
         fontWeight: '700',
         justifyContent: 'center',
         alignItems: 'center'
+      
     },
     middleColumn:{
         flexDirection: 'column',
       height: '65%',
-      width: '30%',
+      width: '26%',
       fontWeight: '700',
       justifyContent: 'center',
-      alignItems: 'center'
+        
+      marginBottom: 120,
+      
     },
     wideColumn:{
+        
         height: '65%',
-        width: '36%',
-        marginRight: 10,
+        width: '52%',
+        marginBottom: 130,
         fontWeight: '700',
         
+        alignItems: 'center',
     },
     row:{
         flexDirection: 'row',
-        width: '90%',
+        width: '70%',
         height: '20%',
         fontWeight: '700',
         justifyContent: 'center',
@@ -300,19 +323,50 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    row3:{
+        flexDirection: 'row',
+        width: '90%',
+        height: '20%',
+        fontWeight: '700',
+        
+        alignItems: 'center',
+   
+    },
+    row4:{
+        flexDirection: 'row',
+        width: '70%',
+        height: '20%',
+        fontWeight: '700',
+        marginBottom: 100,
+        marginRight: 820,
+        alignItems: 'center',
+        
+   
+    },
+    row5:{
+        flexDirection: 'row',
+        width: '90%',
+        height: '20%',
+        fontWeight: '700',
+        marginRight: 190,
+        
+        alignItems: 'center',
+   
+    },
   
       smallDropdown1:{
       
         height: '20%',
-        width: '25%',
+        width: '27%',
         zIndex:6,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: 5,
       },
       smallDropdown2:{
-       
-        height: '20%',
-        width: '25%',
+        marginRight: 5,
+        height: '25%',
+        width: '27%',
         zIndex:5,
         justifyContent: 'center',
         alignItems: 'center'
@@ -320,7 +374,7 @@ const styles = StyleSheet.create({
       smallDropdown3:{
        
         height: '20%',
-        width: '25%',
+        width: '27%',
         zIndex:4,
         justifyContent: 'center',
         alignItems: 'center'
@@ -347,7 +401,7 @@ const styles = StyleSheet.create({
     },
     smallTitle:{
         ...commonStyle,
-        width: '13%'
+        width: '1%'
     },
     smallInput:{
         ...commonStyle,
@@ -362,7 +416,7 @@ const styles = StyleSheet.create({
     input:{
         ...commonStyle,
         paddingLeft: 10,
-        width: '65%',
+        width: '47%',
         backgroundColor: 'white'
 
     },
@@ -393,5 +447,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#93ff33',
       
     },
-   
+    box: {
+        width: 20,
+        height:20,
+        color: '#93ff33',
+    },
 })
