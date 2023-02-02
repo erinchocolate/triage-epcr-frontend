@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
       fontWeight: '700',
       justifyContent: 'center',
         
-      marginBottom: 120,
+      marginBottom: 0,
       
     },
     wideColumn:{
@@ -333,13 +333,14 @@ const styles = StyleSheet.create({
    
     },
     row4:{
-        flexDirection: 'row',
+        flexDirection: 'column',
         width: '70%',
         height: '20%',
         fontWeight: '700',
-        marginBottom: 100,
+        marginBottom: 50,
         marginRight: 820,
         alignItems: 'center',
+        justifyContent: 'center'
         
    
     },
@@ -442,8 +443,8 @@ const styles = StyleSheet.create({
     },
     button2:{
         ...commonStyle,
-        width: '50%',
-        height: '50%',
+        width: '80%',
+        height: '80%',
         backgroundColor: '#93ff33',
       
     },
