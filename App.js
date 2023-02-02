@@ -9,6 +9,7 @@ import Medications from './components/Medications';
 import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
+import Homepage from './components/HomePage';
 import { useState } from 'react';
 
 export default function App() {

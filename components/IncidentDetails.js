@@ -2,7 +2,11 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
+
+
+
+
+export default function IncidentDetails() {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');

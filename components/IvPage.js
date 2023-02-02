@@ -3,6 +3,7 @@ import { useState } from 'react';
 import uuid from 'react-native-uuid';
 import DropDownPicker from 'react-native-dropdown-picker';
 import CheckBox from '../utility/Checkbox';
+import TextBox from '../utility/TextBox';
 
 export default function IvPage() { 
 
@@ -16,11 +17,16 @@ export default function IvPage() {
     const [openLocation, setOpenLocation] = useState(false);
     const[valueLocation, setValueLocation] = useState(null);
 
+    const timestamp = new Date().toLocaleString();
+    const [text, onChangeText] = useState(timestamp);
+
     function addIV(){
         setAllIV(prevAllIV=>{
             const IVRowKey = uuid.v4();
             return [...prevAllIV, {IVRowId: IVRowKey, IVSize: units, IVLocation: location}]
         })
+
+
     }
 
     function deleteIV(IVRowId){
@@ -31,7 +37,6 @@ export default function IvPage() {
         })
         
     }
-
 
     return(
 <View style={styles.layout}>
@@ -117,8 +122,9 @@ export default function IvPage() {
                 {allIV.map(singleIV=>{
 
                 return(
-                <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%', zIndex:-1}}>
-
+                <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '78%', zIndex:-1, marginLeft: '10%'}}>
+                     
+                     <TextBox/> 
                     <View style={styles.IVBox}><Text  style={styles.IVText}>{singleIV.IVSize} {singleIV.IVLocation}</Text></View>
                     <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteIV(singleIV.IVRowId)} ><Text>X</Text></TouchableOpacity>
 
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
-        
+      
     
       },
 
@@ -206,7 +212,7 @@ const styles = StyleSheet.create({
     IVBox:{
        
         marginTop: 20,
-        width: '85%',
+        width: '60%',
         height: '60%',
         borderColor: '#3b3b3b',
         borderWidth: 1,
@@ -218,8 +224,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
 
+    
+
     deleteButton:{
-        width: '5%',
+        width: '8%',
         height: '65%',
         backgroundColor: '#FF5C5C',
         borderColor: '#3b3b3b',
@@ -231,4 +239,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: 'white'
     },
+
+
+    
+
+      
 });
