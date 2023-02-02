@@ -6,30 +6,24 @@ import CheckBox from '../utility/Checkbox';
 import IvPage from './IvPage';
 
 
-export default function Intervention({interventions}) { 
+export default function Intervention({interventions, setInterventions, allIv, setAllIv}) { 
 
   //CheckBox Data holders
   const [opa, setOpa] = useState(interventions.opa || false);
   const [lma, setLma] = useState(interventions.lma || false);
   const [npa, setNpa] = useState(interventions.npa || false);
   const [ett, setEtt] = useState(interventions.ett || false);
-  const [io, setIo] = useState(interventions.io || false);
-  const [iv, setIv] = useState(interventions.iv || false);
   const [peep, setPeep] = useState(interventions.peep || false);
   const [suction, setSuction] = useState(interventions.suction || false);
   const [bvm, setBvm] = useState(interventions.bvm || false);
 
 //this is used for the state of the keypad
-const [text, onChangeText] = useState('');
+const [text, setText] = useState(interventions.text || '');
 
 //Dropdown Box data holders
   const [airwaySize, setAirwaySize] = useState(interventions.airwaySize || null);
   const [airwayLocation, setAirwayLocation] = useState(interventions.airwayLocation || null);
-  const [ioivSize, setIoivSize] = useState(interventions.ioivSize || null);
-  const [ioivLocation, setIoivLocation] = useState(interventions.ioivLocation || null);
   const [catheter, setCatheter] = useState(interventions.catheter || null);
-
-
 
  return (
 <View style={styles.layout}>
@@ -38,22 +32,38 @@ const [text, onChangeText] = useState('');
     <View style={styles.container}>
 
         <View style={styles.checkboxGroup}>
-        <CheckBox/>
+        <CheckBox
+            isChecked={opa}
+            setChecked={opa=>{
+            setOpa(opa);
+            setInterventions(prevInterventions=>({...prevInterventions, opa: opa}))}}/>
         <Text>OPA</Text>
         </View>
         
         <View style={styles.checkboxGroup}>
-        <CheckBox/>
+        <CheckBox
+              isChecked={lma}
+              setChecked={lma=>{
+              setLma(lma);
+              setInterventions(prevInterventions=>({...prevInterventions, lma: lma}))}}/>
         <Text>LMA</Text>
         </View>
 
         <View style={styles.checkboxGroup}>
-        <CheckBox/>
+        <CheckBox
+              isChecked={npa}
+              setChecked={npa=>{
+              setNpa(npa);
+              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
         <Text>NPA</Text>
         </View>
 
         <View style={styles.checkboxGroup}>
-        <CheckBox/>
+        <CheckBox
+              isChecked={ett}
+              setChecked={ett=>{
+              setEtt(ett);
+              setInterventions(prevInterventions=>({...prevInterventions, ett: ett}))}}/>
         <Text>ETT</Text>
         </View>
 
@@ -63,6 +73,10 @@ const [text, onChangeText] = useState('');
     <View style={[styles.container, { zIndex: 4}]}>
       <View style={styles.smallDropdown}> 
            <DropDown
+                value={airwaySize}
+                setValue={airwaySize=>{
+                    setAirwaySize(airwaySize);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
             placeholder = 'Size'
             items = {[
               {label: '0', value: '0'},
@@ -84,6 +98,10 @@ const [text, onChangeText] = useState('');
 
       <View style={styles.largeDropdown}> 
           <DropDown
+                value={airwayLocation}
+                setValue={airwayLocation=>{
+                    setAirwayLocation(airwayLocation);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
             placeholder = 'Location'
             items = {[
               {label: 'Nasal', value: 'Nasal'},
@@ -100,17 +118,22 @@ const [text, onChangeText] = useState('');
       <View style={styles.secRow}>
 
           <View style={styles.checkboxGroup}>
-          <CheckBox/>
+          <CheckBox
+              isChecked={peep}
+              setChecked={peep=>{
+              setPeep(peep);
+              setInterventions(prevInterventions=>({...prevInterventions, peep: peep}))}}/>
           <Text>PEEP</Text>
           </View>
 
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText}
             value={text}
+            onChangeText={text=>{
+                setText(text)
+                setInterventions(prevInterventions=>({...prevInterventions, text: text}))}}
             placeholder="Bring up a keypad"
           />
-
       </View>
     </View>
 
@@ -119,17 +142,24 @@ const [text, onChangeText] = useState('');
     <View style={styles.secRow}>
 
         <View style={styles.checkboxGroup}>
-          <CheckBox/>
+          <CheckBox
+              isChecked={suction}
+              setChecked={suction=>{
+              setSuction(suction);
+              setInterventions(prevInterventions=>({...prevInterventions, suction: suction}))}}/>
           <Text>Suction</Text>
           </View>
 
       <View style={styles.largeDropdown}> 
           <DropDown
+                value={catheter}
+                setValue={catheter=>{
+                    setCatheter(catheter);
+                    setInterventions(prevInterventions=>({...prevInterventions, catheter: catheter}))}}
               placeholder = 'Suction Catheter'
               items = {[
               {label: 'Opt 1', value: 'Opt 1'},
               {label: 'Opt 2', value: 'Opt 2'},
-      
               ]}
             />
       </View>
@@ -140,7 +170,11 @@ const [text, onChangeText] = useState('');
     <View style={styles.container}>   
     <View style={styles.secRow}>
       <View style={styles.checkboxGroup}>
-          <CheckBox/>
+          <CheckBox
+              isChecked={bvm}
+              setChecked={bvm=>{
+              setBvm(bvm);
+              setInterventions(prevInterventions=>({...prevInterventions, bvm: bvm}))}}/>
           <Text>BVM</Text>
       </View>
     </View>
@@ -152,7 +186,11 @@ const [text, onChangeText] = useState('');
 
 
 <View style={styles.component}>
-    <IvPage/>
+    <IvPage
+       interventions={interventions}
+       setInterventions={setInterventions}
+       allIv={allIv}
+       setAllIv={setAllIv}/>
     <View style={styles.bottomRow}>
             <TouchableOpacity style = {styles.saveButton}>
                 <Text>Save</Text>

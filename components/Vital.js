@@ -4,7 +4,7 @@ import CheckBox from '../utility/Checkbox';
 import DropDown from '../utility/DropDown';
 
 
-export default function Vital() {
+export default function Vital({vitalSigns, setVitalSigns}) {
 
         const [heartRate, setheartRate] = useState('');
         const [RespRate, setRespRate] = useState('');

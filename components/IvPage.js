@@ -5,11 +5,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import CheckBox from '../utility/Checkbox';
 import TextBox from '../utility/TextBox';
 
-export default function IvPage() { 
+export default function IvPage({interventions, setInterventions, allIv, setAllIv}) { 
+
+    const [io, setIo] = useState(interventions.io || false);
+    const [iv, setIv] = useState(interventions.iv || false);
 
     const [location, setLocation] = useState('');
     const [units, setUnits] = useState('');
-    const [allIV, setAllIV] = useState([]);
 
     const [openSize, setOpenSize] = useState(false);
     const[valueSize, setValueSize] = useState(null);
@@ -18,127 +20,130 @@ export default function IvPage() {
     const[valueLocation, setValueLocation] = useState(null);
 
     const timestamp = new Date().toLocaleString();
-    const [text, onChangeText] = useState(timestamp);
+
+
 
     function addIV(){
-        setAllIV(prevAllIV=>{
+        setAllIv(prevAllIv=>{
             const IVRowKey = uuid.v4();
-            return [...prevAllIV, {IVRowId: IVRowKey, IVSize: units, IVLocation: location}]
+            return [...prevAllIv, {IVRowId: IVRowKey, IVSize: units, IVLocation: location, IVTime: timestamp}]
         })
-
-
     }
 
     function deleteIV(IVRowId){
-        setAllIV(prevAllIV=>{
+        setAllIv(prevAllIv=>{
             return (
-                prevAllIV.filter(existingIV=>existingIV.IVRowId != IVRowId)
+                prevAllIv.filter(existingIV=>existingIV.IVRowId != IVRowId)
             )
         })
-        
     }
 
-    return(
-<View style={styles.layout}>
+return(
+            <View style={styles.layout}>
+            <View style={styles.container}>
+                    <View style={styles.checkboxGroup}>
+                    <CheckBox
+                        isChecked={io}
+                        setChecked={io=>{
+                        setIo(io);
+                        setInterventions(prevInterventions=>({...prevInterventions, io: io}))}}/>
+                    <Text>IO</Text>
+                    </View>
+
+                    <View style={styles.checkboxGroup}>
+                    <CheckBox
+                        isChecked={iv}
+                        setChecked={iv=>{
+                        setIv(iv);
+                        setInterventions(prevInterventions=>({...prevInterventions, iv: iv}))}}/>
+                    <Text>IV</Text>
+                    </View>
+                    
+            </View>
 
 
-<View style={styles.container}>
+            <View style={[styles.container, { zIndex: 4}]}>
+                <View style={styles.smallDropdown}>
+                    <DropDownPicker 
+                    open={openSize}
+                    value={valueSize}
+                    setOpen={setOpenSize}
+                    setValue={setValueSize}
+                    onChangeValue={units=>setUnits(units)}
+                    placeholder='Size'
+                    items = {[
+                        {label: '16g', value: '16g'},
+                        {label: '18g', value: '18g'},
+                        {label: '20g', value: '20g'},
+                        {label: '22g', value: '22g'},
+                        {label: '24g', value: '24g'},
+                        {label: '15mm', value:'15mm'},
+                        {label: '25mm', value: '25mm'},
+                        {label: '45mm', value: '45mm'},
+                        ]}
+                    />
+                    </View>
+                
+                    <View style={styles.largeDropdown}>
+                    <DropDownPicker 
+                    open={openLocation}
+                    value={valueLocation}
+                    setOpen={setOpenLocation}
+                    setValue={setValueLocation}
+                    onChangeValue={location=>setLocation(location)}
+                    placeholder='Location'
+                    items = {[
+                        {label: 'Left Forearm/Hand', value: 'Left Forearm/Hand'},
+                        {label: 'Right Forearm/Hand', value: 'Right Forearm/Hand'},
+                        {label: 'Left ACF', value: 'Left ACF'},
+                        {label: 'Right ACF', value: 'Right ACF'},
+                        {label: 'Left Lower Limb', value: 'Left Lower Limb'},
+                        {label: 'Right Lower Limb', value: 'Right Lower Limb'},
+                        {label: 'Left External Jugular', value: 'Left External Jugular'},
+                        {label: 'Right External Jugular', value: 'Right External Jugular'},
+                        {label: 'Left Tibia', value: 'Left Tibia'},
+                        {label: 'Right Tibia', value: 'Right Tibia'},
+                        {label: 'Left Shoulder', value: 'Left Shoulder'},
+                        {label: 'Right Shoulder', value: 'Right Shoulder'},
+                        {label: 'Other', value: 'Other'},
+                        ]}
+                    />
+                    </View>
 
-        <View style={styles.checkboxGroup}>
-        <CheckBox/>
-        <Text>IO</Text>
-        </View>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox/>
-        <Text>IV</Text>
-        </View>
-        
-</View>
-
-
-<View style={[styles.container, { zIndex: 4}]}>
-     <View style={styles.smallDropdown}>
-        <DropDownPicker 
-         open={openSize}
-         value={valueSize}
-         setOpen={setOpenSize}
-         setValue={setValueSize}
-         onChangeValue={units=>setUnits(units)}
-         placeholder='Size'
-        items = {[
-            {label: '16g', value: '16g'},
-            {label: '18g', value: '18g'},
-            {label: '20g', value: '20g'},
-            {label: '22g', value: '22g'},
-            {label: '24g', value: '24g'},
-            {label: '15mm', value:'15mm'},
-            {label: '25mm', value: '25mm'},
-            {label: '45mm', value: '45mm'},
-            ]}
-        />
-        </View>
-       
-        <View style={styles.largeDropdown}>
-        <DropDownPicker 
-         open={openLocation}
-         value={valueLocation}
-         setOpen={setOpenLocation}
-         setValue={setValueLocation}
-         onChangeValue={location=>setLocation(location)}
-         placeholder='Location'
-        items = {[
-            {label: 'Left Forearm/Hand', value: 'Left Forearm/Hand'},
-            {label: 'Right Forearm/Hand', value: 'Right Forearm/Hand'},
-            {label: 'Left ACF', value: 'Left ACF'},
-            {label: 'Right ACF', value: 'Right ACF'},
-            {label: 'Left Lower Limb', value: 'Left Lower Limb'},
-            {label: 'Right Lower Limb', value: 'Right Lower Limb'},
-            {label: 'Left External Jugular', value: 'Left External Jugular'},
-            {label: 'Right External Jugular', value: 'Right External Jugular'},
-            {label: 'Left Tibia', value: 'Left Tibia'},
-            {label: 'Right Tibia', value: 'Right Tibia'},
-            {label: 'Left Shoulder', value: 'Left Shoulder'},
-            {label: 'Right Shoulder', value: 'Right Shoulder'},
-            {label: 'Other', value: 'Other'},
-            ]}
-        />
-        </View>
-
-        <TouchableOpacity onPress={()=>addIV()} style={styles.button}>
-            <Text style={styles.text}>Add</Text>
-        </TouchableOpacity>  
-       
-  </View>
-        
-  
-
-  
-
-  <View style={styles.container}>
-        <View style={styles.scrollcontent}>
-                <ScrollView style = {styles.scrollbox}>
+                    <TouchableOpacity onPress={()=>addIV()} style={styles.button}>
+                        <Text style={styles.text}>Add</Text>
+                    </TouchableOpacity>  
+                
+            </View>
+                    
             
-                {allIV.map(singleIV=>{
 
-                return(
-                <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '78%', zIndex:-1, marginLeft: '10%'}}>
-                     
-                     <TextBox/> 
-                    <View style={styles.IVBox}><Text  style={styles.IVText}>{singleIV.IVSize} {singleIV.IVLocation}</Text></View>
-                    <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteIV(singleIV.IVRowId)} ><Text>X</Text></TouchableOpacity>
+            
+
+            <View style={styles.container}>
+                    <View style={styles.scrollcontent}>
+                            <ScrollView style = {styles.scrollbox}>
+                            {allIv.length===0? <View><Text>No Medication administered yet</Text></View> : <></>}
+                            {allIv.map(singleIV=>{
+                            return(
+                            <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '78%', zIndex:-1, marginLeft: '10%'}}> 
+                                <TextBox
+                                    time={singleIV.IVTime}
+                                    setAllIv={setAllIv}
+                                    IVRowId={singleIV.IVRowId}/> 
+                                <View style={styles.IVBox}><Text  style={styles.IVText}>{singleIV.IVSize} {singleIV.IVLocation}</Text></View>
+                                <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteIV(singleIV.IVRowId)} ><Text>X</Text></TouchableOpacity>
+                            </View>
+                            )
+                            })}
+                            </ScrollView>
 
                 </View>
-                )
-                })}
-                </ScrollView>
-
-       </View>
 
 
-       </View>
+                </View>
 
-</View>
+            </View>
 
     )
 

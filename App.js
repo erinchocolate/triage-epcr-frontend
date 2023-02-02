@@ -22,7 +22,7 @@ export default function App() {
   const [vitalSigns, setVitalSigns] = useState({})
   //Data to be stored - Interventions
   const [interventions, setInterventions] = useState({});
-  const [interventionList, setInterventionList] = useState([]);
+  const [allIv, setAllIv] = useState([]);
   //Data to be stored - Procedures
   const [procedures, setProcedures] = useState({});
   //Data to be stored - Medication
@@ -47,7 +47,7 @@ export default function App() {
       {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
-      {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} interventionList={interventionList} setInterventionList={setInterventionList}/> : <></>}
+      {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
