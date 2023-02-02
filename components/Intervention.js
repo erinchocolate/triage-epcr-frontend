@@ -6,10 +6,30 @@ import CheckBox from '../utility/Checkbox';
 import IvPage from './IvPage';
 
 
-export default function Intervention() { 
+export default function Intervention({interventions}) { 
 
-    //this is used for the state of the keypad
-    const [text, onChangeText] = useState('');
+  //CheckBox Data holders
+  const [opa, setOpa] = useState(interventions.opa || false);
+  const [lma, setLma] = useState(interventions.lma || false);
+  const [npa, setNpa] = useState(interventions.npa || false);
+  const [ett, setEtt] = useState(interventions.ett || false);
+  const [io, setIo] = useState(interventions.io || false);
+  const [iv, setIv] = useState(interventions.iv || false);
+  const [peep, setPeep] = useState(interventions.peep || false);
+  const [suction, setSuction] = useState(interventions.suction || false);
+  const [bvm, setBvm] = useState(interventions.bvm || false);
+
+//this is used for the state of the keypad
+const [text, onChangeText] = useState('');
+
+//Dropdown Box data holders
+  const [airwaySize, setAirwaySize] = useState(interventions.airwaySize || null);
+  const [airwayLocation, setAirwayLocation] = useState(interventions.airwayLocation || null);
+  const [ioivSize, setIoivSize] = useState(interventions.ioivSize || null);
+  const [ioivLocation, setIoivLocation] = useState(interventions.ioivLocation || null);
+  const [catheter, setCatheter] = useState(interventions.catheter || null);
+
+
 
  return (
 <View style={styles.layout}>
