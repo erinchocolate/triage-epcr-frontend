@@ -6,13 +6,26 @@ import DropDown from '../utility/DropDown';
 
 export default function Vital({vitalSigns, setVitalSigns}) {
 
-        const [heartRate, setheartRate] = useState('');
-        const [RespRate, setRespRate] = useState('');
-        const [Temp, setTemp] = useState('');
-        const [BSL, setBSL] = useState('');
-        const [SPo2, setSPo2] = useState('');
-        const [ETCo2, setETCo2] = useState('');
-        const [BP, setBP] = useState('');
+    //Text Input data
+        const [BP, setBP] = useState(vitalSigns.BP || '');
+        const [heartRate, setheartRate] = useState(vitalSigns.heartRate || '');
+        const [respRate, setRespRate] = useState(vitalSigns.respRate || '');
+        const [temp, setTemp] = useState(vitalSigns.temp || '');
+        const [BSL, setBSL] = useState(vitalSigns.BSL || '');
+        const [SPo2, setSPo2] = useState(vitalSigns.SPo2 || '');
+        const [ETCo2, setETCo2] = useState(vitalSigns.ETCo2 || '');
+
+    //CheckBox Data
+        const [monitor, setMonitor] = useState(vitalSigns.monitor || false);
+        const [manual, setManual] = useState(vitalSigns.manual || false);
+        const [palpatation, setPalpatation] = useState(vitalSigns.palpatation || false);
+
+    //DropDown Data
+        const [eyes, setEyes] = useState(vitalSigns.eyes || null);
+        const [voice, setVoice] = useState(vitalSigns.voice || null);
+        const [motor, setMotor] = useState(vitalSigns.motor || null);
+        const [fourLead, setFourLead] = useState(vitalSigns.fourLead || null);
+        const [twelveLead, setTwelveLead] = useState(vitalSigns.twelveLead || null);
 
   return (
     <View style={styles.layout}>
@@ -25,7 +38,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <TextInput
                     value={BP}
-                    onChangeText={BP=>setBP(BP)}
+                    onChangeText={BP=>{
+                        setBP(BP);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, BP: BP}))}}
                     placeholder={'BP'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -38,7 +53,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <TextInput
                     value={heartRate}
-                    onChangeText={heartRate=>setheartRate(heartRate)}
+                    onChangeText={heartRate=>{
+                        setheartRate(heartRate);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, heartRate: heartRate}))}}
                     placeholder={'Heart Rate'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -49,8 +66,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     <Text style={styles.myText}>Resp Rate: </Text>
                 </View>
                 <TextInput
-                    value={RespRate}
-                    onChangeText={RespRate=>setRespRate(RespRate)}
+                    value={respRate}
+                    onChangeText={respRate=>{
+                        setRespRate(respRate);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, respRate: respRate}))}}
                     placeholder={'Set Resp Rate'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -61,8 +80,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     <Text style={styles.myText}>Temp: </Text>
                 </View>
                 <TextInput
-                    value={Temp}
-                    onChangeText={Temp=>setTemp(Temp)}
+                    value={temp}
+                    onChangeText={temp=>{
+                        setTemp(temp);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, temp: temp}))}}
                     placeholder={'Temp'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -74,7 +95,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <TextInput
                     value={BSL}
-                    onChangeText={BSL=>setBSL(BSL)}
+                    onChangeText={BSL=>{
+                        setBSL(BSL);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, BSL: BSL}))}}
                     placeholder={'BSL'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -86,7 +109,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <TextInput
                     value={SPo2}
-                    onChangeText={SPo2=>setSPo2(SPo2)}
+                    onChangeText={SPo2=>{
+                        setSPo2(SPo2);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, SPo2: SPo2}))}}
                     placeholder={'SPo2'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -98,7 +123,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <TextInput
                     value={ETCo2}
-                    onChangeText={ETCo2=>setETCo2(ETCo2)}
+                    onChangeText={ETCo2=>{
+                        setETCo2(ETCo2);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, ETCo2: ETCo2}))}}
                     placeholder={'ETCo2'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
@@ -106,14 +133,26 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         </View>
     <View style={styles.middleColumn}>
         <View style={styles.row4}>
-            <CheckBox/>
+            <CheckBox
+                isChecked={monitor}
+                setChecked={monitor=>{
+                    setMonitor(monitor);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, monitor: monitor}))}}/>
         
                 <Text>Monitor</Text>
 
-             <CheckBox/>
+             <CheckBox
+                isChecked={manual}
+                setChecked={manual=>{
+                    setManual(manual);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, manual: manual}))}}/>
                 <Text>Manual</Text>
 
-            <CheckBox/>
+            <CheckBox
+                isChecked={palpatation}
+                setChecked={palpatation=>{
+                    setPalpatation(palpatation);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, palpatation: palpatation}))}}/>
                 <Text>Palpatation</Text>
         
        </View>
@@ -144,6 +183,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 </View>
                 <View style={styles.smallDropdown1}> 
                     <DropDown
+                        value={eyes}
+                        setValue={eyes=>{
+                            setEyes(eyes);
+                            setVitalSigns(prevVitalSigns=>({...prevVitalSigns, eyes: eyes}))}}
                          placeholder = 'Eyes'
                              items = {[
                                 {label: '1- No Response', value: 'noResponse'},
@@ -157,6 +200,11 @@ export default function Vital({vitalSigns, setVitalSigns}) {
            
             <View style={styles.smallDropdown2}> 
             <DropDown
+                value={voice}
+                setValue={voice=>{
+                    setVoice(voice);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, voice: voice}))}}
+
             placeholder = 'Voice'
             items = {[
               {label: '1- No Response', value: 'noResponse'},
@@ -173,6 +221,11 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             
             <View style={styles.smallDropdown3}> 
             <DropDown
+                value={motor}
+                setValue={motor=>{
+                    setMotor(motor);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, motor: motor}))}}
+
             placeholder = 'Motor'
             items = {[
               {label: '1- No Response', value: 'noResponse'},
@@ -196,9 +249,14 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             
             <View style={styles.longDropDown2}> 
             <DropDown
-            placeholder = 'Sinus Rhythem'
+                value={fourLead}
+                setValue={fourLead=>{
+                    setFourLead(fourLead);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, fourLead: fourLead}))}}
+
+            placeholder = 'Sinus Rhythm'
             items = {[
-              {label: '1- Sinus Rhythem', value: 'sinusRhythem'},
+              {label: '1- Sinus Rhythm', value: 'sinusRhythm'},
               {label: '2- Sinus BradyCardia', value: 'sinusBradyCardia'},
               {label: '3- Sinus Tachycardia', value: 'sinusTachycardia'},
               {label: '4- Atrial Fibrilation', value: 'atrialFibrilation'},
@@ -221,9 +279,14 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             
             <View style={styles.longDropDown1}> 
             <DropDown
-          placeholder = 'Sinus Rhythem'
+                value={twelveLead}
+                setValue={twelveLead=>{
+                    setTwelveLead(twelveLead);
+                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, twelveLead: twelveLead}))}}
+
+          placeholder = 'Sinus Rhythm'
           items = {[
-            {label: '1- Sinus Rhythem', value: 'sinusRhythem'},
+            {label: '1- Sinus Rhythm', value: 'sinusRhythm'},
             {label: '2- Sinus BradyCardia', value: 'sinusBradyCardia'},
             {label: '3- Sinus Tachycardia', value: 'sinusTachycardia'},
             {label: '4- Atrial Fibrilation', value: 'atrialFibrilation'},
@@ -241,10 +304,6 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             
         </View>
         <View style={styles.row}>
-           
-            
-           
-          
         </View>
         <View style={styles.row}>
         <TouchableOpacity style={styles.button}>

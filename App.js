@@ -14,6 +14,7 @@ import { useState } from 'react';
 
 export default function App() {
 
+//DATA TO BE STORED DURING SESSION
   //Data to be stored - Incident Details
   const [incidentDetails, setIncidentDetails] = useState({});
   //Data to be stored - Patient Info
