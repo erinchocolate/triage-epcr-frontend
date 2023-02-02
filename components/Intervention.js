@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import React from 'react';
@@ -77,26 +77,12 @@ export default function Intervention() {
 
 
     <View style={styles.container}>
+      <View style={styles.secRow}>
 
           <View style={styles.checkboxGroup}>
           <CheckBox/>
           <Text>PEEP</Text>
           </View>
-
-          <View style={styles.checkboxGroup}>
-          <CheckBox/>
-          <Text>Suction</Text>
-          </View>
-          
-          <View style={styles.checkboxGroup}>
-          <CheckBox/>
-          <Text>BVM</Text>
-          </View>
-
-    </View>
-
-
-    <View style={styles.container}>
 
           <TextInput
             style={styles.input}
@@ -104,6 +90,18 @@ export default function Intervention() {
             value={text}
             placeholder="Bring up a keypad"
           />
+
+      </View>
+    </View>
+
+
+    <View style={styles.container}>
+    <View style={styles.secRow}>
+
+        <View style={styles.checkboxGroup}>
+          <CheckBox/>
+          <Text>Suction</Text>
+          </View>
 
       <View style={styles.largeDropdown}> 
           <DropDown
@@ -116,10 +114,22 @@ export default function Intervention() {
             />
       </View>
     </View>
+    </View>
 
-    
 
-</View>
+    <View style={styles.container}>   
+    <View style={styles.secRow}>
+      <View style={styles.checkboxGroup}>
+          <CheckBox/>
+          <Text>BVM</Text>
+      </View>
+    </View>
+    </View>
+
+
+  </View>
+
+
 
 <View style={styles.component}>
     <IvPage/>
@@ -152,6 +162,7 @@ export default function Intervention() {
 
   const styles = StyleSheet.create({
     layout: {
+      
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
@@ -190,6 +201,7 @@ export default function Intervention() {
     smallDropdown: {
       width: '40%',
       height:50,
+      
   
     },
   
@@ -200,20 +212,11 @@ export default function Intervention() {
       height:50,
     },
 
-    button: {
-    
-      backgroundColor: "#EBEBEB",
-      borderRadius: 10,
-      width: 70,
-      height: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
- 
-    },
+   
 
     input: {
       height: 50,
-      width:'40%',
+      width:'50%',
       borderWidth: 1,
       backgroundColor: "white",
       margin: 12,
@@ -226,6 +229,13 @@ export default function Intervention() {
       alignItems: 'center',
       flexDirection: 'row',
       marginRight: '4%'
+  },
+
+  secRow:{
+    marginLeft:80,
+    marginTop: '3%',
+    flexDirection: "row",
+    width:'100%'
   },
 
 

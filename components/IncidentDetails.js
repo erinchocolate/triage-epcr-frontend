@@ -8,13 +8,14 @@ import DropDown from '../utility/DropDown';
 
 export default function IncidentDetails() {
 
-    const [incidentNotes, setIncidentNotes] = useState('');
-    const [notifiedTime, setNotifiedTime] = useState('');
-    const [respondedTime, setRespondedTime] = useState('');
-    const [locatedTime, setLocatedTime] = useState('');
-    const [departedTime, setDepartedTime] = useState('');
-    const [destinationTime, setDestinationTime] = useState('');
-    const [hospitalLocation, setHospitalLocation] = useState('');
+    const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
+    const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
+    const [notifiedTime, setNotifiedTime] = useState(incidentDetails.notifyT || '');
+    const [respondedTime, setRespondedTime] = useState(incidentDetails.responseT || '');
+    const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
+    const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
+    const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
+    const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
 
      
     return (
@@ -33,6 +34,10 @@ export default function IncidentDetails() {
             </View>
             <View style={styles.dropdown}>
             <DropDown
+                value={incidentType}
+                setValue={incidentType=>{
+                    setIncidentType(incidentType);
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, type: incidentType}))}}
                 items={[
                     {label: 'Medical', value: 'medicalIncident'},
                     {label: 'ACC', value: 'accIncident'},
@@ -44,7 +49,9 @@ export default function IncidentDetails() {
             
             <TextInput
                 value={incidentNotes}
-                onChangeText={incidentNotes=>setIncidentNotes(incidentNotes)}
+                onChangeText={incidentNotes=>{
+                    setIncidentNotes(incidentNotes)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notes: incidentNotes}))}}
                 placeholder={'Notes'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
@@ -55,7 +62,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={notifiedTime}
-                onChangeText={notifiedTime=>setNotifiedTime(notifiedTime)}
+                onChangeText={notifiedTime=>{
+                    setNotifiedTime(notifiedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notifyT: notifiedTime}))}}
                 placeholder={'Notified Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -64,7 +73,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={respondedTime}
-                onChangeText={respondedTime=>setRespondedTime(respondedTime)}
+                onChangeText={respondedTime=>{
+                    setRespondedTime(respondedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, responseT: respondedTime}))}}
                 placeholder={'Responded Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -73,7 +84,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={locatedTime}
-                onChangeText={locatedTime=>setLocatedTime(locatedTime)}
+                onChangeText={locatedTime=>{
+                    setLocatedTime(locatedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, locatedT: locatedTime}))}}
                 placeholder={'Located Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -84,7 +97,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={departedTime}
-                onChangeText={departedTime=>setDepartedTime(departedTime)}
+                onChangeText={departedTime=>{
+                    setDepartedTime(departedTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, departedT: departedTime}))}}
                 placeholder={'Departed Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -93,7 +108,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={destinationTime}
-                onChangeText={destinationTime=>setDestinationTime(destinationTime)}
+                onChangeText={destinationTime=>{
+                    setDestinationTime(destinationTime)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, destinationT: destinationTime}))}}
                 placeholder={'Destination Time'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.input}/>
@@ -104,7 +121,9 @@ export default function IncidentDetails() {
             </View>
             <TextInput
                 value={hospitalLocation}
-                onChangeText={hospitalLocation=>setHospitalLocation(hospitalLocation)}
+                onChangeText={hospitalLocation=>{
+                    setHospitalLocation(hospitalLocation)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: hospitalLocation}))}}
                 placeholder={'Start typing and this will bring up options'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
@@ -148,7 +167,7 @@ const styles = StyleSheet.create({
         margin: 10,
         height: '50%',
         zIndex: 1000,
-        elevation: 1000      
+        elevation: 1000   
         
     },
     title:{
@@ -163,6 +182,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         backgroundColor: 'white',
         zIndex: 1,
+        elevation: 1
 
     },
     wideInput:{
