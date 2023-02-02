@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Button, StatusBar, Dimensions } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IncidentDetails from './components/IncidentDetails';
@@ -13,7 +13,6 @@ import { useState } from 'react';
 
 export default function App() {
 
-
   //Data to be stored - Incident Details
   const [incidentDetails, setIncidentDetails] = useState({});
   //Data to be stored - Patient Info
@@ -22,16 +21,16 @@ export default function App() {
   const [procedures, setProcedures] = useState({});
   //Data to be stored - Medication
   const [allMedication, setAllMedication] = useState([]);
-
-
-
-
+  //Change View
   const [view, setView] = useState('medications');
+
+
+
+
 
   function changeView(argument){
     setView(argument);
   }
-
   return (
     <View style={styles.container}>
       <Header changeView={changeView}/>
@@ -42,7 +41,7 @@ export default function App() {
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention /> : <></>}
       {view==='vital'?<Vital/>:<></>}
-      <Footer />
+      <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
   );
@@ -66,6 +65,5 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'white'
   }
-  
 });
 
