@@ -36,16 +36,15 @@ export default function App() {
 
 
 
-  const testMode= 'pdfView'
-
 
   function changeView(argument){
     setView(argument);
   }
 
-  if(testMode==='pdfView'){
+  if(view==='pdf'){
     return(
       <PatientPDF 
+        changeView={changeView}
         incidentDetails={incidentDetails}
         patientInfo={patientInfo}
         vitalSigns={vitalSigns}/>

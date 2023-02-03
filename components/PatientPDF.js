@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
+import PDFFooter from './PDFFooter';
 
-export default function PatientPDF({incidentDetails, patientInfo, vitalSigns}) {
+export default function PatientPDF({changeView, incidentDetails, patientInfo, vitalSigns}) {
 
   const pdf = `<body>
                 <center>
@@ -34,6 +35,8 @@ export default function PatientPDF({incidentDetails, patientInfo, vitalSigns}) {
       source={{ html: pdf }}     
       style={{ height:"100%", width:"100%" }}
       />
+      <PDFFooter
+        changeView={changeView}/>
     </>  )
 }
 
