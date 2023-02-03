@@ -11,6 +11,7 @@ import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import { useState } from 'react';
+import PatientPDF from './components/PatientPDF';
 
 export default function App() {
 
@@ -35,11 +36,22 @@ export default function App() {
 
 
 
+  const testMode= 'pdfView'
 
 
   function changeView(argument){
     setView(argument);
   }
+
+  if(testMode==='pdfView'){
+    return(
+      <PatientPDF 
+        incidentDetails={incidentDetails}
+        patientInfo={patientInfo}
+        vitalSigns={vitalSigns}/>
+    )
+  }
+  else{
   return (
     <View style={styles.container}>
       <Header changeView={changeView}/>
@@ -54,7 +66,7 @@ export default function App() {
       <ExpoStatusBar style="auto" />
     </View>
   );
-}
+}}
 
 const styles = StyleSheet.create({
   container: {

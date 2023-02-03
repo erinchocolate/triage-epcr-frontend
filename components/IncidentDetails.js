@@ -6,7 +6,7 @@ import DropDown from '../utility/DropDown';
 
 
 
-export default function IncidentDetails() {
+export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
