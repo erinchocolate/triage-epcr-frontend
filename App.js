@@ -47,7 +47,8 @@ export default function App() {
         changeView={changeView}
         incidentDetails={incidentDetails}
         patientInfo={patientInfo}
-        vitalSigns={vitalSigns}/>
+        vitalSigns={vitalSigns}
+        assTransInfo={assTransInfo}/>
     )
   }
   else{

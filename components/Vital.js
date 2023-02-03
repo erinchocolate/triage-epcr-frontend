@@ -154,18 +154,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     setPalpatation(palpatation);
                     setVitalSigns(prevVitalSigns=>({...prevVitalSigns, palpatation: palpatation}))}}/>
                 <Text>Palpatation</Text>
-        
-       </View>
-    <View style={styles.row4}>
-    
-       
             <TouchableOpacity style={styles.button2}>
-                 <Text>Connect Corpuls</Text>
-                 
-                 
+                 <Text>Connect Corpuls</Text>   
              </TouchableOpacity>
-      
-    
     </View>
 </View>
 
@@ -339,36 +330,32 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     column:{
-        height: '65%',
+        height: '100%',
         width: '25%',
         fontWeight: '700',
         justifyContent: 'center',
-        alignItems: 'center'
-      
+        alignItems: 'center',      
     },
     middleColumn:{
         flexDirection: 'column',
-      height: '65%',
-      width: '26%',
+      height: '100%',
+      width: '25%',
       fontWeight: '700',
       justifyContent: 'center',
-        
-      marginBottom: 0,
-      
+      alignItems: 'center',
     },
     wideColumn:{
         
-        height: '65%',
-        width: '52%',
-        marginBottom: 130,
+        height: '100%',
+        width: '50%',
         fontWeight: '700',
-        
         alignItems: 'center',
+        justifyContent:'center',
     },
     row:{
         flexDirection: 'row',
         width: '70%',
-        height: '20%',
+        height: '13%',
         fontWeight: '700',
         justifyContent: 'center',
         alignItems: 'center',
@@ -387,7 +374,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '20%',
         fontWeight: '700',
-        
+        justifyContent:'center',
         alignItems: 'center',
    
     },
@@ -396,21 +383,17 @@ const styles = StyleSheet.create({
         width: '70%',
         height: '20%',
         fontWeight: '700',
-        marginBottom: 50,
-        marginRight: 820,
         alignItems: 'center',
         justifyContent: 'center'
         
-   
     },
     row5:{
         flexDirection: 'row',
-        width: '90%',
+        width: '70%',
         height: '20%',
         fontWeight: '700',
-        marginRight: 190,
-        
         alignItems: 'center',
+        justifyContent: 'center'
    
     },
   
@@ -457,6 +440,7 @@ const styles = StyleSheet.create({
       },
     title:{
         ...commonStyle,
+        width: '45%',
         backgroundColor: 'white'
     },
     smallTitle:{
