@@ -10,13 +10,13 @@ export default function Footer({changeView}) {
         <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
             <Text style={styles.text}>Submit EPCR</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
             <Text style={styles.text}>Review EPCR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
             <Text style={styles.text}>Print EPCR</Text>
         </TouchableOpacity>
     </View>

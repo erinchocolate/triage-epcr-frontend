@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 
 
-export default function PDFFooter({changeView}) {
+export default function PDFFooter({changeView, print, share}) {
   return (
     <View style={styles.layout}>
         <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>
             <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>print()} style={styles.button}>
             <Text style={styles.text}>Print EPCR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>share()} style={styles.button}>
             <Text style={styles.text}>Submit EPCR</Text>
         </TouchableOpacity>
     </View>

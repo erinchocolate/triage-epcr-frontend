@@ -1,6 +1,8 @@
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import PDFFooter from './PDFFooter';
+import * as Print from 'expo-print';
+import * as Sharing from 'expo-sharing';
 
 export default function PatientPDF({changeView, incidentDetails, patientInfo, assTransInfo, vitalSigns}) {
 
@@ -94,6 +96,20 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
                         <h2 class='title'>ETCo2 </h2> <h3> ${ETCo2}</h3>
                   </div>
                 </body>`
+  
+
+  async function print(){
+    await Print.printAsync({
+      html: pdf
+    });
+  } 
+
+  async function share(){
+      const {uri} = await Print.printToFileAsync({ html: pdf });
+      Sharing.shareAsync(uri);
+  }
+
+
   return (
     <>
       <WebView 
@@ -102,7 +118,10 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
       style={{ height:"100%", width:"100%" }}
       />
       <PDFFooter
-        changeView={changeView}/>
+        changeView={changeView}
+        print={print}
+        share={share}
+        />
     </>  )
 }
 
