@@ -68,6 +68,7 @@ export default function App() {
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
+      {view==='cameraScreen'?<OpenCamera />:<></>}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
