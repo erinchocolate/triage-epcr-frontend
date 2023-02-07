@@ -1,6 +1,10 @@
-import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native';
-import { useState } from 'react';
+
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
+import OpenCamera from './CameraScreen';
+
+
 
 export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
 
@@ -14,7 +18,8 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
   const [destination, setDestination] = useState(assTransInfo.destination || null);
 
 
-  return (
+  return(
+
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
@@ -129,6 +134,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
     </View>
   );
 }
+
 
 const buttonStyle = {
   borderColor: '#3b3b3b',
