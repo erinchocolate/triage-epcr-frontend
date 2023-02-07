@@ -134,7 +134,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
     }}
   />
 
-  ;
+  
 </Text>
 
             <TouchableOpacity style={styles.button}>
