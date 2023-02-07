@@ -1,6 +1,15 @@
-import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native';
-import { useState } from 'react';
+
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OpenCamera from './CameraScreen';
+
+
+const Stack = createNativeStackNavigator();
+
+export function AssessmentScreen({navigation}){
 
 export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
 
@@ -14,7 +23,8 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
   const [destination, setDestination] = useState(assTransInfo.destination || null);
 
 
-  return (
+  return(
+
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
@@ -129,6 +139,32 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
     </View>
   );
 }
+
+export default function Assessment({navigation, saveData }) {
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+            name="AssessmentScreen"
+            component={AssessmentScreen}
+            navigation={navigation}
+        />
+        <Stack.Screen
+          name = "CameraScreen"
+          component={OpenCamera}      
+        />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+
+
+
+    
+  );
+}
+
+
 
 const buttonStyle = {
   borderColor: '#3b3b3b',
