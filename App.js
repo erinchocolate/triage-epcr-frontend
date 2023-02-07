@@ -9,14 +9,22 @@ import Medications from './components/Medications';
 import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
+import OpenCamera from './components/CameraScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
+import React from 'react';
+
 
 export default function App() {
-  const [view, setView] = useState('medications');
+
+ const [view, setView] = useState('medications');
+  
 
   function changeView(argument){
     setView(argument);
   }
+
 
   return (
     <View style={styles.container}>
@@ -27,7 +35,8 @@ export default function App() {
       {view==='procedures'?<Procedures/>:<></>}
       {view === 'medications' ? <Medications /> : <></>}
       {view === 'intervention' ? <Intervention /> : <></>}
-      {view==='vital'?<Vital/>:<></>}
+      {view==='vital'?<Vital/>:<></>} 
+      {view==='cameraScreen'?<OpenCamera/>:<></>} 
       <Footer />
       <ExpoStatusBar style="auto" />
     </View>
