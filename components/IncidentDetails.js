@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 
 
 
-export default function IncidentDetails() {
+export default function IncidentDetails(incidentDetails, setIncidentDetails) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
@@ -15,7 +16,7 @@ export default function IncidentDetails() {
     const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
-    const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
+    const [data, setLocation] = useState(incidentDetails.location || '');
 
      
     return (
@@ -119,14 +120,23 @@ export default function IncidentDetails() {
             <View style={styles.title}>
                 <Text style={styles.myText}>Location </Text>
             </View>
-            <TextInput
-                value={hospitalLocation}
-                onChangeText={hospitalLocation=>{
-                    setHospitalLocation(hospitalLocation)
-                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: hospitalLocation}))}}
-                placeholder={'Start typing and this will bring up options'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.wideInput}/>
+            <Text>
+  <GooglePlacesAutocomplete
+    placeholder='Search'
+    value={data}
+    onChangeText={data=>{
+        setLocation(data)
+        setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+    query={{
+      key: 'AIzaSyCNmGOd9IOd65dOmqG9AX85z-Yart19YDE',
+      language: 'en',
+      components: 'country:nz'
+    }}
+  />
+
+  ;
+</Text>
+
             <TouchableOpacity style={styles.button}>
                 <Text>Save</Text>
             </TouchableOpacity>

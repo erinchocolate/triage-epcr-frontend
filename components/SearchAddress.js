@@ -3,42 +3,24 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 
 
-
-const GooglePlacesInput = () => {
+export default function GooglePlacesInput() {
   return (
-    <GooglePlacesAutocomplete
-      placeholder='Search'
-      onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(data, details);
-      }}
-      query={{
-        key: 'AIzaSyDwSeolm2fy84g4mF0DC4DXYUEEQIZfmZA',
-        language: 'en',
-      }}
-    />
+    <Text>
+      <GooglePlacesAutocomplete
+        placeholder='Search'
+        onPress={(data, details = null) => {
+          console.log(data, details);
+        }}
+        query={{
+          key: 'AIzaSyCNmGOd9IOd65dOmqG9AX85z-Yart19YDE',
+          language: 'en',
+          components: 'country:nz'
+        }}
+      />
+    </Text>
   );
-};
+}
 
-export default GooglePlacesInput;
 
-<GooglePlacesAutocomplete
-  placeholder='Enter Location'
-  minLength={2}
-  autoFocus={false}
-  returnKeyType={'default'}
-  fetchDetails={true}
-  styles={{
-    textInputContainer: {
-      backgroundColor: 'grey',
-    },
-    textInput: {
-      height: 38,
-      color: '#5d5d5d',
-      fontSize: 16,
-    },
-    predefinedPlacesDescription: {
-      color: '#1faadb',
-    },
-  }}
-/>
+
+
