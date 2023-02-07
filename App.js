@@ -12,6 +12,7 @@ import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
+import OpenCamera from './components/CameraScreen';
 
 export default function App() {
 
@@ -51,11 +52,16 @@ export default function App() {
         assTransInfo={assTransInfo}/>
     )
   }
+  else if(view==='cameraScreen'){
+    return(
+      <OpenCamera/>
+    )
+  }
   else{
   return (
     <View style={styles.container}>
       <Header changeView={changeView}/>
-      {view==='assessment'? <Assessment assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo}/>:<></>}
+      {view==='assessment'? <Assessment assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} changeView={changeView}/>:<></>}
       {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
       {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}

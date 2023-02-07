@@ -1,8 +1,9 @@
 import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
+import OpenCamera from './CameraScreen';
 
-export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
+export default function Assessment({assTransInfo, setAssTransInfo, changeView, saveData}) {
 
   const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
   const [objective, setObjective] = useState(assTransInfo.objective || '');
@@ -115,7 +116,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
           style={styles.smallInput} />
         
         <View style={styles.takePhotoButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>changeView('cameraScreen')}>
             <Text>Take Photo</Text>
           </TouchableOpacity>
         </View>
