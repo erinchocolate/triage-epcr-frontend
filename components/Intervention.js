@@ -71,6 +71,14 @@ const [text, setText] = useState(interventions.text || '');
 
 
     <View style={[styles.container, { zIndex: 4}]}>
+      <View style={styles.checkboxGroup}>
+        <CheckBox
+            isChecked={opa}
+            setChecked={opa=>{
+            setOpa(opa);
+            setInterventions(prevInterventions=>({...prevInterventions, opa: opa}))}}/>
+        <Text>OPA</Text>
+        </View>
       <View style={styles.smallDropdown}> 
            <DropDown
                 value={airwaySize}
@@ -79,11 +87,137 @@ const [text, setText] = useState(interventions.text || '');
                     setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
             placeholder = 'Size'
             items = {[
-              {label: '0', value: '0'},
               {label: '00', value: '00'},
-              {label: '000', value: '000'},
+              {label: '0', value: '0'},
               {label: '1', value: '1'},
               {label: '2', value: '2'},
+              {label: '3', value: '3'},
+              {label: '4', value: '4'},
+              {label: '5', value: '5'},
+            
+            ]}
+            />
+      </View>
+      <View style={styles.largeDropdown}> 
+          <DropDown
+                value={airwayLocation}
+                setValue={airwayLocation=>{
+                    setAirwayLocation(airwayLocation);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
+            placeholder = 'Location'
+            items = {[
+              {label: 'Nasal', value: 'Nasal'},
+              {label: 'Oral', value: 'Oral'},
+              
+            ]}
+           />
+      </View>
+    
+    </View>
+
+
+    <View style={[styles.container, { zIndex: 3}]}>
+      <View style={styles.checkboxGroup}>
+        <CheckBox
+              isChecked={lma}
+              setChecked={lma=>{
+              setLma(lma);
+              setInterventions(prevInterventions=>({...prevInterventions, lma: lma}))}}/>
+        <Text>LMA</Text>
+        </View>
+      <View style={styles.smallDropdown}> 
+           <DropDown
+                value={airwaySize}
+                setValue={airwaySize=>{
+                    setAirwaySize(airwaySize);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
+            placeholder = 'Size'
+            items = {[
+              {label: 'Opt 1', value: 'Opt 1'},
+              {label: 'Opt 2', value: 'Opt 2'},
+              {label: 'Opt 3', value: 'Opt 3'},
+            ]}
+            />
+      </View>
+
+      <View style={styles.largeDropdown}> 
+          <DropDown
+                value={airwayLocation}
+                setValue={airwayLocation=>{
+                    setAirwayLocation(airwayLocation);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
+            placeholder = 'Location'
+            items = {[
+              {label: 'Nasal', value: 'Nasal'},
+              {label: 'Oral', value: 'Oral'},
+              
+            ]}
+           />
+      </View>
+    
+    </View>
+
+    <View style={[styles.container, { zIndex: 2}]}>
+    <View style={styles.checkboxGroup}>
+        <CheckBox
+              isChecked={npa}
+              setChecked={npa=>{
+              setNpa(npa);
+              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
+        <Text>NPA</Text>
+        </View>
+      <View style={styles.smallDropdown}> 
+           <DropDown
+                value={airwaySize}
+                setValue={airwaySize=>{
+                    setAirwaySize(airwaySize);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
+            placeholder = 'Size'
+            items = {[
+              {label: '6.5', value: '6.5'},
+              {label: '7.5', value: '7.5'},
+              {label: '8.5', value: '8.5'},
+            
+            ]}
+            />
+      </View>
+
+
+      <View style={styles.largeDropdown}> 
+          <DropDown
+                value={airwayLocation}
+                setValue={airwayLocation=>{
+                    setAirwayLocation(airwayLocation);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
+            placeholder = 'Location'
+            items = {[
+              {label: 'Nasal', value: 'Nasal'},
+              {label: 'Oral', value: 'Oral'},
+              
+            ]}
+           />
+      </View>
+    
+    </View>
+
+    <View style={[styles.container, { zIndex: 1}]}>
+     
+    <View style={styles.checkboxGroup}>
+        <CheckBox
+              isChecked={ett}
+              setChecked={ett=>{
+              setEtt(ett);
+              setInterventions(prevInterventions=>({...prevInterventions, ett: ett}))}}/>
+        <Text>ETT</Text>
+        </View>
+      <View style={styles.smallDropdown}> 
+           <DropDown
+                value={airwaySize}
+                setValue={airwaySize=>{
+                    setAirwaySize(airwaySize);
+                    setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
+            placeholder = 'Size'
+            items = {[
               {label: '3', value: '3'},
               {label: '4', value: '4'},
               {label: '5', value: '5'},

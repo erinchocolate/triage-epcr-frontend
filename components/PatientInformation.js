@@ -79,6 +79,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                             placeholder={'Address'}
                             placeholderTextColor = '#b3b3b3'
                             style={styles.addressInput}/>
+                
                 </View>
                     
             </View>
