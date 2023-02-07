@@ -121,6 +121,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             <View style={styles.title}>
                 <Text style={styles.myText}>Location </Text>
             </View>
+            
             <Text>
             <GooglePlacesAutocomplete
                 placeholder='Search'
@@ -129,14 +130,13 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
                  setLocation(data)
                  setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
              query={{
-                key: 'AIzaSyBeZRf-U1VoVAd6J7Gx3xrE9OllHIv2naI',
+                key: 'AIzaSyDO7v-q6xZk8odoWHP1bxXVUs7-TAcobEM',
                 language: 'en',
-                components: 'country:nz'
-    }}
-  />
-
-  ;
-</Text>
+                components: 'country:nz',
+                }}
+                />
+        </Text>
+        
             <TouchableOpacity style={styles.button}>
                 <Text>Save</Text>
             </TouchableOpacity>
@@ -207,5 +207,6 @@ const styles = StyleSheet.create({
         width: '25%',
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
-    }
+    },
+  
 })

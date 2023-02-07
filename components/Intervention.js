@@ -29,45 +29,7 @@ const [text, setText] = useState(interventions.text || '');
 <View style={styles.layout}>
   
   <View style={styles.component}>  
-    <View style={styles.container}>
 
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-            isChecked={opa}
-            setChecked={opa=>{
-            setOpa(opa);
-            setInterventions(prevInterventions=>({...prevInterventions, opa: opa}))}}/>
-        <Text>OPA</Text>
-        </View>
-        
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={lma}
-              setChecked={lma=>{
-              setLma(lma);
-              setInterventions(prevInterventions=>({...prevInterventions, lma: lma}))}}/>
-        <Text>LMA</Text>
-        </View>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={npa}
-              setChecked={npa=>{
-              setNpa(npa);
-              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
-        <Text>NPA</Text>
-        </View>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={ett}
-              setChecked={ett=>{
-              setEtt(ett);
-              setInterventions(prevInterventions=>({...prevInterventions, ett: ett}))}}/>
-        <Text>ETT</Text>
-        </View>
-
-    </View>
 
 
     <View style={[styles.container, { zIndex: 4}]}>
@@ -391,14 +353,14 @@ const [text, setText] = useState(interventions.text || '');
 
 
     smallDropdown: {
-      width: '40%',
+      width: '30%',
       height:50,
       
   
     },
   
     largeDropdown: {
-      width: '50%',
+      width: '40%',
       zIndex: 1000,
       elevation:1000,
       height:50,
@@ -424,8 +386,7 @@ const [text, setText] = useState(interventions.text || '');
   },
 
   secRow:{
-    marginLeft:80,
-    marginTop: '3%',
+    marginLeft:25,
     flexDirection: "row",
     width:'100%'
   },
