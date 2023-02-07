@@ -7,7 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 
 
-export default function IncidentDetails(incidentDetails, setIncidentDetails) {
+export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');

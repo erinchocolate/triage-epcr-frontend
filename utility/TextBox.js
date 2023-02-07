@@ -1,17 +1,29 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import { useState } from 'react';
 
-export default function TextBox() { 
+export default function TextBox({time, setAllIv, IVRowId }) { 
 
     const timestamp = new Date().toLocaleString();
-    const [text, onChangeText] = useState(timestamp);
+    const [text, setText] = useState( time || timestamp);
 
 
     return (
           <TextInput
                 style={styles.input}
                 value={text}
-                onChangeText={onChangeText}     
+                onChangeText={text=>{
+                    setText(text);
+                    setAllIv(prevAllIv=>{
+                        return(
+                        prevAllIv.map(existingIV=>{
+                            if(existingIV.IVRowId===IVRowId){
+                                return({...existingIV, IVTime: text})
+                            }
+                            return existingIV;
+                        })
+                        )
+                    }) 
+                }}     
             />
 
     );

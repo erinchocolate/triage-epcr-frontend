@@ -2,48 +2,63 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function Assessment({saveData}) {
-  const [subjective, setSubjective] = useState('');
-  const [objective, setObjective] = useState('');
-  const [assessment, setAssessment] = useState('');
-  const [arrivalTime, setArrivalTime] = useState('');
-  const [plan, setPlan] = useState('');
+export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
+
+  const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
+  const [objective, setObjective] = useState(assTransInfo.objective || '');
+  const [assessment, setAssessment] = useState(assTransInfo.assessment || '');
+  const [arrivalTime, setArrivalTime] = useState(assTransInfo.arrivalTime || '');
+  const [plan, setPlan] = useState(assTransInfo.plan || '');
+  const [vehicleType, setVehicleType] = useState(assTransInfo.vehicle || null);
+  const [transportStatus, setTransportStatus] = useState(assTransInfo.transport || null);
+  const [destination, setDestination] = useState(assTransInfo.destination || null);
+
 
   return (
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
           value={subjective}
-          onChangeText={subjective=>setSubjective(subjective)}
+          onChangeText={subjective=>{
+            setSubjective(subjective)
+            setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, subjective: subjective}))}}
           placeholder={'Subjective'}
           placeholderTextColor = '#b3b3b3'
           style={styles.largeInput} />
         <TextInput
           value={objective}
-          onChangeText={objective=>setObjective(objective)}
+          onChangeText={objective=>{
+            setObjective(objective)
+            setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, objective: objective}))}}
           placeholder={'Objective'}
           placeholderTextColor = '#b3b3b3'
           style={styles.largeInput} />
         <TextInput
            value={assessment}
-           onChangeText={assessment=>setAssessment(assessment)}
+           onChangeText={assessment=>{
+            setAssessment(assessment)
+            setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, assessment: assessment}))}}
            placeholder={'Assessment'}
            placeholderTextColor = '#b3b3b3'
            style={styles.largeInput} />
            
         <TextInput
           value={plan}
-          onChangeText={plan=>setPlan(plan)}
+          onChangeText={plan=>{
+            setPlan(plan)
+            setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, plan: plan}))}}
           placeholder={'Plan'}
           placeholderTextColor = '#b3b3b3'
           style={styles.largeInput} />
-        
-
       </View>
 
       <View style={styles.secondColumn}>
         <View style={styles.vehicleDropdown}>
           <DropDown
+          value={vehicleType}
+          setValue={vehicleType=>{
+              setVehicleType(vehicleType);
+              setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, vehicle: vehicleType}))}}
             items={[
               {label: 'Vehicle', value: 'Vehicle'},
             {label: 'AIR1CHC', value: 'AIR1CHC'},
@@ -59,6 +74,10 @@ export default function Assessment({saveData}) {
 
         <View style={styles.transportDropdown}>
           <DropDown
+            value={transportStatus}
+            setValue={transportStatus=>{
+               setTransportStatus(transportStatus);
+               setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, transport: transportStatus}))}}
             items={[
               {label: 'Transport Status', value: 'Transport Status'},
             {label: 'In Transit', value: 'In Transit'},
@@ -70,8 +89,12 @@ export default function Assessment({saveData}) {
 
         <View style={styles.destinationDropdown}>
           <DropDown
+            value={destination}
+            setValue={destination=>{
+                setDestination(destination);
+                setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, destination: destination}))}}
             items={[
-              {label: 'Destination', value: 'Destination'},
+            {label: 'Destination', value: 'Destination'},
             {label: 'Christchurch Hospital', value: 'Christchurch Hospital'},
             {label: 'Nelson Hospital', value: 'Nelson Hospital'},
             { label: 'Timaru Hospital', value: 'Timaru Hospital' },
@@ -84,7 +107,9 @@ export default function Assessment({saveData}) {
 
         <TextInput
           value={arrivalTime}
-          onChangeText={arrivalTime=>setArrivalTime(arrivalTime)}
+          onChangeText={arrivalTime=>{
+            setArrivalTime(arrivalTime)
+            setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, arrivalTime: arrivalTime}))}}
           placeholder={'Estimated Arrival Time'}
           placeholderTextColor = '#b3b3b3'
           style={styles.smallInput} />
@@ -180,5 +205,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '60%',
     height: '10%',
+    paddingLeft: 10
   }
 });

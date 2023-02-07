@@ -45,7 +45,7 @@ export default function Medications({allMedication, setAllMedication}) {
             </View>
         <View style={styles.scrollcontent}>
         <ScrollView style = {styles.scrollbox} >
-        {allMedication.length===0? <View style={styles.medication}><Text>No Medication administered yet</Text></View> : <></>}
+        {allMedication.length===0? <View><Text>No Medication administered yet</Text></View> : <></>}
         {allMedication.map(singleMedication=>{
                     return(
                         <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
