@@ -12,6 +12,7 @@ import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
+import OpenCamera from './components/CameraScreen';
 
 export default function App() {
 
@@ -62,6 +63,7 @@ export default function App() {
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
+      {view==='cameraScreen'?<OpenCamera />:<></>}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
