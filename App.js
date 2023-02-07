@@ -42,6 +42,22 @@ export default function App() {
     setView(argument);
   }
 
+
+  function sendToDatabase(){
+    fetch('localhost:3000/epcrs/',{
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'first_name': 'Josh'
+      })
+    })
+    .then(response=>response.json())
+    .then(data=>console.log(data))
+    .catch(error=>console.error(error));
+  }
+
   if(view==='pdf'){
     return(
       <PatientPDF 
@@ -61,7 +77,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header changeView={changeView}/>
-      {view==='assessment'? <Assessment assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} changeView={changeView}/>:<></>}
+      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} changeView={changeView}/>:<></>}
       {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
       {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}

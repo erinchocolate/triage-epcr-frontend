@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
 import OpenCamera from './CameraScreen';
 
-export default function Assessment({assTransInfo, setAssTransInfo, changeView, saveData}) {
+export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, saveData}) {
 
   const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
   const [objective, setObjective] = useState(assTransInfo.objective || '');
@@ -123,7 +123,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
           </TouchableOpacity>
         </View>
         <View style={styles.saveButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>sendToDatabase()}>
             <Text>Save</Text>
           </TouchableOpacity>
         </View>
