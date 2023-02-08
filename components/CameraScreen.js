@@ -5,14 +5,15 @@ import * as MediaLibrary from 'expo-media-library';
 import CameraButton from './CameraButton';
 
 
-export default function OpenCamera({}) {
+export default function OpenCamera({ changeView}) {
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = useRef(null);
- 
+  const [showCamera, setShowCamera] = useState(true);
+
   useEffect(() => {
     (async ()=> {
       MediaLibrary.requestPermissionsAsync();
@@ -45,6 +46,7 @@ export default function OpenCamera({}) {
     }
   }
 
+
   if(hasCameraPermission === false){
     return <Text>No access to camera</Text>
   }
@@ -52,9 +54,10 @@ export default function OpenCamera({}) {
 
   return (
     <View style={styles.container}>
+      
       {!image ?
       <Camera 
-          style={styles.camera}
+          style={styles.container}
           type={type}
           flashMode={flash}
           ref={cameraRef} 
@@ -64,6 +67,7 @@ export default function OpenCamera({}) {
           justifyContent: 'space-between',
           padding: 80,
         }}>
+          <CameraButton title={"close"}  onPress={() => changeView('assessment')}/>
           <CameraButton icon={'retweet'} onPress={() => {
             setType(type === CameraType.back ? CameraType.front : CameraType.back)
           }}/>
@@ -74,7 +78,7 @@ export default function OpenCamera({}) {
                 ? Camera.Constants.FlashMode.on
                 : Camera.Constants.FlashMode.off
                 )
-            }}/>
+          }}/>
         </View>
       </Camera>
       :
@@ -83,6 +87,7 @@ export default function OpenCamera({}) {
       <View>
         {image ?
         <View style={{
+          backgroundColor: '#332d2d',
           flexDirection: 'row',
           justifyContent: 'space-between',
           paddingHorizontal: 50
@@ -90,7 +95,7 @@ export default function OpenCamera({}) {
           <CameraButton title={"Re-take"} icon="retweet" onPress={() => setImage(null)}/>
           <CameraButton title={"Save"} icon="check" onPress={saveImage}/>
         </View>
-        :
+        :       
         <CameraButton title={'Take a Picture'} icon="camera" onPress={takePicture}/>
         }
       </View>      
@@ -100,9 +105,7 @@ export default function OpenCamera({}) {
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    ...StyleSheet.absoluteFillObject,
   }, 
 });
+

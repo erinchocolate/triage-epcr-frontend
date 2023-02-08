@@ -36,6 +36,9 @@ export default function Header({changeView}){
             <TouchableOpacity onPress={()=>changeView('cameraScreen')} style={styles.button}>
                 <Text style={styles.myText}>Take Photo</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={()=>changeView('checkList')} style={styles.button}>
+                <Text style={styles.myText}>Check List</Text>
+            </TouchableOpacity>
         </View>
     )
 }
