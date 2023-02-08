@@ -80,7 +80,7 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                      setAddress(address)
                      setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                     query={{
-                  key: 'AIzaSyCHtgekyRoloYIJi-GnW2FSaLMDpwYRSvc',
+                  key: process.env.API_KEY,
                 language: 'en',
                  components: 'country:nz'
                  }}

@@ -62,7 +62,7 @@ export default function App() {
 
     if(incID==='Auto-Generated'){
       console.log(publicIncidentType)
-    axios.post('http://172.20.10.5:3000/epcrs/',{
+    axios.post('http://10.140.34.240:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -99,7 +99,39 @@ export default function App() {
       sugical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
-      fi_block: procedures.fiBlock 
+      fi_block: procedures.fiBlock,
+      bp: vitalSigns.BP,
+      heart_rate: vitalSigns.heartRate,
+      resp_rate: vitalSigns.respRate,
+      temp: vitalSigns.temp,
+      bsl: vitalSigns.BSL,
+      spo2: vitalSigns.SPo2,
+      etco2: vitalSigns.ETCo2,
+      monitor: vitalSigns.monitor,
+      manual: vitalSigns.manual,
+      palpatation: vitalSigns.palpatation,
+      eye_response: vitalSigns.eyes,
+      voice_response:vitalSigns.voice,
+      motor_response:vitalSigns.motor,
+      four_lead_ecg: vitalSigns.fourLead,
+      twelve_lead_ecg: vitalSigns.twelveLead,
+      opa: interventions.opa,
+      opa_size: "opa_size",
+      opa_location: "opa_location",
+      lma: interventions.lma,
+      lma_size: "lma_size",
+      lma_location: "lma_location",
+      npa: interventions.npa,
+      npa_size: "npa_size",
+      npa_location: "npa_location",
+      ett: interventions.ett,
+      ett_size: "ett_size",
+      ett_location: "ett_location",
+      peep: interventions.peep,
+      peep_note: "peep_note",
+      suction: interventions.suction,
+      suction_catheter:"suction_catheter",
+      bvm: interventions.bvm
     })
     .then(function (response){
       console.log(response.request._response);
@@ -110,7 +142,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://172.20.10.5:3000/epcrs/${incID}`,{
+    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -147,7 +179,39 @@ export default function App() {
       sugical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
-      fi_block: procedures.fiBlock 
+      fi_block: procedures.fiBlock,
+      bp: vitalSigns.BP,
+      heart_rate: vitalSigns.heartRate,
+      resp_rate: vitalSigns.respRate,
+      temp: vitalSigns.temp,
+      bsl: vitalSigns.BSL,
+      spo2: vitalSigns.SPo2,
+      etco2: vitalSigns.ETCo2,
+      monitor: vitalSigns.monitor,
+      manual: vitalSigns.manual,
+      palpatation: vitalSigns.palpatation,
+      eye_response: vitalSigns.eyes,
+      voice_response:vitalSigns.voice,
+      motor_response:vitalSigns.motor,
+      four_lead_ecg: vitalSigns.fourLead,
+      twelve_lead_ecg: vitalSigns.twelveLead,
+      opa: interventions.opa,
+      opa_size: "opa_size",
+      opa_location: "opa_location",
+      lma: interventions.lma,
+      lma_size: "lma_size",
+      lma_location: "lma_location",
+      npa: interventions.npa,
+      npa_size: "npa_size",
+      npa_location: "npa_location",
+      ett: interventions.ett,
+      ett_size: "ett_size",
+      ett_location: "ett_location",
+      peep: interventions.peep,
+      peep_note: "peep_note",
+      suction: interventions.suction,
+      suction_catheter:"suction_catheter",
+      bvm: interventions.bvm
     })
     .then(function (response){
       console.log(response)
