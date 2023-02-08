@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
+import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 
 
 export default function Medications({allMedication, setAllMedication}) {
@@ -8,6 +9,9 @@ export default function Medications({allMedication, setAllMedication}) {
     const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
 
+    const [selectedItem, setSelectedItem] = useState('')
+
+   
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
@@ -26,19 +30,36 @@ export default function Medications({allMedication, setAllMedication}) {
 
   return (
     <View style={styles.layout}>
-        <View style={styles.row}>
-                <TextInput
-                    value={medication}
-                    onChangeText={medication=>setMedication(medication)}
-                    placeholder={'Start typing...'}
-                    placeholderTextColor = '#b3b3b3'
-                    style={styles.wideInput}/>
+        <View style={[styles.row, { zIndex: 4}]}>
+            
+        <Text>
+        <AutocompleteDropdown
+             
+           
+            initialValue={{ id: '2' }} // or just '2'
+            
+            onChangeText={medication =>setMedication(medication)}
+            onPress = {medication=>setMedication(medication)}
+            
+            dataSet={[
+            { id: '1', title: 'Alpha' },
+            { id: '2', title: 'Beta' },
+            { id: '3', title: 'Gamma' },
+        ]}
+      />
+      </Text>
+        
+
+        
+
                 <TextInput
                     value={units}
                     onChangeText={units=>setUnits(units)}
                     placeholder={'mg/mcg/mls'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
+
+                    
                 <TouchableOpacity onPress={()=>addMedication()} style = {styles.button}>
                     <Text >Add Medication</Text>
                 </TouchableOpacity>
@@ -153,5 +174,14 @@ const styles = StyleSheet.create({
         height: '60%',
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
-    }
+    },
+
+    autocompleteContainer: {
+        flex: 1,
+        left: 0,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        zIndex: 1
+      }
 })

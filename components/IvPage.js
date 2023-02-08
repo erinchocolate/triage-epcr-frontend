@@ -123,7 +123,7 @@ return(
             <View style={styles.container}>
                     <View style={styles.scrollcontent}>
                             <ScrollView style = {styles.scrollbox}>
-                            {allIv.length===0? <View><Text>No Medication administered yet</Text></View> : <></>}
+                            {allIv.length===0? <View><Text>Nothing administered yet</Text></View> : <></>}
                             {allIv.map(singleIV=>{
                             return(
                             <View key={singleIV.IVRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '78%', zIndex:-1, marginLeft: '10%'}}> 
