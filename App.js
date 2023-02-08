@@ -13,6 +13,7 @@ import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
+import CheckList from './components/CheckList';
 import axios from 'axios';
 
 
@@ -34,6 +35,8 @@ export default function App() {
   const [allMedication, setAllMedication] = useState([]);
   //Data to be stored - Assessment & Transport
   const [assTransInfo, setAssTransInfo] = useState({});
+  //Data to be stored - CheckList
+  const [checkLists, setCheckLists] = useState({});
   //Change View
   const [view, setView] = useState('assessment');
 
@@ -249,6 +252,7 @@ export default function App() {
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
+      {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view==='cameraScreen'?<OpenCamera />:<></>}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
