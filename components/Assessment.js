@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dim
 import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, setPublicHospital}) {
+export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, setPublicHospital, setPublicVehicleType}) {
 
   const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
   const [objective, setObjective] = useState(assTransInfo.objective || '');
@@ -61,6 +61,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
           value={vehicleType}
           setValue={vehicleType=>{
               setVehicleType(vehicleType);
+              setPublicVehicleType(vehicleType);
               setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, vehicle: vehicleType}))}}
             items={[
               {label: 'Vehicle', value: 'Vehicle'},
