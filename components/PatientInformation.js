@@ -3,7 +3,10 @@ import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-export default function PatientInformation({patientInfo, setPatientInfo}) {
+
+
+
+export default function PatientInformation({patientInfo, setPatientInfo, sendToDatabase}) {
 
         const [firstName, setFirstName] = useState(patientInfo.fName || '');
         const [middleName, setMiddleName] = useState(patientInfo.mName || '');
@@ -167,7 +170,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>sendToDatabase()} style={styles.button}>
             <Text>Save</Text>
         </TouchableOpacity>
         </View>
