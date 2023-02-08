@@ -125,18 +125,16 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 <Text style={styles.myText}>Location </Text>
             </View>
             <Text>
-  <GooglePlacesAutocomplete
-    placeholder='Search'
-    
-    value={data}
-    
-    onChangeText={data=>{
-        setLocation(data)
-        setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
-    query={{
-      key: 'insert key here',
-      language: 'en',
-      components: 'country:nz'
+                <GooglePlacesAutocomplete
+                placeholder='Search'
+                value={data}
+                onChangeText={data=>{
+                setLocation(data)
+                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+                query={{
+                key: 'insert key here',
+                language: 'en',
+                components: 'country:nz'
     }}
     
   />
