@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '25%',
+        height: '24%',
         width: '100%',
         backgroundColor: 'dodgerblue'
     },
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 8,
-        height: '26%',
+        height: '24%',
         width: '20%'
     }
 })

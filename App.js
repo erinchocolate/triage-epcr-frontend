@@ -42,6 +42,10 @@ export default function App() {
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
+  const [publicHospital, setPublicHospital] = useState('');
+
+  const publicVariables = {publicIncidentType: publicIncidentType, 
+                            publicHospital: publicHospital};
   
 
 
@@ -50,7 +54,7 @@ export default function App() {
 
   function changeView(argument){
     setView(argument);
-    console.log(publicIncidentType);  
+    console.log(incidentDetails);  
   }
 
 
@@ -161,7 +165,8 @@ export default function App() {
         incidentDetails={incidentDetails}
         patientInfo={patientInfo}
         vitalSigns={vitalSigns}
-        assTransInfo={assTransInfo}/>
+        assTransInfo={assTransInfo}
+        publicVariables={publicVariables}/>
     )
   }
   else if(view==='cameraScreen'){
@@ -173,7 +178,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header changeView={changeView}/>
-      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} changeView={changeView}/>:<></>}
+      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} changeView={changeView}/>:<></>}
       {view==='incident'?<IncidentDetails incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
