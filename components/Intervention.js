@@ -318,7 +318,7 @@ const [text, setText] = useState(interventions.text || '');
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
-      height: Dimensions.get('window').height * 0.6,
+      height: Dimensions.get('window').height * 0.58,
       width: '100%',
       backgroundColor: "dodgerblue",
     },

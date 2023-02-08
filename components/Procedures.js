@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        height: Dimensions.get('window').height * 0.6,
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
     },

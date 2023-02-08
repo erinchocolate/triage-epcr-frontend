@@ -1,8 +1,7 @@
 
-import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dimensions} from 'react-native';
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
-import OpenCamera from './CameraScreen';
 
 export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, saveData}) {
 
@@ -18,6 +17,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
 
   return(
 
+  
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: Dimensions.get('window').height * 0.6,
+    height: Dimensions.get('screen').height * 0.58,
     width: '100%',
     backgroundColor: '#9dc8e2', 
   },  

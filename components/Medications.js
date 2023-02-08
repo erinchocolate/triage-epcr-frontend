@@ -82,10 +82,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: Dimensions.get('window').height * 0.6,
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
-        flex: 1,
 
     },
     scrollcontent:{
