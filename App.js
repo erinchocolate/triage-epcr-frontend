@@ -58,6 +58,13 @@ export default function App() {
     console.log(incidentDetails);  
   }
 
+  async function retrieveFromDatabase(){
+    axios.get('http://10.140.34.240:3000/epcrs/')
+    .then(response=>{
+      console.log(response.data);
+    })
+  }
+
 
   async function sendToDatabase(){
 
@@ -242,7 +249,7 @@ export default function App() {
   else{
   return (
     <View style={styles.container}>
-      <Header changeView={changeView}/>
+      <Header changeView={changeView} />
       {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
@@ -251,7 +258,7 @@ export default function App() {
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='cameraScreen'?<OpenCamera />:<></>}
-      <Footer changeView={changeView}/>
+      <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
   );
