@@ -16,7 +16,6 @@ import OpenCamera from './components/CameraScreen';
 import CheckList from './components/checkList';
 import axios from 'axios';
 
-
 export default function App() {
 
 //DATA TO BE STORED DURING SESSION
@@ -46,9 +45,11 @@ export default function App() {
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
   const [publicHospital, setPublicHospital] = useState('');
+  const [publicVehicleType, setPublicVehicleType] = useState(''); 
 
   const publicVariables = {publicIncidentType: publicIncidentType, 
-                            publicHospital: publicHospital};
+                            publicHospital: publicHospital,
+                            publicVehicleType: publicVehicleType};
   
 
 
@@ -58,6 +59,13 @@ export default function App() {
   function changeView(argument){
     setView(argument);
     console.log(incidentDetails);  
+  }
+
+  async function retrieveFromDatabase(){
+    axios.get('http://10.140.34.240:3000/epcrs/')
+    .then(response=>{
+      console.log(response.data);
+    })
   }
 
 
@@ -88,7 +96,7 @@ export default function App() {
       objective_note: assTransInfo.objective, 
       assessment_note: assTransInfo.assessment, 
       plan_note: assTransInfo.plan, 
-      vehicle: assTransInfo.vehicle, 
+      vehicle: publicVehicleType, 
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
@@ -168,7 +176,7 @@ export default function App() {
       objective_note: assTransInfo.objective, 
       assessment_note: assTransInfo.assessment, 
       plan_note: assTransInfo.plan, 
-      vehicle: assTransInfo.vehicle, 
+      vehicle: publicVehicleType, 
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
@@ -244,8 +252,8 @@ export default function App() {
   else{
   return (
     <View style={styles.container}>
-      <Header changeView={changeView}/>
-      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} changeView={changeView}/>:<></>}
+      <Header changeView={changeView} />
+      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
@@ -254,7 +262,7 @@ export default function App() {
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view==='cameraScreen'?<OpenCamera />:<></>}
-      <Footer changeView={changeView}/>
+      <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
   );

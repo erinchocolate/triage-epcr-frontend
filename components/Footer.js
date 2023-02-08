@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions  } from 're
 import fernmark from '../assets/fernmark.jpg';
 import triage from '../assets/triage_logo.jpg';
 
-export default function Footer({changeView}) {
+export default function Footer({changeView, retrieveFromDatabase}) {
   return (
     <View style={styles.layout}>
         <Image style={styles.image} source={fernmark}/>
         <Image style={styles.image} source={triage}/>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>retrieveFromDatabase()} style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
