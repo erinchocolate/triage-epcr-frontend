@@ -32,12 +32,12 @@ export default function Medications({allMedication, setAllMedication}) {
         <View style={styles.row}>
            
         <AutocompleteDropdown
-                        clearOnFocus={false}
-                        closeOnBlur={true}
-                        initialValue={setMedication}
-                        onSelectItem={setSelectedItem}
-                        onValueChange={selectedItem=>setMedication(selectedItem)}
-                        value={selectedItem}
+                    clearOnFocus={false}
+                    closeOnBlur={true}
+                    initialValue={'Enter Medication Here'}
+                    onSelectItem={setSelectedItem}
+                    onValueChange={selectedItem=>setMedication(selectedItem)}
+                    value={selectedItem}
 
                          dataSet={[
                      { id: 'Paracetamol', title: 'Paracetamol', value: 'Paracetamol' },
