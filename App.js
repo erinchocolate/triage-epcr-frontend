@@ -54,7 +54,7 @@ export default function App() {
   }
   else if(view==='cameraScreen'){
     return(
-      <OpenCamera/>
+      <OpenCamera changeView={changeView}/>
     )
   }
   else{
