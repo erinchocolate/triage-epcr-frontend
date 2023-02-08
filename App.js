@@ -62,7 +62,7 @@ export default function App() {
 
     if(incID==='Auto-Generated'){
       console.log(publicIncidentType)
-    axios.post('http://10.140.34.240:3000/epcrs/',{
+    axios.post('http://172.20.10.5:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -87,7 +87,7 @@ export default function App() {
       plan_note: assTransInfo.plan, 
       vehicle: assTransInfo.vehicle, 
       transport_status: assTransInfo.transport, 
-      destination: assTransInfo.destination, 
+      destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
       incident_medication: '', 
       cardioversion: procedures.cardioversion, 
@@ -110,7 +110,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
+    axios.put(`http://172.20.10.5:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -135,7 +135,7 @@ export default function App() {
       plan_note: assTransInfo.plan, 
       vehicle: assTransInfo.vehicle, 
       transport_status: assTransInfo.transport, 
-      destination: assTransInfo.destination, 
+      destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
       incident_medication: '', 
       cardioversion: procedures.cardioversion, 
@@ -179,8 +179,8 @@ export default function App() {
     <View style={styles.container}>
       <Header changeView={changeView}/>
       {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} changeView={changeView}/>:<></>}
-      {view==='incident'?<IncidentDetails incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
-      {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
+      {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
+      {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}

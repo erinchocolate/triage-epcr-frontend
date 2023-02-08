@@ -6,7 +6,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 
 
-export default function PatientInformation({patientInfo, setPatientInfo}) {
+export default function PatientInformation({patientInfo, setPatientInfo, sendToDatabase}) {
 
         const [firstName, setFirstName] = useState(patientInfo.fName || '');
         const [middleName, setMiddleName] = useState(patientInfo.mName || '');
@@ -80,7 +80,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                      setAddress(address)
                      setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                     query={{
-                  key: 'insert key',
+                  key: 'AIzaSyCHtgekyRoloYIJi-GnW2FSaLMDpwYRSvc',
                 language: 'en',
                  components: 'country:nz'
                  }}
@@ -170,7 +170,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>sendToDatabase()} style={styles.button}>
             <Text>Save</Text>
         </TouchableOpacity>
         </View>
