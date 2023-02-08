@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import DropDown from '../utility/DropDown';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 
@@ -71,15 +72,22 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.addressInputContainer}>
-                    <TextInput
-                            value={address}
-                            onChangeText={address=>{
-                                setAddress(address)
-                                setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
-                            placeholder={'Address'}
-                            placeholderTextColor = '#b3b3b3'
-                            style={styles.addressInput}/>
-                
+                <Text>
+                    <GooglePlacesAutocomplete
+                     placeholder={'Address'}
+                     value={address}
+                        onChangeText={address=>{
+                     setAddress(address)
+                     setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
+                    query={{
+                  key: 'insert key here',
+                language: 'en',
+                 components: 'country:nz'
+                 }}
+                    />
+
+                                 
+                            </Text>
                 </View>
                     
             </View>

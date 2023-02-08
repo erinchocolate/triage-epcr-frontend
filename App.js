@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        height: '58%',
+        height: '100%',
         width: '100%',
         backgroundColor: 'white'
   }

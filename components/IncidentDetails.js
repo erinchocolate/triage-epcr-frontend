@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
-
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
@@ -125,15 +124,27 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
             <View style={styles.title}>
                 <Text style={styles.myText}>Location </Text>
             </View>
-            <TextInput
-                value={hospitalLocation}
-                onChangeText={hospitalLocation=>{
-                    setHospitalLocation(hospitalLocation)
-                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: hospitalLocation}))}}
-                placeholder={'Start typing and this will bring up options'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.wideInput}/>
-            <TouchableOpacity onPress={()=>typeTest()} style={styles.button}>
+            <Text>
+  <GooglePlacesAutocomplete
+    placeholder='Search'
+    
+    value={data}
+    
+    onChangeText={data=>{
+        setLocation(data)
+        setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+    query={{
+      key: 'insert key here',
+      language: 'en',
+      components: 'country:nz'
+    }}
+    
+  />
+
+  
+</Text>
+
+            <TouchableOpacity style={styles.button}>
                 <Text>Save</Text>
             </TouchableOpacity>
 
