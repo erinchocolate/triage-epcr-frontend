@@ -3,9 +3,6 @@ import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-
-
-
 export default function PatientInformation({patientInfo, setPatientInfo}) {
 
         const [firstName, setFirstName] = useState(patientInfo.fName || '');
@@ -80,7 +77,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                      setAddress(address)
                      setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                     query={{
-                  key: 'insert key',
+                  key: process.env.API_KEY,
                 language: 'en',
                  components: 'country:nz'
                  }}
