@@ -6,7 +6,7 @@ import DropDown from '../utility/DropDown';
 
 
 
-export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
+export default function IncidentDetails({incID, incidentDetails, setIncidentDetails, setPublicIncidentType}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
@@ -17,6 +17,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
     const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
 
+    function typeTest(){
+        console.log(incidentType);
+    }
      
     return (
     <View style={styles.layout}>
@@ -26,7 +29,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 editable={false}
-                placeholder='Auto-Generated'
+                placeholder={incID}
                 style={styles.input}
                 />
             <View style={styles.title}>
@@ -37,6 +40,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
                 value={incidentType}
                 setValue={incidentType=>{
                     setIncidentType(incidentType);
+                    setPublicIncidentType(incidentType);
                     setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, type: incidentType}))}}
                 items={[
                     {label: 'Medical', value: 'medicalIncident'},
@@ -127,7 +131,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
                 placeholder={'Start typing and this will bring up options'}
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>typeTest()} style={styles.button}>
                 <Text>Save</Text>
             </TouchableOpacity>
 

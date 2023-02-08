@@ -13,6 +13,8 @@ import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
+import axios from 'axios';
+
 
 export default function App() {
 
@@ -35,27 +37,121 @@ export default function App() {
   //Change View
   const [view, setView] = useState('assessment');
 
+  //Incident ID
+  const [incID, setIncID] = useState('Auto-Generated');
+
+  //For SQL Stuff
+  const [publicIncidentType, setPublicIncidentType] = useState('');
+  
+
+
 
 
 
   function changeView(argument){
     setView(argument);
+    console.log(publicIncidentType);  
   }
 
 
-  function sendToDatabase(){
-    fetch('localhost:3000/epcrs/',{
-      method: 'POST',
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'first_name': 'Josh'
-      })
+  async function sendToDatabase(){
+
+    if(incID==='Auto-Generated'){
+      console.log(publicIncidentType)
+    axios.post('http://10.140.34.240:3000/epcrs/',{
+      first_name: patientInfo.fName,
+      middle_name: patientInfo.mName, 
+      last_name: patientInfo.lName, 
+      nhi_number: patientInfo.nhiNo, 
+      dob: patientInfo.dob, 
+      gender: patientInfo.gender, 
+      age: patientInfo.age, 
+      address: patientInfo.address, 
+      patient_medication: '', 
+      patient_allergy: '', 
+      incident_type: publicIncidentType, 
+      incident_note: incidentDetails.notes,         
+      notified_time: incidentDetails.notifyT, 
+      responded_time: incidentDetails.responseT, 
+      located_time: incidentDetails.locatedT, 
+      departed_time: incidentDetails.departedT,
+      destination_time: incidentDetails.destinationT, 
+      location_note: incidentDetails.location, 
+      subjective_note: assTransInfo.subjective,
+      objective_note: assTransInfo.objective, 
+      assessment_note: assTransInfo.assessment, 
+      plan_note: assTransInfo.plan, 
+      vehicle: assTransInfo.vehicle, 
+      transport_status: assTransInfo.transport, 
+      destination: assTransInfo.destination, 
+      estimate_arrival_time: assTransInfo.arrivalTime, 
+      incident_medication: '', 
+      cardioversion: procedures.cardioversion, 
+      pacing: procedures.pacing, 
+      cardiac_arrest: procedures.cardiacArrest, 
+      rsi: procedures.rsi, 
+      mechanical_ventilation: procedures.mechVent, 
+      cpap: procedures.cpap, 
+      sugical_cric: procedures.cric, 
+      needle_decompression: procedures.needleDecomp, 
+      finger_thoracostomy: procedures.fingerThorac, 
+      fi_block: procedures.fiBlock 
     })
-    .then(response=>response.json())
-    .then(data=>console.log(data))
-    .catch(error=>console.error(error));
+    .then(function (response){
+      console.log(response.request._response);
+      setIncID(response.request._response);
+    })
+    .catch(function (error){
+      console.log(error);
+    })
+  }
+  else{
+    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
+      first_name: patientInfo.fName,
+      middle_name: patientInfo.mName, 
+      last_name: patientInfo.lName, 
+      nhi_number: patientInfo.nhiNo, 
+      dob: patientInfo.dob, 
+      gender: patientInfo.gender, 
+      age: patientInfo.age, 
+      address: patientInfo.address, 
+      patient_medication: '', 
+      patient_allergy: '', 
+      incident_type: publicIncidentType, 
+      incident_note: incidentDetails.notes,         
+      notified_time: incidentDetails.notifyT, 
+      responded_time: incidentDetails.responseT, 
+      located_time: incidentDetails.locatedT, 
+      departed_time: incidentDetails.departedT,
+      destination_time: incidentDetails.destinationT, 
+      location_note: incidentDetails.location, 
+      subjective_note: assTransInfo.subjective,
+      objective_note: assTransInfo.objective, 
+      assessment_note: assTransInfo.assessment, 
+      plan_note: assTransInfo.plan, 
+      vehicle: assTransInfo.vehicle, 
+      transport_status: assTransInfo.transport, 
+      destination: assTransInfo.destination, 
+      estimate_arrival_time: assTransInfo.arrivalTime, 
+      incident_medication: '', 
+      cardioversion: procedures.cardioversion, 
+      pacing: procedures.pacing, 
+      cardiac_arrest: procedures.cardiacArrest, 
+      rsi: procedures.rsi, 
+      mechanical_ventilation: procedures.mechVent, 
+      cpap: procedures.cpap, 
+      sugical_cric: procedures.cric, 
+      needle_decompression: procedures.needleDecomp, 
+      finger_thoracostomy: procedures.fingerThorac, 
+      fi_block: procedures.fiBlock 
+    })
+    .then(function (response){
+      console.log(response)
+    })
+    .catch(function (error){
+      console.log(error)
+    })
+  }
   }
 
   if(view==='pdf'){
@@ -78,7 +174,7 @@ export default function App() {
     <View style={styles.container}>
       <Header changeView={changeView}/>
       {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} changeView={changeView}/>:<></>}
-      {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
+      {view==='incident'?<IncidentDetails incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
