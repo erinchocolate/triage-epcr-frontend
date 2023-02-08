@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 
 
 
@@ -15,7 +17,7 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
     const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
-    const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
+    const [data, setLocation] = useState(incidentDetails.location || '');
 
     function typeTest(){
         console.log(incidentType);
