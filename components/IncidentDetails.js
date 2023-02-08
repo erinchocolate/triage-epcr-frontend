@@ -130,7 +130,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
         setLocation(data)
         setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
     query={{
-      key: 'insert key here',
+      key: 'insert key',
       language: 'en',
       components: 'country:nz'
     }}
