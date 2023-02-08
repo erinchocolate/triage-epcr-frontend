@@ -1,5 +1,5 @@
 
-import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dimensions} from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
 import OpenCamera from './CameraScreen';
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: '58%',
+    height: Dimensions.get('window').height * 0.6,
     width: '100%',
     backgroundColor: '#9dc8e2', 
   },  

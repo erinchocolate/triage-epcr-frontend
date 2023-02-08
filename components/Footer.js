@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions  } from 'react-native';
 import fernmark from '../assets/fernmark.jpg';
 import triage from '../assets/triage_logo.jpg';
 
@@ -28,7 +28,7 @@ const styles =StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        height: '12%',
+        height: Dimensions.get('window').height * 0.10,
         width: '100%',
         backgroundColor: 'dodgerblue'
     },

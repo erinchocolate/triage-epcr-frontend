@@ -196,14 +196,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingTop: 20
-  },
-  middle:{
-    justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%',
-        backgroundColor: 'white'
   }
 });
 

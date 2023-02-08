@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { createContext, useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 import DropDown from '../utility/DropDown';
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.6,
         width: '100%',
         backgroundColor: '#9dc8e2',  
         fontWeight: '700'

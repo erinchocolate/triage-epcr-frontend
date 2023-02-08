@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.6,
         width: '100%',
         backgroundColor: '#9dc8e2',  
     },

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import React from 'react';
@@ -29,46 +29,6 @@ const [text, setText] = useState(interventions.text || '');
 <View style={styles.layout}>
   
   <View style={styles.component}>  
-    <View style={styles.container}>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-            isChecked={opa}
-            setChecked={opa=>{
-            setOpa(opa);
-            setInterventions(prevInterventions=>({...prevInterventions, opa: opa}))}}/>
-        <Text>OPA</Text>
-        </View>
-        
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={lma}
-              setChecked={lma=>{
-              setLma(lma);
-              setInterventions(prevInterventions=>({...prevInterventions, lma: lma}))}}/>
-        <Text>LMA</Text>
-        </View>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={npa}
-              setChecked={npa=>{
-              setNpa(npa);
-              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
-        <Text>NPA</Text>
-        </View>
-
-        <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={ett}
-              setChecked={ett=>{
-              setEtt(ett);
-              setInterventions(prevInterventions=>({...prevInterventions, ett: ett}))}}/>
-        <Text>ETT</Text>
-        </View>
-
-    </View>
-
 
     <View style={[styles.container, { zIndex: 4}]}>
       <View style={styles.checkboxGroup}>
@@ -358,7 +318,7 @@ const [text, setText] = useState(interventions.text || '');
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
-      height: '58%',
+      height: Dimensions.get('window').height * 0.6,
       width: '100%',
       backgroundColor: "dodgerblue",
     },
@@ -398,7 +358,7 @@ const [text, setText] = useState(interventions.text || '');
     },
   
     largeDropdown: {
-      width: '50%',
+      width: '40%',
       zIndex: 1000,
       elevation:1000,
       height:50,
