@@ -80,13 +80,13 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                      setAddress(address)
                      setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                     query={{
-                  key: 'AIzaSyCNmGOd9IOd65dOmqG9AX85z-Yart19YDE',
+                  key: 'insert key here',
                 language: 'en',
                  components: 'country:nz'
                  }}
                     />
 
-                                 ;
+                                 
                             </Text>
                 </View>
                     

@@ -123,15 +123,18 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             <Text>
   <GooglePlacesAutocomplete
     placeholder='Search'
+    
     value={data}
+    
     onChangeText={data=>{
         setLocation(data)
         setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
     query={{
-      key: 'AIzaSyCNmGOd9IOd65dOmqG9AX85z-Yart19YDE',
+      key: 'insert key here',
       language: 'en',
       components: 'country:nz'
     }}
+    
   />
 
   
