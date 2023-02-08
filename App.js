@@ -62,7 +62,7 @@ export default function App() {
 
     if(incID==='Auto-Generated'){
       console.log(publicIncidentType)
-    axios.post('http://192.168.1.55:3000/epcrs/',{
+    axios.post('http://192.168.1.134:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -142,7 +142,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://192.168.1.55:3000/epcrs/${incID}`,{
+    axios.put(`http://192.168.1.134:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
