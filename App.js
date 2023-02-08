@@ -13,7 +13,7 @@ import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
-import CheckList from './components/CheckList';
+import CheckList from './components/checkList';
 import axios from 'axios';
 
 
