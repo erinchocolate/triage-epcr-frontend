@@ -11,6 +11,7 @@ import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import Homepage from './components/HomePage';
+import EPCRRetrievalPage from './components/EPCRRetrievalPage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
@@ -38,10 +39,14 @@ export default function App() {
   //Data to be stored - CheckList
   const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('assessment');
+  const [view, setView] = useState('RetrievalPage');
 
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
+
+  //EPCR Records
+  const [allEPCRRecords, setAllEPCRRecords] = useState([{first_name: 'Meiqiao', last_name: 'Chen'}, {first_name: 'Joshua', last_name: 'Lee'}]);
+
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -62,13 +67,14 @@ export default function App() {
     console.log(incidentDetails);  
   }
 
-  async function retrieveFromDatabase(){
-    axios.get('http://10.140.34.240:3000/epcrs/')
-    .then(response=>{
-      console.log(response.data);
-    })
-  }
+ 
 
+  function setMyRecords(){
+    console.log("I got triggered")
+    setAllEPCRRecords([{first_name: 'Meiqiao', last_name: 'Chen'},{first_name:'Joshua', last_name: 'Lee'}])
+    console.log(allEPCRRecords)
+
+  }
 
   async function sendToDatabase(){
 
@@ -234,7 +240,18 @@ export default function App() {
   }
   }
 
-  if(view==='pdf'){
+  if(view==='RetrievalPage'){
+    console.log(allEPCRRecords)
+    return(
+      <View style={styles.container}>
+        <EPCRRetrievalPage 
+          allEPCRRecords={allEPCRRecords}
+          />
+      </View>
+    )
+  }
+
+  else if(view==='pdf'){
     return(
       <PatientPDF 
         changeView={changeView}
