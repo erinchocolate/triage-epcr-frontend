@@ -1,14 +1,13 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
-
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 
 
 
-export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
+export default function IncidentDetails({incID, incidentDetails, setIncidentDetails, setPublicIncidentType}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
@@ -19,6 +18,9 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
     const [data, setLocation] = useState(incidentDetails.location || '');
 
+    function typeTest(){
+        console.log(incidentType);
+    }
      
     return (
     <View style={styles.layout}>
@@ -28,7 +30,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 editable={false}
-                placeholder='Auto-Generated'
+                placeholder={incID}
                 style={styles.input}
                 />
             <View style={styles.title}>
@@ -39,6 +41,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
                 value={incidentType}
                 setValue={incidentType=>{
                     setIncidentType(incidentType);
+                    setPublicIncidentType(incidentType);
                     setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, type: incidentType}))}}
                 items={[
                     {label: 'Medical', value: 'medicalIncident'},
@@ -123,20 +126,23 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             
             <Text>
-            <GooglePlacesAutocomplete
+                <GooglePlacesAutocomplete
                 placeholder='Search'
                 value={data}
                 onChangeText={data=>{
-                 setLocation(data)
-                 setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
-             query={{
-                key: 'AIzaSyDO7v-q6xZk8odoWHP1bxXVUs7-TAcobEM',
+                setLocation(data)
+                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+                query={{
+                key: process.env.API_KEY,
                 language: 'en',
-                components: 'country:nz',
-                }}
-                />
-        </Text>
-        
+                components: 'country:nz'
+    }}
+    
+  />
+
+  
+</Text>
+
             <TouchableOpacity style={styles.button}>
                 <Text>Save</Text>
             </TouchableOpacity>
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
     },

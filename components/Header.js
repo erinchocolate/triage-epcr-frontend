@@ -33,6 +33,9 @@ export default function Header({changeView}){
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Tools</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={()=>changeView('checkList')} style={styles.button}>
+                <Text style={styles.myText}>Checklists</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '30%',
+        height: '24%',
         width: '100%',
         backgroundColor: 'dodgerblue'
     },
@@ -51,8 +54,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10,
-        height: '20%',
+        margin: 8,
+        height: '24%',
         width: '20%'
     }
 })

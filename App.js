@@ -12,6 +12,8 @@ import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
+import OpenCamera from './components/CameraScreen';
+import axios from 'axios';
 
 export default function App() {
 
@@ -34,11 +36,198 @@ export default function App() {
   //Change View
   const [view, setView] = useState('assessment');
 
+  //Incident ID
+  const [incID, setIncID] = useState('Auto-Generated');
+
+  //For SQL Stuff
+  const [publicIncidentType, setPublicIncidentType] = useState('');
+  const [publicHospital, setPublicHospital] = useState('');
+  const [publicVehicleType, setPublicVehicleType] = useState(''); 
+
+  const publicVariables = {publicIncidentType: publicIncidentType, 
+                            publicHospital: publicHospital,
+                            publicVehicleType: publicVehicleType};
+  
+
+
 
 
 
   function changeView(argument){
     setView(argument);
+    console.log(incidentDetails);  
+  }
+
+  async function retrieveFromDatabase(){
+    axios.get('http://10.140.34.240:3000/epcrs/')
+    .then(response=>{
+      console.log(response.data);
+    })
+  }
+
+
+  async function sendToDatabase(){
+
+    if(incID==='Auto-Generated'){
+      console.log(publicIncidentType)
+    axios.post('http://10.140.34.240:3000/epcrs/',{
+      first_name: patientInfo.fName,
+      middle_name: patientInfo.mName, 
+      last_name: patientInfo.lName, 
+      nhi_number: patientInfo.nhiNo, 
+      dob: patientInfo.dob, 
+      gender: patientInfo.gender, 
+      age: patientInfo.age, 
+      address: patientInfo.address, 
+      patient_medication: '', 
+      patient_allergy: '', 
+      incident_type: publicIncidentType, 
+      incident_note: incidentDetails.notes,         
+      notified_time: incidentDetails.notifyT, 
+      responded_time: incidentDetails.responseT, 
+      located_time: incidentDetails.locatedT, 
+      departed_time: incidentDetails.departedT,
+      destination_time: incidentDetails.destinationT, 
+      location_note: incidentDetails.location, 
+      subjective_note: assTransInfo.subjective,
+      objective_note: assTransInfo.objective, 
+      assessment_note: assTransInfo.assessment, 
+      plan_note: assTransInfo.plan, 
+      vehicle: publicVehicleType, 
+      transport_status: assTransInfo.transport, 
+      destination: publicHospital, 
+      estimate_arrival_time: assTransInfo.arrivalTime, 
+      incident_medication: '', 
+      cardioversion: procedures.cardioversion, 
+      pacing: procedures.pacing, 
+      cardiac_arrest: procedures.cardiacArrest, 
+      rsi: procedures.rsi, 
+      mechanical_ventilation: procedures.mechVent, 
+      cpap: procedures.cpap, 
+      sugical_cric: procedures.cric, 
+      needle_decompression: procedures.needleDecomp, 
+      finger_thoracostomy: procedures.fingerThorac, 
+      fi_block: procedures.fiBlock,
+      bp: vitalSigns.BP,
+      heart_rate: vitalSigns.heartRate,
+      resp_rate: vitalSigns.respRate,
+      temp: vitalSigns.temp,
+      bsl: vitalSigns.BSL,
+      spo2: vitalSigns.SPo2,
+      etco2: vitalSigns.ETCo2,
+      monitor: vitalSigns.monitor,
+      manual: vitalSigns.manual,
+      palpatation: vitalSigns.palpatation,
+      eye_response: vitalSigns.eyes,
+      voice_response:vitalSigns.voice,
+      motor_response:vitalSigns.motor,
+      four_lead_ecg: vitalSigns.fourLead,
+      twelve_lead_ecg: vitalSigns.twelveLead,
+      opa: interventions.opa,
+      opa_size: "opa_size",
+      opa_location: "opa_location",
+      lma: interventions.lma,
+      lma_size: "lma_size",
+      lma_location: "lma_location",
+      npa: interventions.npa,
+      npa_size: "npa_size",
+      npa_location: "npa_location",
+      ett: interventions.ett,
+      ett_size: "ett_size",
+      ett_location: "ett_location",
+      peep: interventions.peep,
+      peep_note: "peep_note",
+      suction: interventions.suction,
+      suction_catheter:"suction_catheter",
+      bvm: interventions.bvm
+    })
+    .then(function (response){
+      console.log(response.request._response);
+      setIncID(response.request._response);
+    })
+    .catch(function (error){
+      console.log(error);
+    })
+  }
+  else{
+    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
+      first_name: patientInfo.fName,
+      middle_name: patientInfo.mName, 
+      last_name: patientInfo.lName, 
+      nhi_number: patientInfo.nhiNo, 
+      dob: patientInfo.dob, 
+      gender: patientInfo.gender, 
+      age: patientInfo.age, 
+      address: patientInfo.address, 
+      patient_medication: '', 
+      patient_allergy: '', 
+      incident_type: publicIncidentType, 
+      incident_note: incidentDetails.notes,         
+      notified_time: incidentDetails.notifyT, 
+      responded_time: incidentDetails.responseT, 
+      located_time: incidentDetails.locatedT, 
+      departed_time: incidentDetails.departedT,
+      destination_time: incidentDetails.destinationT, 
+      location_note: incidentDetails.location, 
+      subjective_note: assTransInfo.subjective,
+      objective_note: assTransInfo.objective, 
+      assessment_note: assTransInfo.assessment, 
+      plan_note: assTransInfo.plan, 
+      vehicle: publicVehicleType, 
+      transport_status: assTransInfo.transport, 
+      destination: publicHospital, 
+      estimate_arrival_time: assTransInfo.arrivalTime, 
+      incident_medication: '', 
+      cardioversion: procedures.cardioversion, 
+      pacing: procedures.pacing, 
+      cardiac_arrest: procedures.cardiacArrest, 
+      rsi: procedures.rsi, 
+      mechanical_ventilation: procedures.mechVent, 
+      cpap: procedures.cpap, 
+      sugical_cric: procedures.cric, 
+      needle_decompression: procedures.needleDecomp, 
+      finger_thoracostomy: procedures.fingerThorac, 
+      fi_block: procedures.fiBlock,
+      bp: vitalSigns.BP,
+      heart_rate: vitalSigns.heartRate,
+      resp_rate: vitalSigns.respRate,
+      temp: vitalSigns.temp,
+      bsl: vitalSigns.BSL,
+      spo2: vitalSigns.SPo2,
+      etco2: vitalSigns.ETCo2,
+      monitor: vitalSigns.monitor,
+      manual: vitalSigns.manual,
+      palpatation: vitalSigns.palpatation,
+      eye_response: vitalSigns.eyes,
+      voice_response:vitalSigns.voice,
+      motor_response:vitalSigns.motor,
+      four_lead_ecg: vitalSigns.fourLead,
+      twelve_lead_ecg: vitalSigns.twelveLead,
+      opa: interventions.opa,
+      opa_size: "opa_size",
+      opa_location: "opa_location",
+      lma: interventions.lma,
+      lma_size: "lma_size",
+      lma_location: "lma_location",
+      npa: interventions.npa,
+      npa_size: "npa_size",
+      npa_location: "npa_location",
+      ett: interventions.ett,
+      ett_size: "ett_size",
+      ett_location: "ett_location",
+      peep: interventions.peep,
+      peep_note: "peep_note",
+      suction: interventions.suction,
+      suction_catheter:"suction_catheter",
+      bvm: interventions.bvm
+    })
+    .then(function (response){
+      console.log(response)
+    })
+    .catch(function (error){
+      console.log(error)
+    })
+  }
   }
 
   if(view==='pdf'){
@@ -48,21 +237,28 @@ export default function App() {
         incidentDetails={incidentDetails}
         patientInfo={patientInfo}
         vitalSigns={vitalSigns}
-        assTransInfo={assTransInfo}/>
+        assTransInfo={assTransInfo}
+        publicVariables={publicVariables}/>
+    )
+  }
+  else if(view==='cameraScreen'){
+    return(
+      <OpenCamera changeView={changeView}/>
     )
   }
   else{
   return (
     <View style={styles.container}>
-      <Header changeView={changeView}/>
-      {view==='assessment'? <Assessment assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo}/>:<></>}
-      {view==='incident'?<IncidentDetails incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails}/>:<></>}
-      {view==='patientInfo'?<PatientInformation patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
+      <Header changeView={changeView} />
+      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
+      {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
+      {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
-      <Footer changeView={changeView}/>
+      {view==='cameraScreen'?<OpenCamera />:<></>}
+      <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
   );
@@ -77,14 +273,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingTop: 20
-  },
-  middle:{
-    justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        height: '58%',
-        width: '100%',
-        backgroundColor: 'white'
   }
 });
 

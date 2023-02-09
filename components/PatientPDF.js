@@ -4,12 +4,12 @@ import PDFFooter from './PDFFooter';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 
-export default function PatientPDF({changeView, incidentDetails, patientInfo, assTransInfo, vitalSigns}) {
+export default function PatientPDF({changeView, incidentDetails, patientInfo, assTransInfo, vitalSigns, publicVariables}) {
 
   //PDF Data Collection - Incident Details
   const {notifyT: notified = 'Not Specified', responseT: responded = 'Not Specified', locatedT: located = 'Not Specified',
           departedT: departed = 'Not Specified', destinationT: destinationT = 'Not Specified', location = 'Not Specified'} = incidentDetails;
-  const {destination = 'Not Specified'} = assTransInfo;
+  const {publicHospital: publicHospital = 'Not Specified'} = publicVariables;
 
   //PDF Data Collection - Patient Info
   const {fName: fName = 'Not Specified', mName: mName = 'Not Specified', lName: lName = 'Not Specified',
@@ -60,7 +60,7 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
                   </div>
                   <div>
                        <h2 class='title'>Location</h2> <h3> ${location}</h3>
-                       <h2 class='title'>Destination</h2> <h3> ${destination}</h3>
+                       <h2 class='title'>Destination</h2> <h3> ${publicHospital}</h3>
                   </div>
                 <hr>
                 <center>

@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
-
 
 export default function Medications({allMedication, setAllMedication}) {
 
@@ -104,10 +103,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
-        flex: 1,
 
     },
     scrollcontent:{

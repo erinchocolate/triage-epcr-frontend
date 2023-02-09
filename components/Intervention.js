@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import React from 'react';
 import CheckBox from '../utility/Checkbox';
-import IvPage from './IvPage';
+
+import TextBox from '../utility/TextBox';
 
 
 export default function Intervention({interventions, setInterventions, allIv, setAllIv}) { 
@@ -24,6 +25,10 @@ const [text, setText] = useState(interventions.text || '');
   const [airwaySize, setAirwaySize] = useState(interventions.airwaySize || null);
   const [airwayLocation, setAirwayLocation] = useState(interventions.airwayLocation || null);
   const [catheter, setCatheter] = useState(interventions.catheter || null);
+
+
+
+  
 
  return (
 <View style={styles.layout}>
@@ -46,6 +51,7 @@ const [text, setText] = useState(interventions.text || '');
                 value={airwaySize}
                 setValue={airwaySize=>{
                     setAirwaySize(airwaySize);
+                    
                     setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
             placeholder = 'Size'
             items = {[
@@ -60,20 +66,7 @@ const [text, setText] = useState(interventions.text || '');
             ]}
             />
       </View>
-      <View style={styles.largeDropdown}> 
-          <DropDown
-                value={airwayLocation}
-                setValue={airwayLocation=>{
-                    setAirwayLocation(airwayLocation);
-                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
-            placeholder = 'Location'
-            items = {[
-              {label: 'Nasal', value: 'Nasal'},
-              {label: 'Oral', value: 'Oral'},
-              
-            ]}
-           />
-      </View>
+                
     
     </View>
 
@@ -95,74 +88,22 @@ const [text, setText] = useState(interventions.text || '');
                     setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
             placeholder = 'Size'
             items = {[
-              {label: 'Opt 1', value: 'Opt 1'},
-              {label: 'Opt 2', value: 'Opt 2'},
-              {label: 'Opt 3', value: 'Opt 3'},
+              {label: '1', value: '1'},
+              {label: '2', value: '2'},
+              {label: '3', value: '3'},
+              {label: '4', value: '4'},
+              {label: '5', value: '5'},
+              
             ]}
             />
       </View>
 
-      <View style={styles.largeDropdown}> 
-          <DropDown
-                value={airwayLocation}
-                setValue={airwayLocation=>{
-                    setAirwayLocation(airwayLocation);
-                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
-            placeholder = 'Location'
-            items = {[
-              {label: 'Nasal', value: 'Nasal'},
-              {label: 'Oral', value: 'Oral'},
-              
-            ]}
-           />
-      </View>
+    
     
     </View>
+
 
     <View style={[styles.container, { zIndex: 2}]}>
-    <View style={styles.checkboxGroup}>
-        <CheckBox
-              isChecked={npa}
-              setChecked={npa=>{
-              setNpa(npa);
-              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
-        <Text>NPA</Text>
-        </View>
-      <View style={styles.smallDropdown}> 
-           <DropDown
-                value={airwaySize}
-                setValue={airwaySize=>{
-                    setAirwaySize(airwaySize);
-                    setInterventions(prevInterventions=>({...prevInterventions, airwaySize: airwaySize}))}}
-            placeholder = 'Size'
-            items = {[
-              {label: '6.5', value: '6.5'},
-              {label: '7.5', value: '7.5'},
-              {label: '8.5', value: '8.5'},
-            
-            ]}
-            />
-      </View>
-
-
-      <View style={styles.largeDropdown}> 
-          <DropDown
-                value={airwayLocation}
-                setValue={airwayLocation=>{
-                    setAirwayLocation(airwayLocation);
-                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
-            placeholder = 'Location'
-            items = {[
-              {label: 'Nasal', value: 'Nasal'},
-              {label: 'Oral', value: 'Oral'},
-              
-            ]}
-           />
-      </View>
-    
-    </View>
-
-    <View style={[styles.container, { zIndex: 1}]}>
      
     <View style={styles.checkboxGroup}>
         <CheckBox
@@ -191,24 +132,13 @@ const [text, setText] = useState(interventions.text || '');
             />
       </View>
 
-
-      <View style={styles.largeDropdown}> 
-          <DropDown
-                value={airwayLocation}
-                setValue={airwayLocation=>{
-                    setAirwayLocation(airwayLocation);
-                    setInterventions(prevInterventions=>({...prevInterventions, airwayLocation: airwayLocation}))}}
-            placeholder = 'Location'
-            items = {[
-              {label: 'Nasal', value: 'Nasal'},
-              {label: 'Oral', value: 'Oral'},
-              
-            ]}
-           />
-      </View>
-    
     </View>
 
+
+
+    
+
+    
 
     <View style={styles.container}>
       <View style={styles.secRow}>
@@ -254,8 +184,10 @@ const [text, setText] = useState(interventions.text || '');
                     setInterventions(prevInterventions=>({...prevInterventions, catheter: catheter}))}}
               placeholder = 'Suction Catheter'
               items = {[
-              {label: 'Opt 1', value: 'Opt 1'},
-              {label: 'Opt 2', value: 'Opt 2'},
+              {label: '10G', value: '10G'},
+              {label: '12G', value: '12G'},
+              {label: '14G', value: '14G'},
+              {label: '16G', value: '1G'},
               ]}
             />
       </View>
@@ -287,11 +219,7 @@ const [text, setText] = useState(interventions.text || '');
        setInterventions={setInterventions}
        allIv={allIv}
        setAllIv={setAllIv}/>
-    <View style={styles.bottomRow}>
-            <TouchableOpacity style = {styles.saveButton}>
-                <Text>Save</Text>
-            </TouchableOpacity>
-        </View>
+    
 </View>
 
 
@@ -320,7 +248,7 @@ const [text, setText] = useState(interventions.text || '');
       flexDirection: "row",
       alignItems: 'center',
       justifyContent: 'center',
-      height: '58%',
+      height: Dimensions.get('window').height * 0.58,
       width: '100%',
       backgroundColor: "dodgerblue",
     },
@@ -360,6 +288,7 @@ const [text, setText] = useState(interventions.text || '');
     },
   
     largeDropdown: {
+      width: '40%',
       width: '40%',
       zIndex: 1000,
       elevation:1000,

@@ -1,8 +1,9 @@
-import { StyleSheet, TextInput, Text, View, TouchableOpacity} from 'react-native';
-import { useState } from 'react';
+
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
 
-export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
+export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, setPublicHospital, setPublicVehicleType}) {
 
   const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
   const [objective, setObjective] = useState(assTransInfo.objective || '');
@@ -14,7 +15,9 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
   const [destination, setDestination] = useState(assTransInfo.destination || null);
 
 
-  return (
+  return(
+
+  
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
@@ -58,6 +61,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
           value={vehicleType}
           setValue={vehicleType=>{
               setVehicleType(vehicleType);
+              setPublicVehicleType(vehicleType);
               setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, vehicle: vehicleType}))}}
             items={[
               {label: 'Vehicle', value: 'Vehicle'},
@@ -92,6 +96,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
             value={destination}
             setValue={destination=>{
                 setDestination(destination);
+                setPublicHospital(destination);
                 setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, destination: destination}))}}
             items={[
             {label: 'Destination', value: 'Destination'},
@@ -115,12 +120,12 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
           style={styles.smallInput} />
         
         <View style={styles.takePhotoButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>changeView('cameraScreen')}>
             <Text>Take Photo</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.saveButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>sendToDatabase()}>
             <Text>Save</Text>
           </TouchableOpacity>
         </View>
@@ -129,6 +134,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, saveData}) {
     </View>
   );
 }
+
 
 const buttonStyle = {
   borderColor: '#3b3b3b',
@@ -157,7 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: '58%',
+    height: Dimensions.get('screen').height * 0.58,
     width: '100%',
     backgroundColor: '#9dc8e2', 
   },  

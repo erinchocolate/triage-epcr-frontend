@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions  } from 'react-native';
 import fernmark from '../assets/fernmark.jpg';
 import triage from '../assets/triage_logo.jpg';
 
-export default function Footer({changeView}) {
+export default function Footer({changeView, retrieveFromDatabase}) {
   return (
     <View style={styles.layout}>
         <Image style={styles.image} source={fernmark}/>
         <Image style={styles.image} source={triage}/>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={()=>retrieveFromDatabase()} style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
@@ -28,7 +28,7 @@ const styles =StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        height: '12%',
+        height: Dimensions.get('window').height * 0.10,
         width: '100%',
         backgroundColor: 'dodgerblue'
     },
