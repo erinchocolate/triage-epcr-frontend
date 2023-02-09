@@ -21,6 +21,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         const [palpatation, setPalpatation] = useState(vitalSigns.palpatation || false);
 
     //DropDown Data
+        const [GSCtotal, setGSCtotal] = useState(vitalSigns.GSCtotal || null);
         const [eyes, setEyes] = useState(vitalSigns.eyes || null);
         const [voice, setVoice] = useState(vitalSigns.voice || null);
         const [motor, setMotor] = useState(vitalSigns.motor || null);
@@ -176,8 +177,19 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             <View style={[styles.row5,{zIndex:5}]}>
                 <View style={styles.title}>
                     <Text style={styles.myText}>GCS: </Text>
+                    
                 </View>
+                <TextInput
+                    value={GSCtotal}
+                    onChangeText={GSCtotal=>{
+                        setGSCtotal(GSCtotal);
+                        setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, GSCtotal: GSCtotal}))}}
+                    placeholder={'GCS Total'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.smallInput}/>
+            
                 <View style={styles.smallDropdown1}> 
+                
                     <DropDown
                         value={eyes}
                         setValue={eyes=>{
@@ -344,7 +356,7 @@ const styles = StyleSheet.create({
     middleColumn:{
         flexDirection: 'column',
       height: '100%',
-      width: '25%',
+      width: '20%',
       fontWeight: '700',
       justifyContent: 'center',
       alignItems: 'center',

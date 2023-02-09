@@ -80,7 +80,7 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                      setAddress(address)
                      setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
                     query={{
-                  key: 'insert key',
+                  key: 'Insert key',
                 language: 'en',
                  components: 'country:nz'
                  }}

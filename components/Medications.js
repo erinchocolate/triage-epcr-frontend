@@ -1,16 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
-
 
 export default function Medications({allMedication, setAllMedication}) {
 
-    const [medication, setMedication] = useState('');
+ 
     const [units, setUnits] = useState('');
-    const [selectedItem, setSelectedItem] = useState('');
-
-
+   
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
@@ -31,20 +27,7 @@ export default function Medications({allMedication, setAllMedication}) {
     <View style={styles.layout}>
         <View style={styles.row}>
            
-        <AutocompleteDropdown
-                        clearOnFocus={false}
-                        closeOnBlur={true}
-                        initialValue={setMedication}
-                        onSelectItem={setSelectedItem}
-                        onValueChange={selectedItem=>setMedication(selectedItem)}
-                        value={selectedItem}
-
-                         dataSet={[
-                     { id: 'Paracetamol', title: 'Paracetamol', value: 'Paracetamol' },
-                     { id: 'Ibuprofen', title: 'Ibuprofen', value: 'Ibuprofen' },
-                     { id: 'Morphine', title: 'Morphine', value: 'Morhpine' },
-                        ]}
-                    />
+       
                 <TextInput
                     value={units}
                     onChangeText={units=>setUnits(units)}
