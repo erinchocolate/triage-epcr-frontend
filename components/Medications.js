@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
 
@@ -6,7 +6,9 @@ export default function Medications({allMedication, setAllMedication}) {
 
  
     const [units, setUnits] = useState('');
-   
+    const [selectedItem, setSelectedItem] = useState('');
+
+
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
@@ -26,8 +28,12 @@ export default function Medications({allMedication, setAllMedication}) {
   return (
     <View style={styles.layout}>
         <View style={styles.row}>
-           
-       
+                <TextInput
+                    value={medication}
+                    onChangeText={medication=>setMedication(medication)}
+                    placeholder={'Start typing...'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.wideInput}/>
                 <TextInput
                     value={units}
                     onChangeText={units=>setUnits(units)}
@@ -78,10 +84,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
-        flex: 1,
 
     },
     scrollcontent:{
