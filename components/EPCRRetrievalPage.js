@@ -3,11 +3,27 @@ import { useEffect, useState } from 'react';
 import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
 
-export default function EPCRRetrievalPage({allEPCRRecords}) {
+export default function EPCRRetrievalPage() {
 
+
+    const [allEPCRRecords, setAllEPCRRecords] = useState([]);
+
+    async function retrieveFromDatabase(){
+        console.log('Retrieving...');
+        axios.get('http://10.140.34.240:3000/epcrs/')
+        .then( function(response){
+          console.log(response.data);
+          setAllEPCRRecords(response.data);
+        })
+      }
+    
   return (
     <>
     <View style={styles.layout}>
+
+            <TouchableOpacity onPress={()=>{retrieveFromDatabase()}} style={styles.retrieveButton}>
+                <Text style={styles.medicationText}>Retrieve Data!</Text>
+            </TouchableOpacity>
 
         <View style={styles.scrollcontent}>
         <ScrollView style = {styles.scrollbox} >

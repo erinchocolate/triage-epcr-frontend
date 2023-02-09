@@ -63,13 +63,7 @@ export default function App() {
     console.log(incidentDetails);  
   }
 
-  async function retrieveFromDatabase(){
-    console.log('Retrieving...');
-    axios.get('http://10.140.34.240:3000/epcrs/')
-    .then(response=>{
-      console.log(response.data);
-    })
-  }
+ 
 
   function setMyRecords(){
     console.log("I got triggered")
@@ -248,7 +242,7 @@ export default function App() {
       <View style={styles.container}>
         <EPCRRetrievalPage 
           allEPCRRecords={allEPCRRecords}
-          retrieveFromDatabase={retrieveFromDatabase}/>
+          />
       </View>
     )
   }
