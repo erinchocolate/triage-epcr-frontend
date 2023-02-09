@@ -2,6 +2,7 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar, Dimensions } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import HomepageFooter from './components/HomepageFooter';
 import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
@@ -261,7 +262,8 @@ export default function App() {
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
-      {view==='cameraScreen'?<OpenCamera />:<></>}
+      {view === 'cameraScreen' ? <OpenCamera /> : <></>}
+      {/* <HomepageFooter changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/> */}
       <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
