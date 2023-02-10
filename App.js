@@ -40,9 +40,8 @@ export default function App() {
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
-  //EPCR Records
-  const [allEPCRRecords, setAllEPCRRecords] = useState([{first_name: 'Meiqiao', last_name: 'Chen'}, {first_name: 'Joshua', last_name: 'Lee'}]);
-
+  //Data handling for retrieval
+  const dataFunctions = {setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -61,15 +60,6 @@ export default function App() {
   function changeView(argument){
     setView(argument);
     console.log(incidentDetails);  
-  }
-
- 
-
-  function setMyRecords(){
-    console.log("I got triggered")
-    setAllEPCRRecords([{first_name: 'Meiqiao', last_name: 'Chen'},{first_name:'Joshua', last_name: 'Lee'}])
-    console.log(allEPCRRecords)
-
   }
 
   async function sendToDatabase(){
@@ -237,11 +227,11 @@ export default function App() {
   }
 
   if(view==='RetrievalPage'){
-    console.log(allEPCRRecords)
     return(
       <View style={styles.container}>
         <EPCRRetrievalPage 
-          allEPCRRecords={allEPCRRecords}
+          changeView={changeView}
+          {...dataFunctions}
           />
       </View>
     )
@@ -275,12 +265,12 @@ export default function App() {
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='cameraScreen'?<OpenCamera />:<></>}
-      <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
+      <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
   );
 }}
-
+//
 const styles = StyleSheet.create({
   container: {
     flex: 1,
