@@ -35,7 +35,7 @@ export default function App() {
   //Data to be stored - Assessment & Transport
   const [assTransInfo, setAssTransInfo] = useState({});
   //Change View
-  const [view, setView] = useState('RetrievalPage');
+  const [view, setView] = useState('incident');
 
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
