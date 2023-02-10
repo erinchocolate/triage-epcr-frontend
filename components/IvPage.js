@@ -5,30 +5,29 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import CheckBox from '../utility/Checkbox';
 import TextBox from '../utility/TextBox';
 
+
 export function IvPage({interventions, setInterventions, allIv, setAllIv}) { 
 
     const [io, setIo] = useState(interventions.io || false);
     const [iv, setIv] = useState(interventions.iv || false);
     const [npa, setNpa] = useState(interventions.npa || false);
 
-    //IV THINGS
+    //For IO info
     const [locationIO, setLocationIO] = useState('');
     const [unitsIO, setUnitsIO] = useState('');
-
-    const [unitsNPA, setUnitsNPA] = useState('');
-
-    const [locationIV, setLocationIV] = useState('');
-    const [unitsIV, setUnitsIV] = useState('');
-
     const [openSizeIO, setOpenSizeIO] = useState(false);
     const[valueSizeIO, setValueSizeIO] = useState(null);
     const [openLocationIO, setOpenLocationIO] = useState(false);
     const[valueLocationIO, setValueLocationIO] = useState(null);
 
+    //For NPA info
+    const [unitsNPA, setUnitsNPA] = useState('');
     const [openSizeNPA, setOpenSizeNPA] = useState(false);
     const[valueSizeNPA, setValueSizeNPA] = useState(null);
-   
 
+    //For IV info
+    const [locationIV, setLocationIV] = useState('');
+    const [unitsIV, setUnitsIV] = useState('');
     const [openSizeIV, setOpenSizeIV] = useState(false);
     const[valueSizeIV, setValueSizeIV] = useState(null);
     const [openLocationIV, setOpenLocationIV] = useState(false);
@@ -70,37 +69,7 @@ export function IvPage({interventions, setInterventions, allIv, setAllIv}) {
 return(
     <View style={styles.layout}>
 
-        <View style={[styles.container, { zIndex: 6}]}>  
-        <View style={styles.checkboxGroup}>
-            <CheckBox
-              isChecked={npa}
-              setChecked={npa=>{
-              setNpa(npa);
-              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
-             <Text>NPA</Text>
-        </View>
-
-        <View style={styles.smallDropdown}>
-                    <DropDownPicker 
-                    open={openSizeNPA}
-                    value={valueSizeNPA}
-                    setOpen={setOpenSizeNPA}
-                    setValue={setValueSizeNPA}
-                    onChangeValue={unitsNPA=>setUnitsNPA(unitsNPA)}
-                    placeholder='Size'
-                    items = {[
-                        {label: '6.5', value: '6.5'},
-                        {label: '7.5', value: '7.5'},
-                        {label: '8.5', value: '8.5'},
-                       
-                        ]}
-                    />
-        </View>
-        <TouchableOpacity onPress={()=>addNPA()} style={styles.button}>
-                        <Text style={styles.text}>Add</Text>
-                    </TouchableOpacity>  
-
-        </View> 
+       
 
         <View style={[styles.container, { zIndex: 5}]}>
 
@@ -208,11 +177,43 @@ return(
                 
             </View>     
 
+            <View style={[styles.container, { zIndex: 3}]}>  
+        <View style={styles.checkboxGroup}>
+            <CheckBox
+              isChecked={npa}
+              setChecked={npa=>{
+              setNpa(npa);
+              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
+             <Text>NPA</Text>
+        </View>
+
+        <View style={styles.singleDropdown}>
+                    <DropDownPicker 
+                    open={openSizeNPA}
+                    value={valueSizeNPA}
+                    setOpen={setOpenSizeNPA}
+                    setValue={setValueSizeNPA}
+                    onChangeValue={unitsNPA=>setUnitsNPA(unitsNPA)}
+                    placeholder='Size'
+                    items = {[
+                        {label: '6.5', value: '6.5'},
+                        {label: '7.5', value: '7.5'},
+                        {label: '8.5', value: '8.5'},
+                       
+                        ]}
+                    />
+        </View>
+        <TouchableOpacity onPress={()=>addNPA()} style={styles.button}>
+                        <Text style={styles.text}>Add</Text>
+                    </TouchableOpacity>  
+
+        </View> 
+
             
 
             <View style={styles.container}>
-                    <View style={styles.scrollcontent}>
-                            <ScrollView style = {styles.scrollbox}>
+                    <View>
+                            <ScrollView>
                          
                             {allIv.map(singleIV=>{
                             return(
@@ -221,7 +222,7 @@ return(
                                     time={singleIV.IVTime}
                                     setAllIv={setAllIv}
                                     IVRowId={singleIV.IVRowId}/> 
-                                <View style={styles.IVBox}><Text  style={styles.IVText}> {singleIV.IVType} {singleIV.IVSize} {singleIV.IVLocation}</Text></View>
+                                <View style={styles.multipleIntBox}><Text  style={styles.IVText}> {singleIV.IVType} {singleIV.IVSize} {singleIV.IVLocation}</Text></View>
                                 <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteIV(singleIV.IVRowId)} ><Text>X</Text></TouchableOpacity>
                             </View>
                             )
@@ -241,99 +242,101 @@ return(
 
 const styles = StyleSheet.create({
     layout: {
-      flexDirection: "column",
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      height: '40%',
-      width: '100%',
-      backgroundColor: '#9dc8e2',  
-    },
-
+        flexDirection: "column",
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        height: '40%',
+        width: '100%',
+        backgroundColor: '#9dc8e2',  
+      },
   
-    container: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
+    
+      container: {
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          marginRight: 10
       
-    
-      },
+      
+        },
+  
+        smallDropdown: {
+          width: '30%',
+          margin:10,
+          zIndex: 3,
+      
+        },
+      
+        largeDropdown: {
+          width: '40%',
+          zIndex: 999,
+          margin:10,
+          
+        },
 
-      smallDropdown: {
-        width: '30%',
-        margin:10,
-        zIndex: 3,
-    
-      },
-    
-      largeDropdown: {
-        width: '40%',
-        zIndex: 999,
-        margin:10,
-        
-      },
-
-      scrollcontent: {
-        zIndex: -1,
-        
-      },
-
-      scrollbox:{
-        zIndex: -1,
-    },
-
-
-    button: {
-        backgroundColor: "#EBEBEB",
-        borderRadius: 10,
-        borderWidth: 1,
-        width: '10%',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
+        singleDropdown:{
+            width: '30%',
+          margin:10,
+          zIndex: 3,
+          marginRight: '45%',
+          marginLeft: 0
+        },
+  
        
-        
-   
-      },
-
-      checkboxGroup:{
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row',
-      marginRight: '20%',
+  
+  
+      button: {
+          backgroundColor: "#EBEBEB",
+          borderRadius: 10,
+          borderWidth: 1,
+          width: '10%',
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+         
+          
      
-       
-    },
-
-    IVBox:{
-       
-        marginTop: 20,
-        width: '60%',
-        height: '60%',
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
-        flexDirection: 'row',
+        },
+  
+        checkboxGroup:{
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5,
-        margin: 10,
-        backgroundColor: 'white'
-    },
-
-    
-
-    deleteButton:{
-        width: '8%',
-        height: '65%',
-        backgroundColor: '#FF5C5C',
-        borderColor: '#3b3b3b',
-        borderWidth: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        marginTop: 10,
-        backgroundColor: 'white'
-    },
+        marginRight: 10,
+       
+       
+         
+      },
+  
+      multipleIntBox:{
+          marginTop: 20,
+          width: '60%',
+          height: '80%',
+          borderColor: '#3b3b3b',
+          borderWidth: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 5,
+          margin: 10,
+          backgroundColor: 'white'
+      },
+  
+      
+  
+      deleteButton:{
+          width: '8%',
+          height: '65%',
+          backgroundColor: '#FF5C5C',
+          borderColor: '#3b3b3b',
+          borderWidth: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 5,
+          marginTop: 10,
+          backgroundColor: 'white'
+      },
 
 
     
