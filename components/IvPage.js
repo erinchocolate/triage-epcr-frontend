@@ -248,6 +248,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '100%',
         backgroundColor: '#9dc8e2',  
+        
       },
   
     
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
           flexDirection: "row",
           justifyContent: "space-around",
           alignItems: "center",
-          marginRight: 10
+          marginRight: 20
       
       
         },
