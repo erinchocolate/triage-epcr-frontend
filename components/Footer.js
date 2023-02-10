@@ -16,8 +16,8 @@ export default function Footer({changeView, retrieveFromDatabase}) {
         <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
             <Text style={styles.text}>Review EPCR</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
-            <Text style={styles.text}>Print EPCR</Text>
+        <TouchableOpacity onPress={()=>changeView('')} style={styles.button}>
+            <Text style={styles.text}>Save EPCR</Text>
         </TouchableOpacity>
     </View>
   )

@@ -39,7 +39,7 @@ export default function App() {
   //Data to be stored - CheckList
   const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('RetrievalPage');
+  const [view, setView] = useState('');
 
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
@@ -280,8 +280,8 @@ export default function App() {
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
-      {/* <HomepageFooter changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/> */}
-      <Footer changeView={changeView} retrieveFromDatabase={retrieveFromDatabase}/>
+      {/* <HomepageFooter changeView={changeView} /> */}
+      <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
   );
