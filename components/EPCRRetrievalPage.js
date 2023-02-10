@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
