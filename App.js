@@ -12,6 +12,7 @@ import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import EPCRRetrievalPage from './components/EPCRRetrievalPage';
+import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
@@ -40,7 +41,7 @@ export default function App() {
   const [checkLists, setCheckLists] = useState({});
   //Change View
   const [view, setView] = useState('');
-
+  const [clinicalPracticeGuidelines, setClinicalPracticeGuidelines] = useState('');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
@@ -271,7 +272,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header changeView={changeView} />
-      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
+      {view === 'assessment' ?<Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView} /> : <></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
@@ -280,6 +281,7 @@ export default function App() {
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
+      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines clinicalPracticeGuidelines={clinicalPracticeGuidelines} setClinicalPracticeGuidelines={setClinicalPracticeGuidelines}/> : <></>}
       {/* <HomepageFooter changeView={changeView} /> */}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
