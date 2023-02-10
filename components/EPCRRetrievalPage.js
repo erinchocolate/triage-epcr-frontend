@@ -4,7 +4,7 @@ import axios from 'axios';
 import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
 
-export default function EPCRRetrievalPage({changeView, setIncidentDetails, setPatientInfo, 
+export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatientInfo, 
     setVitalSigns, setInterventions, setProcedures, setAllMedication, setAssTransInfo, setIncID}) {
 
 
@@ -14,11 +14,13 @@ export default function EPCRRetrievalPage({changeView, setIncidentDetails, setPa
 
 
     function setAllData(singleRecord){
-        changeView('assessment');
-        setIncidentDetails({type: singleRecord.incident_type , notes: singleRecord.incident_note , notifyT: singleRecord.notified_time , responseT: singleRecord.responded_time , locatedT: singleRecord.located_time ,departedT: singleRecord.departed_time ,destinationT: singleRecord.destination_time , location:singleRecord.destination })
-        setPatientInfo({fName: singleRecord.first_name , mName: singleRecord.middle_name ,lName: singleRecord.last_name , address: singleRecord.address ,nhiNo: singleRecord.nhi_number ,dob: singleRecord.dob ,age: singleRecord.age ,gender: singleRecord.gender ,medications: singleRecord.patient_medication ,allergies: singleRecord.patient_allergy})
-        setVitalSigns({BP: singleRecord.bp ,heartRate: singleRecord.heart_rate ,respRate: singleRecord.resp_rate ,temp: singleRecord.temp ,BSL: singleRecord.bsl ,SPo2: singleRecord.spo2 ,ETCo2: singleRecord.etco2, monitor: singleRecord.monitor , manual: singleRecord.manual , palpation: singleRecord.palpation , eyes: singleRecord.eye_response , voice: singleRecord.voice_response, motor: singleRecord.motor_response ,fourLead: singleRecord.four_lead_ecg ,twelveLead: singleRecord.twelve_lead_ecg})
-        setIncID(incident_id)
+        const idNo = singleRecord.incident_id
+        setView('incident');
+        console.log(singleRecord)
+        setIncID(idNo.toString());
+        setIncidentDetails({type: singleRecord.incident_type , notes: singleRecord.incident_note , notifyT: singleRecord.notified_time , responseT: singleRecord.responded_time , locatedT: singleRecord.located_time ,departedT: singleRecord.departed_time ,destinationT: singleRecord.destination_time , location:singleRecord.destination });
+        setPatientInfo({fName: singleRecord.first_name , mName: singleRecord.middle_name ,lName: singleRecord.last_name , address: singleRecord.address ,nhiNo: singleRecord.nhi_number ,dob: singleRecord.dob ,age: singleRecord.age ,gender: singleRecord.gender ,medications: singleRecord.patient_medication ,allergies: singleRecord.patient_allergy});
+        setVitalSigns({BP: singleRecord.bp ,heartRate: singleRecord.heart_rate ,respRate: singleRecord.resp_rate ,temp: singleRecord.temp ,BSL: singleRecord.bsl ,SPo2: singleRecord.spo2 ,ETCo2: singleRecord.etco2, monitor: singleRecord.monitor , manual: singleRecord.manual , palpatation: singleRecord.palpatation , eyes: singleRecord.eye_response , voice: singleRecord.voice_response, motor: singleRecord.motor_response ,fourLead: singleRecord.four_lead_ecg ,twelveLead: singleRecord.twelve_lead_ecg});
     }
 
 
@@ -27,6 +29,7 @@ export default function EPCRRetrievalPage({changeView, setIncidentDetails, setPa
         axios.get('http://10.140.34.240:3000/epcrs/')
         .then( function(response){
           console.log(response.data);
+          console.log(response.data[0].incident_id)
           setAllEPCRRecords(response.data);
         })
       }

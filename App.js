@@ -41,7 +41,7 @@ export default function App() {
   const [incID, setIncID] = useState('Auto-Generated');
 
   //Data handling for retrieval
-  const dataFunctions = {setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
+  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -51,10 +51,6 @@ export default function App() {
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
                             publicVehicleType: publicVehicleType};
-  
-
-
-
 
 
   function changeView(argument){
