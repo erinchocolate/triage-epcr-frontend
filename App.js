@@ -46,9 +46,8 @@ export default function App() {
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
-  //EPCR Records
-  const [allEPCRRecords, setAllEPCRRecords] = useState([{first_name: 'Meiqiao', last_name: 'Chen'}, {first_name: 'Joshua', last_name: 'Lee'}]);
-
+  //Data handling for retrieval
+  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -58,24 +57,11 @@ export default function App() {
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
                             publicVehicleType: publicVehicleType};
-  
-
-
-
 
 
   function changeView(argument){
     setView(argument);
     console.log(incidentDetails);  
-  }
-
- 
-
-  function setMyRecords(){
-    console.log("I got triggered")
-    setAllEPCRRecords([{first_name: 'Meiqiao', last_name: 'Chen'},{first_name:'Joshua', last_name: 'Lee'}])
-    console.log(allEPCRRecords)
-
   }
 
   async function sendToDatabase(){
@@ -243,11 +229,11 @@ export default function App() {
   }
 
   if(view==='RetrievalPage'){
-    console.log(allEPCRRecords)
     return(
       <View style={styles.container}>
         <EPCRRetrievalPage 
-          allEPCRRecords={allEPCRRecords}
+          changeView={changeView}
+          {...dataFunctions}
           />
       </View>
     )
@@ -289,7 +275,7 @@ export default function App() {
     </View>
   );
 }}
-
+//
 const styles = StyleSheet.create({
   container: {
     flex: 1,
