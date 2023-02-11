@@ -2,6 +2,7 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar, Dimensions } from 'react-native';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import HomepageFooter from './components/HomepageFooter';
 import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
@@ -11,9 +12,11 @@ import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import Homepage from './components/HomePage';
 import EPCRRetrievalPage from './components/EPCRRetrievalPage';
+import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines';
 import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
+import CheckList from './components/checkList';
 import axios from 'axios';
 
 export default function App() {
@@ -34,9 +37,11 @@ export default function App() {
   const [allMedication, setAllMedication] = useState([]);
   //Data to be stored - Assessment & Transport
   const [assTransInfo, setAssTransInfo] = useState({});
+  //Data to be stored - CheckList
+  const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('incident');
-
+  const [view, setView] = useState('');
+  const [clinicalPracticeGuidelines, setClinicalPracticeGuidelines] = useState('');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
@@ -253,14 +258,17 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header changeView={changeView} />
-      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
+      {view === 'assessment' ?<Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView} /> : <></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
-      {view==='cameraScreen'?<OpenCamera />:<></>}
+      {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
+      {view === 'cameraScreen' ? <OpenCamera /> : <></>}
+      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines clinicalPracticeGuidelines={clinicalPracticeGuidelines} setClinicalPracticeGuidelines={setClinicalPracticeGuidelines}/> : <></>}
+      {/* <HomepageFooter changeView={changeView} /> */}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>

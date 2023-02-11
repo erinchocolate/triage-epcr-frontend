@@ -5,6 +5,7 @@ import * as MediaLibrary from 'expo-media-library';
 import CameraButton from './CameraButton';
 
 
+
 export default function OpenCamera({ changeView}) {
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);

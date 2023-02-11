@@ -27,7 +27,7 @@ export default function Header({changeView}){
             <TouchableOpacity onPress={()=>changeView('assessment')} style={styles.button}>
                 <Text style={styles.myText}>Assessment & Transport</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('clinicalPracticeGuidelines')} style={styles.button}>
                 <Text style={styles.myText}>Clinical Practice Guidelines</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
