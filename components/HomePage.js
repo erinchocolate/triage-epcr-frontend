@@ -1,25 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-
+import HomepageFooter from '../components/HomepageFooter';
+import Header from '../components/Header';
 export default function Homepage() {
 
-    return (
+  return (
+    <View>
+      <Header/>
       <View style={styles.container}>
+        <TouchableOpacity style={styles.squareButton}>
+          <Text style={{textAlign: 'center'}}>Patient Connect</Text>
+        </TouchableOpacity>
+      <View style={styles.space} />
+        <TouchableOpacity onPress={()=>changeView('incident')} style={styles.squareButton}>
+          <Text style={{textAlign: 'center'}}>Electronic Patient Care Record</Text>
+        </TouchableOpacity>
 
-    <TouchableOpacity style={styles.squareButton}>
-    <Text style={{textAlign: 'center'}}>Patient Connect</Text>
-    </TouchableOpacity>
-
-    <View style={styles.space} />
-
-
-    <TouchableOpacity onPress={()=>changeView('incident')} style={styles.squareButton}>
-    <Text style={{textAlign: 'center'}}>Electronic Patient Care Record</Text>
-    </TouchableOpacity>
-
-        </View>
-     
+      </View> 
+      <HomepageFooter/>
+      </View>
     )
   }
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 
 export default function Header({changeView}){
     return(
         <View style={styles.layout}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('homepage')} style={styles.button}>
                 <Text style={styles.myText}>Home</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>

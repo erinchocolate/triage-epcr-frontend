@@ -42,6 +42,7 @@ export default function App() {
   //Change View
   const [view, setView] = useState('');
   const [clinicalPracticeGuidelines, setClinicalPracticeGuidelines] = useState('');
+  const [homepage, setHomepage] = useState('');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
@@ -281,8 +282,8 @@ export default function App() {
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
-      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines clinicalPracticeGuidelines={clinicalPracticeGuidelines} setClinicalPracticeGuidelines={setClinicalPracticeGuidelines}/> : <></>}
-      {/* <HomepageFooter changeView={changeView} /> */}
+      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines clinicalPracticeGuidelines={clinicalPracticeGuidelines} setClinicalPracticeGuidelines={setClinicalPracticeGuidelines} /> : <></>}
+      {view === 'homepage' ? <Homepage homepage={homepage} setHomepage={setHomepage} /> : <></>}
       <Footer changeView={changeView}/>
       <ExpoStatusBar style="auto" />
     </View>
