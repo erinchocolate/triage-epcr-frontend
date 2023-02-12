@@ -6,7 +6,6 @@ export default function TextBox({time, setAllIv, IVRowId }) {
     const timestamp = new Date().toLocaleString();
     const [text, setText] = useState( time || timestamp);
 
-
     return (
           <TextInput
                 style={styles.input}
