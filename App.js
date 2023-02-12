@@ -70,7 +70,7 @@ export default function App() {
 
     if(incID==='Auto-Generated'){
       console.log(publicIncidentType)
-    axios.post('http://10.140.34.240:3000/epcrs/',{
+    axios.post('http://10.140.176.60:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -104,7 +104,7 @@ export default function App() {
       rsi: procedures.rsi, 
       mechanical_ventilation: procedures.mechVent, 
       cpap: procedures.cpap, 
-      sugical_cric: procedures.cric, 
+      surgical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
       fi_block: procedures.fiBlock,
@@ -150,7 +150,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
+    axios.put(`http://10.140.176.60:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -184,7 +184,7 @@ export default function App() {
       rsi: procedures.rsi, 
       mechanical_ventilation: procedures.mechVent, 
       cpap: procedures.cpap, 
-      sugical_cric: procedures.cric, 
+      surgical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
       fi_block: procedures.fiBlock,

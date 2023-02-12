@@ -16,17 +16,17 @@ export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatie
     function setAllData(singleRecord){
         setView('incident');
         setIncID(singleRecord.incident_id.toString());
-        setIncidentDetails({type: singleRecord.incident_type , notes: singleRecord.incident_note , notifyT: singleRecord.notified_time , responseT: singleRecord.responded_time , locatedT: singleRecord.located_time ,departedT: singleRecord.departed_time ,destinationT: singleRecord.destination_time , location:singleRecord.destination });
+        setIncidentDetails({type: singleRecord.incident_type , notes: singleRecord.incident_note , notifyT: singleRecord.notified_time , responseT: singleRecord.responded_time , locatedT: singleRecord.located_time ,departedT: singleRecord.departed_time ,destinationT: singleRecord.destination_time , location:singleRecord.incident_location });
         setPatientInfo({fName: singleRecord.first_name , mName: singleRecord.middle_name ,lName: singleRecord.last_name , address: singleRecord.address ,nhiNo: singleRecord.nhi_number ,dob: singleRecord.dob ,age: singleRecord.age ,gender: singleRecord.gender ,medications: singleRecord.patient_medication ,allergies: singleRecord.patient_allergy});
         setVitalSigns({BP: singleRecord.bp ,heartRate: singleRecord.heart_rate ,respRate: singleRecord.resp_rate ,temp: singleRecord.temp ,BSL: singleRecord.bsl ,SPo2: singleRecord.spo2 ,ETCo2: singleRecord.etco2, monitor: singleRecord.monitor , manual: singleRecord.manual , palpatation: singleRecord.palpatation , eyes: singleRecord.eye_response , voice: singleRecord.voice_response, motor: singleRecord.motor_response ,fourLead: singleRecord.four_lead_ecg ,twelveLead: singleRecord.twelve_lead_ecg});
-        setProcedures({cardioversion: singleRecord.cardioversion, pacing: singleRecord.pacing, cardiacArrest: singleRecord.cardiac_arrest, rsi: singleRecord.rsi, mechVent: singleRecord.mechanical_ventilation, cpap: singleRecord.cpap, cric: singleRecord.surgical_cric, needleDecomp: singleRecord.needle_decompression, fingerThroac: singleRecord.finger_thoracostomy, fiBlock: singleRecord.fi_block});
+        setProcedures({cardioversion: singleRecord.cardioversion, pacing: singleRecord.pacing, cardiacArrest: singleRecord.cardiac_arrest, rsi: singleRecord.rsi, mechVent: singleRecord.mechanical_ventilation, cpap: singleRecord.cpap, cric: singleRecord.surgical_cric, needleDecomp: singleRecord.needle_decompression, fingerThorac: singleRecord.finger_thoracostomy, fiBlock: singleRecord.fi_block});
         setAssTransInfo({subjective: singleRecord.subjective_note, objective: singleRecord.objective_note, assessment: singleRecord.assessment_note, arrivalTime: singleRecord.estimate_arrival_time, plan: singleRecord.plan_note, vehicle: singleRecord.vehicle, transport: singleRecord.transport_status, destination: singleRecord.destination});
     }
 
 
     async function retrieveFromDatabase(){
         console.log('Retrieving...');
-        axios.get('http://10.140.34.240:3000/epcrs/')
+        axios.get('http://10.140.176.60:3000/epcrs/')
         .then( function(response){
           console.log(response.data);
           console.log(response.data[0].incident_id)
