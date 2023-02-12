@@ -5,7 +5,6 @@ import * as MediaLibrary from 'expo-media-library';
 import CameraButton from './CameraButton';
 
 
-
 export default function OpenCamera({ changeView}) {
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -22,6 +21,7 @@ export default function OpenCamera({ changeView}) {
       setHasCameraPermission(cameraStatus.status === "granted");    
     })();
   }, [])
+
 
   const takePicture = async () =>{
     if(cameraRef){
@@ -62,13 +62,15 @@ export default function OpenCamera({ changeView}) {
           type={type}
           flashMode={flash}
           ref={cameraRef} 
+         // screenOrientation={'landscape'}
       >
         <View style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           padding: 80,
+          height: '130%',
         }}>
-          <CameraButton title={"close"}  onPress={() => changeView('assessment')}/>
+          <CameraButton icon={'circle-with-cross'}   onPress={() => changeView('assessment')}/>
           <CameraButton icon={'retweet'} onPress={() => {
             setType(type === CameraType.back ? CameraType.front : CameraType.back)
           }}/>
@@ -106,7 +108,14 @@ export default function OpenCamera({ changeView}) {
 
 const styles = StyleSheet.create({
   container:{
-    ...StyleSheet.absoluteFillObject,
+    //...StyleSheet.absoluteFillObject,
+    flex:1,
+    backgroundColor:'#000',
+    justifyContent:'center',
+    paddingBottom:20,
   }, 
+  camera:{
+    flex:1,
+  }
 });
 
