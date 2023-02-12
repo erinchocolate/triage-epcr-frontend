@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
   layout:{
       justifyContent: 'center',
       alignItems: 'center',
-      flexWrap: 'wrap',
-      flexDirection: 'row',
+      // flexWrap: 'wrap',
+      // flexDirection: 'row',
       height: '24%',
-      width: '100%',
+      width: '120%',
       backgroundColor: 'dodgerblue'
   },
   button:{

@@ -28,7 +28,8 @@ const styles =StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        height: Dimensions.get('window').height * 0.10,
+        // height: Dimensions.get('window').height * 0.10,
+        height: '12%',
         width: '100%',
         backgroundColor: 'dodgerblue'
     },

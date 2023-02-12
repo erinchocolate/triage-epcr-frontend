@@ -6,22 +6,22 @@ export default function HomepageFooter({changeView}) {
   return (
     <View style={styles.layout}>
       <View style={styles.imageLayout}>
-      <Image style={styles.image} source={fernmark}/>
-      <Image style={styles.image} source={triage} />
+        <Image style={styles.image} source={fernmark}/>
+        <Image style={styles.image} source={triage} />
       </View>
-        <View style={styles.buttonLayout}>
+      <View style={styles.buttonLayout}>
         <TouchableOpacity onPress={() => changeView('incident')} style={styles.button}>
           <Text style={styles.text}>Create New EPCR</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('retrieve')} style={styles.button}>
           <Text style={styles.text}>Retrieve EPCR</Text>
         </TouchableOpacity>
-      </View>
+       </View>
     </View>
   )
 }
 
-const styles =StyleSheet.create({
+const styles = StyleSheet.create({
   layout: {
     flexDirection: 'row',
     height: Dimensions.get('window').height * 0.10,

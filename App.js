@@ -19,6 +19,10 @@ import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines'
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
 import CheckList from './components/checkList';
+import HomepageHeader from './components/HomepageHeader';
+import HomepageFooter from './components/HomepageFooter';
+import ButtonPage from './components/ButtonPage';
+import ButtonPageFooter from './components/ButtonPageFooter';
 
 
 export default function App() {
@@ -42,7 +46,7 @@ export default function App() {
   //Data to be stored - CheckList
   const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('homepage');
+  const [view, setView] = useState('buttonpage');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
@@ -252,14 +256,17 @@ export default function App() {
   }
   else if(view==='cameraScreen'){
     return(
-      <OpenCamera changeView={changeView}/>
+      <OpenCamera changeView={changeView} />
     )
   }
   else if (view === 'homepage') {
     return (
-      <View style={styles.container}>
-        <Homepage changeView={changeView}/>
-      </View>   
+      <Homepage changeView={changeView}/>
+    )
+  }
+  else if (view === 'buttonpage') {
+    return (
+      <ButtonPage changeView={changeView}/>
     )
   }
   else{
@@ -276,7 +283,6 @@ export default function App() {
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
       {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines/> : <></>}
-      {/* {view === 'homepage' ? <Homepage/> : <></>} */}
       <Footer changeView={changeView} sendToDatabase={sendToDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
