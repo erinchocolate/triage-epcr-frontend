@@ -142,10 +142,6 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
   
 </Text>
 
-            <TouchableOpacity style={styles.button}>
-                <Text>Save</Text>
-            </TouchableOpacity>
-
         </View>
     </View>
   )

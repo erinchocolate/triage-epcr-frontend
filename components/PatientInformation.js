@@ -170,9 +170,6 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity onPress={()=>sendToDatabase()} style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
         </View>
     </View>
   )

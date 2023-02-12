@@ -118,9 +118,6 @@ export default function Procedures({procedures, setProcedures}) {
                         setProcedures(prevProcedures=>({...prevProcedures, fiBlock: fiBlock}))}}/>
                 <Text style={styles.myText}>FI Block</Text>
             </View>
-            <TouchableOpacity style={styles.saveButton}>
-                <Text>Save</Text>
-            </TouchableOpacity>
         </View>
     </View>
   )

@@ -301,11 +301,6 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         </View>
         <View style={styles.row}>
         </View>
-        <View style={styles.row}>
-        <TouchableOpacity style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
-        </View>
         </View>
     </View>
   )
