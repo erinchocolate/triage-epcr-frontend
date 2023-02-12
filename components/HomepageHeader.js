@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-nati
 export default function HomepageHeader({ changeView }) {
   return (
     <View style={styles.layout}>
-      <TouchableOpacity onPress={()=>changeView('homepage')} style={styles.button}>
+      <TouchableOpacity onPress={()=>changeView('buttonpage')} style={styles.button}>
         <Text>Home</Text>
       </TouchableOpacity>
     </View>
@@ -12,20 +12,17 @@ export default function HomepageHeader({ changeView }) {
 
 const styles = StyleSheet.create({
   layout:{
-      justifyContent: 'center',
-      alignItems: 'center',
-      // flexWrap: 'wrap',
-      // flexDirection: 'row',
       height: '24%',
-      width: '120%',
+      width: '100%',
       backgroundColor: 'dodgerblue'
   },
   button:{
       backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
-      margin: 8,
+      marginTop: 20,
+      margin:10,
       height: '24%',
-      width: '20%'
+      width: '10%'
   }
 })

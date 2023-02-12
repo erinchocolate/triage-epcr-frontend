@@ -13,16 +13,14 @@ import Medications from './components/Medications';
 import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
-import Homepage from './components/Homepage';
+import Homepage from './components/HomePage';
+import ButtonPage from './components/ButtonPage';
 import EPCRRetrievalPage from './components/EPCRRetrievalPage';
 import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
 import CheckList from './components/checkList';
-import HomepageHeader from './components/HomepageHeader';
-import HomepageFooter from './components/HomepageFooter';
-import ButtonPage from './components/ButtonPage';
-import ButtonPageFooter from './components/ButtonPageFooter';
+
 
 
 export default function App() {
