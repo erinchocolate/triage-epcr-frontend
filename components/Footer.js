@@ -7,7 +7,7 @@ export default function Footer({changeView, sendToDatabase, retrieveFromDatabase
     <View style={styles.layout}>
         <Image style={styles.image} source={fernmark}/>
         <Image style={styles.image} source={triage}/>
-        <TouchableOpacity onPress={()=>retrieveFromDatabase()} style={styles.button}>
+        <TouchableOpacity onPress={()=>changeView('homepage')} style={styles.button}>
             <Text style={styles.text}>EPCR Home</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('pdf')} style={styles.button}>
