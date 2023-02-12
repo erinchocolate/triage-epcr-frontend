@@ -30,7 +30,7 @@ const styles =StyleSheet.create({
         flexDirection: 'row',
         height: '12%',
         width: '100%',
-        backgroundColor: 'dodgerblue'
+        backgroundColor: '#4A96C9'
     },
     image: {
       width: 120,

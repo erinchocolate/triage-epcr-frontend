@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: '58%',
     width: '100%',
-    backgroundColor: '#9dc8e2', 
+    backgroundColor: '#4A96C9', 
   },  
   largeInput: {
     ...inputStyle,

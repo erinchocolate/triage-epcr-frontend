@@ -28,7 +28,7 @@ export default function Homepage() {
         flexDirection: 'row',
         width: '130%',
         height: '130%',
-        backgroundColor: '#4BAFEB',
+        backgroundColor: '#4A96C9',
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 100

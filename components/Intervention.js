@@ -226,11 +226,11 @@ const [text, setText] = useState(interventions.text || '');
       justifyContent: 'center',
       height: '58%',
       width: '100%',
-      backgroundColor: "dodgerblue",
+      backgroundColor: "#4A96C9",
     },
 
     component: {
-      backgroundColor: '#9dc8e2',  
+      backgroundColor: '#4A96C9',  
       flex:1,
       flexDirection: "column",
       height: '90%',

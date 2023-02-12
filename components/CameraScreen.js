@@ -68,7 +68,7 @@ export default function OpenCamera({ changeView}) {
           flexDirection: 'row',
           justifyContent: 'space-between',
           padding: 80,
-          height: '130%',
+          height: '115%',
         }}>
           <CameraButton icon={'circle-with-cross'}   onPress={() => changeView('assessment')}/>
           <CameraButton icon={'retweet'} onPress={() => {

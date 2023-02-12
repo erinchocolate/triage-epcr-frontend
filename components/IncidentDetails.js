@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         height: '58%',
         width: '100%',
-        backgroundColor: '#9dc8e2',  
+        backgroundColor: '#4A96C9',  
     },
     row:{
         flexDirection: 'row',
