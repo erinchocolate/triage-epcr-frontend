@@ -1,8 +1,11 @@
+// Thirdparty Imports
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar, Dimensions } from 'react-native';
+import { useState } from 'react';
+import axios from 'axios';
+// Local Imports
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomepageFooter from './components/HomepageFooter';
 import IncidentDetails from './components/IncidentDetails';
 import PatientInformation from './components/PatientInformation';
 import Procedures from './components/Procedures';
@@ -10,14 +13,13 @@ import Medications from './components/Medications';
 import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
-import Homepage from './components/HomePage';
+import Homepage from './components/Homepage';
 import EPCRRetrievalPage from './components/EPCRRetrievalPage';
 import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines';
-import { useState } from 'react';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
 import CheckList from './components/checkList';
-import axios from 'axios';
+
 
 export default function App() {
 
@@ -40,9 +42,7 @@ export default function App() {
   //Data to be stored - CheckList
   const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('');
-  const [clinicalPracticeGuidelines, setClinicalPracticeGuidelines] = useState('');
-  const [homepage, setHomepage] = useState('');
+  const [view, setView] = useState('homepage');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
@@ -255,6 +255,13 @@ export default function App() {
       <OpenCamera changeView={changeView}/>
     )
   }
+  else if (view === 'homepage') {
+    return (
+      <View style={styles.container}>
+        <Homepage changeView={changeView}/>
+      </View>   
+    )
+  }
   else{
   return (
     <View style={styles.container}>
@@ -268,9 +275,9 @@ export default function App() {
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
-      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines clinicalPracticeGuidelines={clinicalPracticeGuidelines} setClinicalPracticeGuidelines={setClinicalPracticeGuidelines} /> : <></>}
-      {view === 'homepage' ? <Homepage homepage={homepage} setHomepage={setHomepage} /> : <></>}
-      <Footer changeView={changeView}/>
+      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines/> : <></>}
+      {/* {view === 'homepage' ? <Homepage/> : <></>} */}
+      <Footer changeView={changeView} sendToDatabase={sendToDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
   );

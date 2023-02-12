@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions  } from 're
 import fernmark from '../assets/fernmark.jpg';
 import triage from '../assets/triage_logo.jpg';
 
-export default function HomepageFooter({changeView, retrieveFromDatabase}) {
+export default function HomepageFooter({changeView}) {
   return (
     <View style={styles.layout}>
       <View style={styles.imageLayout}>
@@ -10,7 +10,7 @@ export default function HomepageFooter({changeView, retrieveFromDatabase}) {
       <Image style={styles.image} source={triage} />
       </View>
         <View style={styles.buttonLayout}>
-        <TouchableOpacity onPress={() => retrieveFromDatabase()} style={styles.button}>
+        <TouchableOpacity onPress={() => changeView('incident')} style={styles.button}>
           <Text style={styles.text}>Create New EPCR</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>changeView('retrieve')} style={styles.button}>
@@ -48,7 +48,9 @@ const styles =StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
+    marginBottom: 20,
     marginRight: 20,
     height: '60%',
     width: '13%'
-}})
+  },
+})
