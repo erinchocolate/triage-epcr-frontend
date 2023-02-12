@@ -13,7 +13,7 @@ export default function HomepageFooter({changeView}) {
         <TouchableOpacity onPress={() => changeView('incident')} style={styles.button}>
           <Text style={styles.text}>Create New EPCR</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>changeView('retrieve')} style={styles.button}>
+        <TouchableOpacity onPress={()=>changeView('RetrievalPage')} style={styles.button}>
           <Text style={styles.text}>Retrieve EPCR</Text>
         </TouchableOpacity>
        </View>
