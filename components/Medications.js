@@ -1,17 +1,23 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
-
+import TextBox from '../utility/TextBox';
 
 export default function Medications({allMedication, setAllMedication}) {
 
     const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
 
+
+
+    const timestamp = new Date().toLocaleString();
+
+
+   
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
-            return [...prevAllMedication, {medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units}]
+            return [...prevAllMedication, {medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units, medicationTime: timestamp}]
         })
     }
 
@@ -26,19 +32,24 @@ export default function Medications({allMedication, setAllMedication}) {
 
   return (
     <View style={styles.layout}>
-        <View style={styles.row}>
-                <TextInput
+        <View style={[styles.row, { zIndex: 4}]}>
+            
+        <TextInput
                     value={medication}
                     onChangeText={medication=>setMedication(medication)}
                     placeholder={'Start typing...'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.wideInput}/>
+        
+
                 <TextInput
                     value={units}
                     onChangeText={units=>setUnits(units)}
                     placeholder={'mg/mcg/mls'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
+
+                    
                 <TouchableOpacity onPress={()=>addMedication()} style = {styles.button}>
                     <Text >Add Medication</Text>
                 </TouchableOpacity>
@@ -48,7 +59,11 @@ export default function Medications({allMedication, setAllMedication}) {
         {allMedication.length===0? <View><Text>No Medication administered yet</Text></View> : <></>}
         {allMedication.map(singleMedication=>{
                     return(
-                        <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
+                        <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '90%', marginLeft: 40}}>
+                             <TextBox
+                                    time={singleMedication.medicationTime}
+                                    setAllMedication={setAllMedication}
+                                    MedicationRowId={singleMedication.MedicationRowId}/> 
                             <View style={styles.medicationBox}><Text  style={styles.medicationText}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
                             <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteMedication(singleMedication.medicationRowId)} ><Text>X</Text></TouchableOpacity>
                         </View>
@@ -57,11 +72,7 @@ export default function Medications({allMedication, setAllMedication}) {
         </ScrollView>
         </View>
         
-        <View style={styles.bottomRow}>
-            <TouchableOpacity style = {styles.saveButton}>
-                <Text>Save</Text>
-            </TouchableOpacity>
-        </View>
+      
     </View>
   )
 }
@@ -83,10 +94,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
-        flex: 1,
 
     },
     scrollcontent:{
@@ -108,14 +118,10 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '25%',
     },
-    bottomRow:{
-        flexDirection: 'row',
-        width: '90%',
-        height: '15%',
-        marginTop: 'auto'  
-    },
+ 
     medicationText:{
         fontSize: 30
+
     },
     deleteButton:{
         ...commonStyle,
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
    
     medicationBox:{
         ...commonStyle,
-        width: '90%'
+        width: '50%'
     },
     input:{
         ...commonStyle,
@@ -153,5 +159,14 @@ const styles = StyleSheet.create({
         height: '60%',
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
-    }
+    },
+
+    autocompleteContainer: {
+        flex: 1,
+        left: 0,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        zIndex: 1
+      }
 })

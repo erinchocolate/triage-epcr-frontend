@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity  } from 
 export default function Header({changeView}){
     return(
         <View style={styles.layout}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('homepage')} style={styles.button}>
                 <Text style={styles.myText}>Home</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>
@@ -27,14 +27,14 @@ export default function Header({changeView}){
             <TouchableOpacity onPress={()=>changeView('assessment')} style={styles.button}>
                 <Text style={styles.myText}>Assessment & Transport</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={()=>changeView('clinicalPracticeGuidelines')} style={styles.button}>
                 <Text style={styles.myText}>Clinical Practice Guidelines</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.myText}>Tools</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>changeView('checkList')} style={styles.button}>
-                <Text style={styles.myText}>Check List</Text>
+                <Text style={styles.myText}>Checklists</Text>
             </TouchableOpacity>
         </View>
     )
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        height: '30%',
+        height: '24%',
         width: '100%',
         backgroundColor: '#4A96C9'
     },
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10,
-        height: '20%',
+        margin: 8,
+        height: '24%',
         width: '20%'
     }
 })

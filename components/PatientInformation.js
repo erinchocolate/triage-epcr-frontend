@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
-import { createContext, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
+import { useState } from 'react';
 import DropDown from '../utility/DropDown';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 
 
-export default function PatientInformation({patientInfo, setPatientInfo}) {
+export default function PatientInformation({patientInfo, setPatientInfo, sendToDatabase}) {
 
         const [firstName, setFirstName] = useState(patientInfo.fName || '');
         const [middleName, setMiddleName] = useState(patientInfo.mName || '');
@@ -71,14 +72,22 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.addressInputContainer}>
-                    <TextInput
-                            value={address}
-                            onChangeText={address=>{
-                                setAddress(address)
-                                setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
-                            placeholder={'Address'}
-                            placeholderTextColor = '#b3b3b3'
-                            style={styles.addressInput}/>
+                <Text>
+                    <GooglePlacesAutocomplete
+                     placeholder={'Address'}
+                     value={address}
+                        onChangeText={address=>{
+                     setAddress(address)
+                     setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
+                    query={{
+                  key: process.env.API_KEY,
+                language: 'en',
+                 components: 'country:nz'
+                 }}
+                    />
+
+                                 
+                            </Text>
                 </View>
                     
             </View>
@@ -161,9 +170,6 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
         </View>
     </View>
   )
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
     },

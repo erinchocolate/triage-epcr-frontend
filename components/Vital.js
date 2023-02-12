@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { createContext, useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 import DropDown from '../utility/DropDown';
@@ -154,10 +154,15 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     setPalpatation(palpatation);
                     setVitalSigns(prevVitalSigns=>({...prevVitalSigns, palpatation: palpatation}))}}/>
                 <Text>Palpatation</Text>
+
+                </View>
+
+                <View style={styles.row4}>
+                    
             <TouchableOpacity style={styles.button2}>
                  <Text>Connect Corpuls</Text>   
              </TouchableOpacity>
-    </View>
+             </View>
 </View>
 
       
@@ -296,11 +301,6 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         </View>
         <View style={styles.row}>
         </View>
-        <View style={styles.row}>
-        <TouchableOpacity style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
-        </View>
         </View>
     </View>
   )
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#9dc8e2',  
         fontWeight: '700'
@@ -379,13 +379,13 @@ const styles = StyleSheet.create({
    
     },
     row4:{
-        flexDirection: 'column',
+        flexDirection: 'row',
         width: '70%',
         height: '20%',
         fontWeight: '700',
         alignItems: 'center',
-        justifyContent: 'center'
-        
+        justifyContent: 'center',
+        marginBottom: '43%',
     },
     row5:{
         flexDirection: 'row',
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent: 'center'
-   
+       
     },
   
       smallDropdown1:{

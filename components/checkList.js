@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Dimensions,TouchableOpacity, TextInput} from 'react-native';
 import { useState } from 'react';
 import React from 'react';
 import CheckBox from '../utility/Checkbox';
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '58%',
+        height: '60%',
         width: '100%',
         backgroundColor: '#4A96C9',  
     },

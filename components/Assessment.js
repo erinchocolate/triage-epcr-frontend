@@ -1,10 +1,9 @@
 
-import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, TextInput, Text, View, Button, TouchableOpacity, Image, Dimensions, KeyboardAvoidingView} from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import DropDown from '../utility/DropDown';
-import OpenCamera from './CameraScreen';
 
-export default function Assessment({assTransInfo, setAssTransInfo, changeView, saveData}) {
+export default function Assessment({assTransInfo, setAssTransInfo, changeView, sendToDatabase, setPublicHospital, setPublicVehicleType}) {
 
   const [subjective, setSubjective] = useState(assTransInfo.subjective || '');
   const [objective, setObjective] = useState(assTransInfo.objective || '');
@@ -18,6 +17,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
 
   return(
 
+  
     <View style={styles.layout}>
       <View style={styles.firstColumn}>
         <TextInput
@@ -61,6 +61,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
           value={vehicleType}
           setValue={vehicleType=>{
               setVehicleType(vehicleType);
+              setPublicVehicleType(vehicleType);
               setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, vehicle: vehicleType}))}}
             items={[
               {label: 'Vehicle', value: 'Vehicle'},
@@ -95,6 +96,7 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
             value={destination}
             setValue={destination=>{
                 setDestination(destination);
+                setPublicHospital(destination);
                 setAssTransInfo(prevAssTransInfo=>({...prevAssTransInfo, destination: destination}))}}
             items={[
             {label: 'Destination', value: 'Destination'},
@@ -122,12 +124,6 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
             <Text>Take Photo</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.saveButton}>
-          <TouchableOpacity>
-            <Text>Save</Text>
-          </TouchableOpacity>
-        </View>
-       
       </View>
     </View>
   );
@@ -161,7 +157,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: '58%',
+    height: Dimensions.get('screen').height * 0.58,
     width: '100%',
     backgroundColor: '#4A96C9', 
   },  

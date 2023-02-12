@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
 import { useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 
@@ -118,9 +118,6 @@ export default function Procedures({procedures, setProcedures}) {
                         setProcedures(prevProcedures=>({...prevProcedures, fiBlock: fiBlock}))}}/>
                 <Text style={styles.myText}>FI Block</Text>
             </View>
-            <TouchableOpacity style={styles.saveButton}>
-                <Text>Save</Text>
-            </TouchableOpacity>
         </View>
     </View>
   )
@@ -142,7 +139,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#4A96C9',  
     },

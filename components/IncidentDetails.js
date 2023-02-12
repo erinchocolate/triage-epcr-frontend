@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 
 
 
-export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
+export default function IncidentDetails({incID, incidentDetails, setIncidentDetails, setPublicIncidentType}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
     const [incidentNotes, setIncidentNotes] = useState(incidentDetails.notes || '');
@@ -15,8 +16,11 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
     const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
-    const [hospitalLocation, setHospitalLocation] = useState(incidentDetails.location || '');
+    const [data, setLocation] = useState(incidentDetails.location || '');
 
+    function typeTest(){
+        console.log(incidentType);
+    }
      
     return (
     <View style={styles.layout}>
@@ -26,7 +30,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             </View>
             <TextInput
                 editable={false}
-                placeholder='Auto-Generated'
+                placeholder={incID}
                 style={styles.input}
                 />
             <View style={styles.title}>
@@ -37,6 +41,7 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
                 value={incidentType}
                 setValue={incidentType=>{
                     setIncidentType(incidentType);
+                    setPublicIncidentType(incidentType);
                     setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, type: incidentType}))}}
                 items={[
                     {label: 'Medical', value: 'medicalIncident'},
@@ -119,17 +124,24 @@ export default function IncidentDetails({incidentDetails, setIncidentDetails}) {
             <View style={styles.title}>
                 <Text style={styles.myText}>Location </Text>
             </View>
-            <TextInput
-                value={hospitalLocation}
-                onChangeText={hospitalLocation=>{
-                    setHospitalLocation(hospitalLocation)
-                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: hospitalLocation}))}}
-                placeholder={'Start typing and this will bring up options'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.wideInput}/>
-            <TouchableOpacity style={styles.button}>
-                <Text>Save</Text>
-            </TouchableOpacity>
+            
+            <Text>
+                <GooglePlacesAutocomplete
+                placeholder='Search'
+                value={data}
+                onChangeText={data=>{
+                setLocation(data)
+                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+                query={{
+                key: process.env.API_KEY,
+                language: 'en',
+                components: 'country:nz'
+    }}
+    
+  />
+
+  
+</Text>
 
         </View>
     </View>
@@ -153,7 +165,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        height: '58%',
+        height: Dimensions.get('window').height * 0.58,
         width: '100%',
         backgroundColor: '#4A96C9',  
     },
@@ -197,5 +209,6 @@ const styles = StyleSheet.create({
         width: '25%',
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
-    }
+    },
+  
 })

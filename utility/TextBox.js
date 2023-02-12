@@ -6,7 +6,6 @@ export default function TextBox({time, setAllIv, IVRowId }) {
     const timestamp = new Date().toLocaleString();
     const [text, setText] = useState( time || timestamp);
 
-
     return (
           <TextInput
                 style={styles.input}
@@ -32,7 +31,7 @@ export default function TextBox({time, setAllIv, IVRowId }) {
 const styles = StyleSheet.create({
     input: {
         marginTop: 20,
-        marginLeft: 20,
+        marginLeft: 10,
         height: '50%',
         width:'43%',
         borderWidth: 1,
