@@ -31,7 +31,7 @@ export default function TextBox({time, setAllIv, IVRowId }) {
 const styles = StyleSheet.create({
     input: {
         marginTop: 20,
-        marginLeft: 20,
+        marginLeft: 10,
         height: '50%',
         width:'43%',
         borderWidth: 1,

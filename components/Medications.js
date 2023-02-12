@@ -1,20 +1,23 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
+import TextBox from '../utility/TextBox';
 
 export default function Medications({allMedication, setAllMedication}) {
 
     const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
 
-    const [selectedItem, setSelectedItem] = useState('')
+
+
+    const timestamp = new Date().toLocaleString();
+
 
    
     function addMedication(){
         setAllMedication(prevAllMedication=>{
             const medicationRowKey = uuid.v4();
-            return [...prevAllMedication, {medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units}]
+            return [...prevAllMedication, {medicationRowId: medicationRowKey, medicationName: medication, medicationAmount: units, medicationTime: timestamp}]
         })
     }
 
@@ -31,24 +34,12 @@ export default function Medications({allMedication, setAllMedication}) {
     <View style={styles.layout}>
         <View style={[styles.row, { zIndex: 4}]}>
             
-        <Text>
-        <AutocompleteDropdown
-             
-           
-            initialValue={{ id: '2' }} // or just '2'
-            
-            onChangeText={medication =>setMedication(medication)}
-            onPress = {medication=>setMedication(medication)}
-            
-            dataSet={[
-            { id: '1', title: 'Alpha' },
-            { id: '2', title: 'Beta' },
-            { id: '3', title: 'Gamma' },
-        ]}
-      />
-      </Text>
-        
-
+        <TextInput
+                    value={medication}
+                    onChangeText={medication=>setMedication(medication)}
+                    placeholder={'Start typing...'}
+                    placeholderTextColor = '#b3b3b3'
+                    style={styles.wideInput}/>
         
 
                 <TextInput
@@ -68,7 +59,11 @@ export default function Medications({allMedication, setAllMedication}) {
         {allMedication.length===0? <View><Text>No Medication administered yet</Text></View> : <></>}
         {allMedication.map(singleMedication=>{
                     return(
-                        <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '97%'}}>
+                        <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '90%', marginLeft: 40}}>
+                             <TextBox
+                                    time={singleMedication.medicationTime}
+                                    setAllMedication={setAllMedication}
+                                    MedicationRowId={singleMedication.MedicationRowId}/> 
                             <View style={styles.medicationBox}><Text  style={styles.medicationText}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
                             <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteMedication(singleMedication.medicationRowId)} ><Text>X</Text></TouchableOpacity>
                         </View>
@@ -77,11 +72,7 @@ export default function Medications({allMedication, setAllMedication}) {
         </ScrollView>
         </View>
         
-        <View style={styles.bottomRow}>
-            <TouchableOpacity style = {styles.saveButton}>
-                <Text>Save</Text>
-            </TouchableOpacity>
-        </View>
+      
     </View>
   )
 }
@@ -127,14 +118,10 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '25%',
     },
-    bottomRow:{
-        flexDirection: 'row',
-        width: '90%',
-        height: '15%',
-        marginTop: 'auto'  
-    },
+ 
     medicationText:{
         fontSize: 30
+
     },
     deleteButton:{
         ...commonStyle,
@@ -145,7 +132,7 @@ const styles = StyleSheet.create({
    
     medicationBox:{
         ...commonStyle,
-        width: '90%'
+        width: '50%'
     },
     input:{
         ...commonStyle,

@@ -341,4 +341,3 @@ const [text, setText] = useState(interventions.text || '');
 
 
     });
-

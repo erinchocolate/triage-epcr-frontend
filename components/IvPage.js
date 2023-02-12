@@ -161,7 +161,7 @@ return(
                     placeholder='Location'
                     items = {[
                         {label: 'Left Proximal Tibia', value: 'Left Proximal Tibia'},
-                        {label: 'Right Proximal Tibia', value: 'RightProximal Tibia'},
+                        {label: 'Right Proximal Tibia', value: 'Right Proximal Tibia'},
                         {label: 'Left Tibia', value: 'Left Tibia'},
                         {label: 'Right Tibia', value: 'Right Tibia'},
                         {label: 'Left Shoulder', value: 'Left Shoulder'},
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
   
       multipleIntBox:{
           marginTop: 20,
-          width: '60%',
+          width: '69%',
           height: '80%',
           borderColor: '#3b3b3b',
           borderWidth: 1,
