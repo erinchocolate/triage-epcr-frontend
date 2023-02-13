@@ -4,7 +4,7 @@ import PDFFooter from './PDFFooter';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 
-export default function PatientPDF({changeView, incidentDetails, patientInfo, assTransInfo, vitalSigns, publicVariables}) {
+export default function PatientPDF({changeView, incidentDetails, patientInfo, allMedication, procedures, allIv, assTransInfo, vitalSigns, publicVariables}) {
 
   //PDF Data Collection - Incident Details
   const {notifyT: notified = 'Not Specified', responseT: responded = 'Not Specified', locatedT: located = 'Not Specified',
@@ -22,6 +22,19 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
          temp: temp = 'Not Specified', BSL: BSL = 'Not Specified', ETCo2: ETCo2 = 'Not Specified',
          SPo2: SPo2 = 'Not Specified'} = vitalSigns;
 
+  //PDF Data Collection - Assessment/Transport
+  const {subjective: subjective = 'Not Specified', objective: objective = 'Not Specified', assessment: assessment = 'Not Specified',
+         plan: plan = 'Not Specified' , arrivalTime: arrivalTime = 'Not Specified'} = assTransInfo;
+
+  const {publicTransportStatus: publicTransportStatus = 'Not Specified', publicVehicleType: publicVehicleType = 'Not Specified'} = publicVariables;
+
+  //PDF Data Collection - Procedures
+  const {cardioversion: cardioversion = 'Not Specified', pacing: pacing = 'Not Specified', cardiacArrest: cardiacArrest='Not Specified', rsi: rsi = 'Not Specified',
+        mechVent: mechVent = 'Not Specified', cpap: cpap = 'Not Specified', cric: cric = 'Not Specified', needleDecomp: needleDecomp = 'Not Specified',
+        fingerThorac: fingerThorac = 'Not Specified', fiBlock: fiBlock = 'Not Specified'} = procedures;
+
+
+
 
   const pdf = `
           <head>
@@ -38,10 +51,20 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
                 margin-right: 1%;
                 background-color: #f0efeb;
               }
+              .medicationTitle{
+                border: 0.2px solid black; 
+                border-radius: 0%;
+                padding: 2%;
+                background-color: #f0efeb;
+                width: 90%;
+
+              }
               h3{
                 margin-right: 5%
               }
             </style>
+            <script>
+            </script>
           
           </head>    
           <body>
@@ -60,7 +83,7 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
                   </div>
                   <div>
                        <h2 class='title'>Location</h2> <h3> ${location}</h3>
-                       <h2 class='title'>Destination</h2> <h3> ${publicHospital}</h3>
+                       <h2 class='title'>Hospital</h2> <h3> ${publicHospital}</h3>
                   </div>
                 <hr>
                 <center>
@@ -95,6 +118,96 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
                         <h2 class='title'>SPo2 </h2> <h3> ${SPo2}</h3>
                         <h2 class='title'>ETCo2 </h2> <h3> ${ETCo2}</h3>
                   </div>
+                  <hr>
+                <center>
+                  <h1>Procedures </h1>
+                </center>
+                  <div>
+                  ${(function(){
+                    if(cardioversion=='1'){
+                    return '<h2 class="title">Cardioversion</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(pacing=='1'){
+                    return '<h2 class="title">Pacing</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(cardiacArrest=='1'){
+                    return '<h2 class="title">Cardiac Arrest</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(rsi=='1'){
+                    return '<h2 class="title">RSI</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  </div> 
+                  <div>
+                  ${(function(){
+                    if(mechVent=='1'){
+                    return '<h2 class="title">Mechanical Ventilation</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(cric=='1'){
+                    return '<h2 class="title">Surgical CRIC</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(cpap=='1'){
+                    return '<h2 class="title">CPAP</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  </div> 
+                  <div>
+                  ${(function(){
+                    if(needleDecomp=='1'){
+                    return '<h2 class="title">Needle Decompression</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(fingerThorac=='1'){
+                    return '<h2 class="title">Finger Thoracostomy</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  ${(function(){
+                    if(fiBlock=='1'){
+                    return '<h2 class="title">FI Block</h2> <h3>Confirmed</h3>';
+                  }
+                  return '';})()}
+                  </div> 
+                  <hr>
+                <center>
+                  <h1>Assessment Notes</h1>
+                    <h2 class='medicationTitle'>Subjective</h2> <h3> ${subjective}</h3>
+                    <h2 class='medicationTitle'>Objective</h2> <h3> ${objective}</h3>
+                    <h2 class='medicationTitle'>Assessment</h2> <h3> ${assessment}</h3>
+                    <h2 class='medicationTitle'>Plan</h2> <h3> ${plan}</h3>
+                    <div>
+                          <h2 class='title'>E.T.A</h2> <h3> ${arrivalTime}</h3>
+                          <h2 class='title'>Vehicle Type</h2> <h3> ${publicVehicleType}</h3>
+                          <h2 class='title'>Transport Status</h2> <h3> ${publicTransportStatus}</h3>
+                          <h2 class='title'>Destination</h2> <h3> ${publicHospital}</h3>
+                    </div> 
+
+
+                </center>
+                
+                ${allMedication.map((medication)=>(
+                    "<h2 class=' medicationTitle'>" + medication.medicationName + "</h2> <h3>Amount Administered: " + medication.medicationAmount + "</h3><h3> Time Administered: " +medication.medicationTime + "</h3>"
+                ))}
+
+                <center>
+                <hr>
+                <h1>Interventions</h1>
+              </center>
+              
+              ${allIv.map((iv)=>(
+                  "<h2 class=' medicationTitle'>" + iv.IVType + "</h2> <h3>Size: " + iv.IVSize + "</h3><h3> Location: " +iv.IVLocation + "</h3>"
+              ))}
+                  
                 </body>`
   
 

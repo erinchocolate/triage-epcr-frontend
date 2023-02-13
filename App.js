@@ -55,6 +55,7 @@ export default function App() {
   const [publicIncidentType, setPublicIncidentType] = useState('');
   const [publicHospital, setPublicHospital] = useState('');
   const [publicVehicleType, setPublicVehicleType] = useState(''); 
+  const [publicTransportStatus, setPublicTransportStatus] = useState('');
   const [publicOpaSize, setPublicOpaSize] = useState('');
   const [publicEttSize, setPublicEttSize] = useState('');
   const [publicLmaSize, setPublicLmaSize] = useState('');
@@ -63,6 +64,7 @@ export default function App() {
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
                             publicVehicleType: publicVehicleType,
+                            publicTransportStatus: publicTransportStatus,
                             publicOpaSize: publicOpaSize,
                             publicEttSize: publicEttSize,
                             publicLmaSize: publicLmaSize,
@@ -251,6 +253,9 @@ export default function App() {
         incidentDetails={incidentDetails}
         patientInfo={patientInfo}
         vitalSigns={vitalSigns}
+        allMedication={allMedication}
+        procedures={procedures}
+        allIv={allIv}
         assTransInfo={assTransInfo}
         publicVariables={publicVariables}/>
     )
@@ -274,7 +279,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header changeView={changeView} />
-      {view === 'assessment' ?<Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView} /> : <></>}
+      {view === 'assessment' ?<Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} setPublicTransportStatus={setPublicTransportStatus} changeView={changeView} /> : <></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
