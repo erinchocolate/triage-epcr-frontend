@@ -45,7 +45,7 @@ export default function Procedures({procedures, setProcedures}) {
                 <Text style={styles.myText}>Cardiac Arrest</Text>
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text>Checklists</Text>
+                <Text>RSI Data Form</Text>
             </TouchableOpacity>
         </View>
 
@@ -104,9 +104,6 @@ export default function Procedures({procedures, setProcedures}) {
                         setProcedures(prevProcedures=>({...prevProcedures, fingerThorac: fingerThorac}))}}/>
                 <Text style={styles.myText}>Finger Thoracostomy</Text>
             </View>
-            <TouchableOpacity style={styles.button}>
-                <Text>RSI Data Form</Text>
-            </TouchableOpacity>
         </View>
 
         <View style={styles.row}>
@@ -164,10 +161,4 @@ const styles = StyleSheet.create({
         height: '60%',
         backgroundColor: '#4DFF70',
     },
-    saveButton:{
-        ...buttonStyle,
-        width: '30%',
-        height: '60%',
-        backgroundColor: '#93ff33'
-    }
 })

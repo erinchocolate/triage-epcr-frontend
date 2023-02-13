@@ -161,9 +161,6 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
         </View>
     </View>
   )
