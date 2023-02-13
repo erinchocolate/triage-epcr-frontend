@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         height: '40%',
         width: '100%',
-        backgroundColor: '#9dc8e2',  
+        backgroundColor: '#4A96C9',  
         
       },
   

@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '45%',
         justifyContent: 'space-evenly',
-        backgroundColor: 'dodgerblue',
+        backgroundColor: '#4DFF70',
         marginTop: 5
     },
     addressInputContainer:{
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     nhiSearch:{
         ...commonStyle,
         width: '30.5%',
-        backgroundColor: 'dodgerblue',
+        backgroundColor: '#4DFF70',
     },
     input:{
         ...commonStyle,
