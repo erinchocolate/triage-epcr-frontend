@@ -71,15 +71,34 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.addressInputContainer}>
-                    <TextInput
-                            value={address}
-                            onChangeText={address=>{
-                                setAddress(address)
-                                setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
-                            placeholder={'Address'}
-                            placeholderTextColor = '#b3b3b3'
-                            style={styles.addressInput}/>
-                </View>
+                <Text>
+                <GooglePlacesAutocomplete
+                     placeholder={'Address'}
+                     value={address}
+                     
+                     textInputProps={{
+                        onChangeText :address}}
+                 
+                    query={{
+                  key: '',
+                language: 'en',
+                 components: 'country:nz'
+                 }}
+
+                 styles={{
+                    textInputContainer: {
+                    width: 200,
+                    backgroundColor: "white",
+                    marginTop: 10,
+                    marginLeft: 10,
+                    },
+                   
+                }}
+                    />
+
+                                 
+            </Text>
+         </View>
                     
             </View>
         </View>

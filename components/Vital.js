@@ -3,11 +3,18 @@ import { createContext, useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 import DropDown from '../utility/DropDown';
 
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Vital({vitalSigns, setVitalSigns}) {
 
+
+    //for timestamp
+  
+      
+  
     //Text Input data
         const [BP, setBP] = useState(vitalSigns.BP || '');
+       // const [Resptime, setResptime] = useState(vitalSigns.Resptime || null);
         const [heartRate, setheartRate] = useState(vitalSigns.heartRate || '');
         const [respRate, setRespRate] = useState(vitalSigns.respRate || '');
         const [temp, setTemp] = useState(vitalSigns.temp || '');
@@ -21,11 +28,36 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         const [palpatation, setPalpatation] = useState(vitalSigns.palpatation || false);
 
     //DropDown Data
-        const [eyes, setEyes] = useState(vitalSigns.eyes || null);
+        const [GSCtotal, setGSCtotal] = useState(vitalSigns.GSCtotal || null);
+        const [eyes, setEyes] = useState(vitalSigns.eyes || '');
         const [voice, setVoice] = useState(vitalSigns.voice || null);
         const [motor, setMotor] = useState(vitalSigns.motor || null);
         const [fourLead, setFourLead] = useState(vitalSigns.fourLead || null);
         const [twelveLead, setTwelveLead] = useState(vitalSigns.twelveLead || null);
+
+    //Values for GSC
+    const [value1, setValue1] = useState(0);
+    const [value2, setValue2] = useState(0);
+    const [value3, setValue3] = useState(0);
+    const [result, setResult] = useState(0);
+
+    //to set dropdown values to values above
+    const handleValueChange = (value, setter) => {
+        setter(value);
+        setResult(value1 + value2 + value3 );
+      };
+
+      //For the first dropbox
+      const [open, setOpen] = useState(false);
+      const[value, setValue] = useState(null);
+
+      //For the second dropbox
+      const [openSec, setOpenSec] = useState(false);
+      const[valueSec, setValueSec] = useState(null);
+
+      //For the third dropbox
+      const [openThird, setOpenThird] = useState(false);
+      const[valueThird, setValueThird] = useState(null);
 
   return (
     <View style={styles.layout}>
@@ -36,6 +68,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 <View style={styles.title}>
                     <Text style={styles.myText}>BP: </Text>
                 </View>
+
                 <TextInput
                     value={BP}
                     onChangeText={BP=>{
@@ -61,10 +94,16 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
-            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
-                <View style={styles.title}>
-                    <Text style={styles.myText}>Resp Rate: </Text>
-                </View>
+      <TouchableOpacity style={[styles.box, { backgroundColor: '#a9a9a9' }]} />
+      <View style={styles.title}>
+        <Text style={styles.myText}>Resp Rate: </Text>
+      </View>
+      
+    
+
+
+
+
                 <TextInput
                     value={respRate}
                     onChangeText={respRate=>{
@@ -73,7 +112,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     placeholder={'Set Resp Rate'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
+          
             </View>
+           
             <View style={styles.row}>
             <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
                 <View style={styles.title}>
@@ -167,76 +208,83 @@ export default function Vital({vitalSigns, setVitalSigns}) {
 
       
       
-                
-     
-       
         
-
         <View style={styles.wideColumn}>
             <View style={[styles.row5,{zIndex:5}]}>
-                <View style={styles.title}>
-                    <Text style={styles.myText}>GCS: </Text>
+                <View style={styles.title2}>
+                    <Text style={styles.myText}>GCS: {result}
+                    </Text>
+                    
                 </View>
+
+
                 <View style={styles.smallDropdown1}> 
-                    <DropDown
-                        value={eyes}
-                        setValue={eyes=>{
-                            setEyes(eyes);
-                            setVitalSigns(prevVitalSigns=>({...prevVitalSigns, eyes: eyes}))}}
-                         placeholder = 'Eyes'
-                             items = {[
-                                {label: '1- No Response', value: 'noResponse'},
-                                {label: '2- Response to Pain', value: 'responseToPain'},
-                                {label: '3- Response to Voice', value: 'responseToVoice'},
-                                {label: '4- Spontaneous', value: 'spontaneous'},
-              
-            ]}
-            />
+
+                <DropDownPicker 
+                    open={open}
+                    value={value}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    selectedValue={value1}
+                    onChangeValue={(value) => handleValueChange(value, setValue1)}
+                    placeholder='Eyes'
+                    items = {[
+                        {label: '1- No Response', value: 1},
+                        {label: '2- Response to Pain', value: 2},
+                        {label: '3- Response to Voice', value: 3},
+                        {label: '4- Spontaneous', value: 4},
+      
+                ]}
+                    />
                         </View>
            
             <View style={styles.smallDropdown2}> 
-            <DropDown
-                value={voice}
-                setValue={voice=>{
-                    setVoice(voice);
-                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, voice: voice}))}}
+            <DropDownPicker 
+                    open={openSec}
+                    value={valueSec}
+                    setOpen={setOpenSec}
+                    setValue={setValueSec}
+                    selectedValue={value2}
+                    onChangeValue={(value) => handleValueChange(value, setValue2)}
+                    placeholder='Voice'
+                    items = {[
+                        {label: '1- No response', value: 1},
+                        {label: '2- Incomprehensible', value: 2},
+                        {label: '3- Innappropriate', value: 3},
+                        {label: '4- Confused', value: 4},
+                        {label: '5- Orientated', value: 5},
+      
+                ]}
+                    />
 
-            placeholder = 'Voice'
-            items = {[
-              {label: '1- No Response', value: 'noResponse'},
-              {label: '2- Incomprehensible', value: 'Incomprehensible'},
-              {label: '3- Innappropriate', value: 'Innappropriate'},
-              {label: '4- Confused', value: 'Confused'},
-              {label: '5- Orientated', value: 'Orientated'},
-              
-            ]}
-            
-            />
             </View>
           
             
             <View style={styles.smallDropdown3}> 
-            <DropDown
-                value={motor}
-                setValue={motor=>{
-                    setMotor(motor);
-                    setVitalSigns(prevVitalSigns=>({...prevVitalSigns, motor: motor}))}}
 
-            placeholder = 'Motor'
-            items = {[
-              {label: '1- No Response', value: 'noResponse'},
-              {label: '2- Extension', value: 'extension'},
-              {label: '3- Flexion', value: 'flexion'},
-              {label: '4- WithDrawn', value: 'withdrawn'},
-              {label: '4- Purposeful', value: 'purposeful'},
-              {label: '4- Obeys Commands', value: 'obeysCommands'},
-              
-            ]}
-            />
-           
+            <DropDownPicker 
+                    open={openThird}
+                    value={valueThird}
+                    setOpen={setOpenThird}
+                    setValue={setValueThird}
+                    selectedValue={value3}
+                    onChangeValue={(value) => handleValueChange(value, setValue3)}
+                    placeholder = 'Motor'
+                    items = {[
+                      {label: '1- No Response', value: 1},
+                      {label: '2- Extension', value: 2},
+                      {label: '3- Flexion', value: 3},
+                      {label: '4- WithDrawn', value: 4},
+                      {label: '4- Purposeful', value: 5},
+                      {label: '4- Obeys Commands', value: 6},
+                      
+                    ]}
+                    />
+
             </View>
-      </View>
 
+          
+      </View>
           
             <View style={[styles.row5,{zIndex:4}]}>
             <View style={styles.title}>
@@ -339,7 +387,7 @@ const styles = StyleSheet.create({
     middleColumn:{
         flexDirection: 'column',
       height: '100%',
-      width: '25%',
+      width: '20%',
       fontWeight: '700',
       justifyContent: 'center',
       alignItems: 'center',
@@ -351,12 +399,13 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent:'center',
+        marginBottom:'9%'
     },
     row:{
         flexDirection: 'row',
         width: '70%',
         height: '13%',
-        fontWeight: '700',
+        
         justifyContent: 'center',
         alignItems: 'center',
    
@@ -385,7 +434,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '43%',
+        marginBottom: '60%',
+        
     },
     row5:{
         flexDirection: 'row',
@@ -441,6 +491,11 @@ const styles = StyleSheet.create({
     title:{
         ...commonStyle,
         width: '45%',
+        backgroundColor: 'white'
+    },
+    title2:{
+        ...commonStyle,
+        width: '20%',
         backgroundColor: 'white'
     },
     smallTitle:{

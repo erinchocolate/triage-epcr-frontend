@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from '
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { addListener } from 'expo-media-library';
 
 
 
@@ -16,7 +17,7 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
     const [locatedTime, setLocatedTime] = useState(incidentDetails.locatedT || '');
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
-    const [data, setLocation] = useState(incidentDetails.location || '');
+    const [location, setLocation] = useState(incidentDetails.location || '');
 
     function typeTest(){
         console.log(incidentType);
@@ -127,15 +128,28 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
             
             <Text>
                 <GooglePlacesAutocomplete
-                placeholder='Search'
-                value={data}
-                onChangeText={data=>{
-                setLocation(data)
-                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: data}))}}
+               value={location}
+                
+                onChangeText={value=>{
+                setLocation(value)
+                console.log(value)
+                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: location}))}}
+                
                 query={{
-                key: process.env.API_KEY,
+                key: '',
                 language: 'en',
-                components: 'country:nz'
+                components: 'country:nz',
+
+    }}
+
+    styles={{
+        textInputContainer: {
+        width: 200,
+        backgroundColor: "white",
+        marginTop: 10,
+        marginLeft: 10,
+        },
+       
     }}
     
   />

@@ -196,8 +196,6 @@ return(
 
         </View> 
 
-            
-
             <View style={styles.container}>
                     <View>
                             <ScrollView>
@@ -217,8 +215,7 @@ return(
                             </ScrollView>
 
                 </View>
-
-
+                
                 </View>
 
             </View>
