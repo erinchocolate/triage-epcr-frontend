@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
 import { createContext, useState } from 'react';
 import DropDown from '../utility/DropDown';
-
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 
 

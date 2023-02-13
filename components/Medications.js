@@ -5,9 +5,9 @@ import MedicationTextBox from '../utility/MedicationTextBox';
 
 export default function Medications({allMedication, setAllMedication}) {
 
- 
+    const [medication, setMedication] = useState('');
     const [units, setUnits] = useState('');
-    const [selectedItem, setSelectedItem] = useState('');
+
 
 
 

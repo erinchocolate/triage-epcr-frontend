@@ -8,6 +8,7 @@ import { addListener } from 'expo-media-library';
 
 
 
+
 export default function IncidentDetails({incID, incidentDetails, setIncidentDetails, setPublicIncidentType}) {
 
     const [incidentType, setIncidentType] = useState(incidentDetails.type || null);
