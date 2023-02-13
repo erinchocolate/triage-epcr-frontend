@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: '24%',
         width: '100%',
-        backgroundColor: 'dodgerblue'
+        backgroundColor: '#4A96C9'
     },
     button:{
         backgroundColor: 'white',

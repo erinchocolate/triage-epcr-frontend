@@ -31,7 +31,7 @@ const styles =StyleSheet.create({
         // height: Dimensions.get('window').height * 0.10,
         height: '12%',
         width: '100%',
-        backgroundColor: 'dodgerblue'
+        backgroundColor: '#4A96C9'
     },
     image: {
       width: 120,

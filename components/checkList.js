@@ -115,7 +115,7 @@ export default function CheckList({checkLists, setCheckLists}) {
 }
 
 const commonStyle = {
-    borderColor: '#3b3b3b',
+    borderColor: '#4A96C9',
     borderWidth: 1,
     width: '30%',
     height: '60%',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         height: '60%',
         width: '100%',
-        backgroundColor: '#9dc8e2',  
+        backgroundColor: '#4A96C9',  
     },
     column:{
         height: '90%',

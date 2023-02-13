@@ -12,7 +12,7 @@ export default function OpenCamera({ changeView}) {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = useRef(null);
-  const [showCamera, setShowCamera] = useState(true);
+
 
   useEffect(() => {
     (async ()=> {
@@ -62,13 +62,13 @@ export default function OpenCamera({ changeView}) {
           type={type}
           flashMode={flash}
           ref={cameraRef} 
-         // screenOrientation={'landscape'}
+        
       >
         <View style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           padding: 80,
-          height: '130%',
+          height: '115%',
         }}>
           <CameraButton icon={'circle-with-cross'}   onPress={() => changeView('assessment')}/>
           <CameraButton icon={'retweet'} onPress={() => {
