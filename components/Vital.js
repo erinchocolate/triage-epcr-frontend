@@ -9,12 +9,12 @@ export default function Vital({vitalSigns, setVitalSigns}) {
 
 
     //for timestamp
-   const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+  
       
   
     //Text Input data
         const [BP, setBP] = useState(vitalSigns.BP || '');
-        const [Resptime, setResptime] = useState(vitalSigns.Resptime || null);
+       // const [Resptime, setResptime] = useState(vitalSigns.Resptime || null);
         const [heartRate, setheartRate] = useState(vitalSigns.heartRate || '');
         const [respRate, setRespRate] = useState(vitalSigns.respRate || '');
         const [temp, setTemp] = useState(vitalSigns.temp || '');
