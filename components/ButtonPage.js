@@ -21,7 +21,7 @@ export default function ButtonPage({ changeView }) {
 }
 
 const colorStyle = {
-  backgroundColor: 'dodgerblue',
+  backgroundColor: '#4A96C9',
 }
 
 const styles = StyleSheet.create({

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: Dimensions.get('window').height * 0.125,
     width: '100%',
-    backgroundColor: 'dodgerblue'
+    backgroundColor: '#4A96C9'
   },
   buttonLayout: {
     flex: 1,

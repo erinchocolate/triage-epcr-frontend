@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   layout:{
       height: '23%',
       width: '100%',
-      backgroundColor: 'dodgerblue'
+      backgroundColor: '#4A96C9'
   },
   button:{
       backgroundColor: 'white',

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     height: Dimensions.get('window').height * 0.10,
     width: '100%',
-    backgroundColor: 'dodgerblue'
+    backgroundColor: '#4A96C9'
   },
   imageLayout: {
     flex: 1,
