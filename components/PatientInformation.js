@@ -84,11 +84,21 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 language: 'en',
                  components: 'country:nz'
                  }}
+
+                 styles={{
+                    textInputContainer: {
+                    width: 200,
+                    backgroundColor: "white",
+                    marginTop: 10,
+                    marginLeft: 10,
+                    },
+                   
+                }}
                     />
 
                                  
-                            </Text>
-                </View>
+            </Text>
+         </View>
                     
             </View>
         </View>

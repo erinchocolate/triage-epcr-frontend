@@ -137,6 +137,16 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 language: 'en',
                 components: 'country:nz'
     }}
+
+    styles={{
+        textInputContainer: {
+        width: 200,
+        backgroundColor: "white",
+        marginTop: 10,
+        marginLeft: 10,
+        },
+       
+    }}
     
   />
 
