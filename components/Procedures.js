@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         ...buttonStyle,
         width: '20%',
         height: '60%',
-        backgroundColor: 'dodgerblue',
+        backgroundColor: '#4DFF70',
     },
     saveButton:{
         ...buttonStyle,

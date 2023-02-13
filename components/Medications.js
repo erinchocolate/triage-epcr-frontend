@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         ...commonStyle,
         width: '20%',
         height: '60%',
-        backgroundColor: 'dodgerblue',
+        backgroundColor: '#4DFF70',
     },
     saveButton:{
         ...commonStyle,
