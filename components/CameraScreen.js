@@ -12,7 +12,7 @@ export default function OpenCamera({ changeView}) {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = useRef(null);
-  const [showCamera, setShowCamera] = useState(true);
+
 
   useEffect(() => {
     (async ()=> {
@@ -62,7 +62,7 @@ export default function OpenCamera({ changeView}) {
           type={type}
           flashMode={flash}
           ref={cameraRef} 
-         // screenOrientation={'landscape'}
+        
       >
         <View style={{
           flexDirection: 'row',
