@@ -49,7 +49,7 @@ export default function App() {
   const [incID, setIncID] = useState('Auto-Generated');
 
   //Data handling for retrieval
-  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
+  const dataFunctions = {changeView, setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');

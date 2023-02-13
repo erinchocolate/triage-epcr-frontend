@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 export default function RetrievalFooter({changeView, print, share}) {
   return (
     <View style={styles.layout}>
-        <TouchableOpacity onPress={()=>changeView('incident')} style={styles.button}>
+        <TouchableOpacity onPress={()=>changeView('homepage')} style={styles.button}>
             <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
     </View>

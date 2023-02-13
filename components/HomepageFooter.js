@@ -24,7 +24,7 @@ export default function HomepageFooter({changeView}) {
 const styles = StyleSheet.create({
   layout: {
     flexDirection: 'row',
-    height: Dimensions.get('window').height * 0.10,
+    height: Dimensions.get('window').height * 0.125,
     width: '100%',
     backgroundColor: 'dodgerblue'
   },

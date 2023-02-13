@@ -4,7 +4,7 @@ import axios from 'axios';
 import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
 
-export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatientInfo, 
+export default function EPCRRetrievalPage({changeView, setView, setIncidentDetails, setPatientInfo, 
     setVitalSigns, setAllIv, setInterventions, setProcedures, setAllMedication, setAssTransInfo, setIncID}) {
 
 
@@ -62,7 +62,8 @@ export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatie
         </ScrollView>
         </View>
     </View>
-    <RetrievalFooter></RetrievalFooter>
+    <RetrievalFooter
+        changeView={changeView}/>
     </>
   )
 }

@@ -12,7 +12,7 @@ export default function HomepageHeader({ changeView }) {
 
 const styles = StyleSheet.create({
   layout:{
-      height: '24%',
+      height: '23%',
       width: '100%',
       backgroundColor: 'dodgerblue'
   },

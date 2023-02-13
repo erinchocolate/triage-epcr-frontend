@@ -118,9 +118,9 @@ export default function PatientPDF({changeView, incidentDetails, patientInfo, as
       style={{ height:"100%", width:"100%" }}
       />
       <PDFFooter
-        changeView={changeView}
         print={print}
         share={share}
+        changeView={changeView}
         />
     </>  )
 }

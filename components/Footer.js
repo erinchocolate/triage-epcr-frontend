@@ -29,7 +29,7 @@ const styles =StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         // height: Dimensions.get('window').height * 0.10,
-        height: '12%',
+        height: '12.5%',
         width: '100%',
         backgroundColor: '#4A96C9'
     },
