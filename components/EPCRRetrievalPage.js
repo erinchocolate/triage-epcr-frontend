@@ -1,12 +1,26 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions } from 'react-native';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import axios from 'axios';
 import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
 
-export default function EPCRRetrievalPage({changeView, setView, setIncidentDetails, setPatientInfo, 
-    setVitalSigns, setAllIv, setInterventions, setProcedures, setAllMedication, setAssTransInfo, setIncID}) {
-
+export default function EPCRRetrievalPage({ changeView, setView, setIncidentDetails, setPatientInfo, setVitalSigns, setAllIv, setInterventions, setProcedures, setAllMedication, setAssTransInfo, setIncID }) {
+    
+    const [searchInput, setSearchInput] = useState('');
+           
+    async function searchFromDatabase(searchInput){
+            console.log('Searching...');
+            axios.get(`http://192.168.1.134:3000/epcrs/${searchInput}`)
+                .then(function (response) {
+                    if (response.data.length === 0) {
+                        alert('No records found');
+                    } else {
+                        console.log(response.data);
+                        setAllEPCRRecords(response.data);
+                    }
+              })  
+          };
 
     const [allEPCRRecords, setAllEPCRRecords] = useState([]);
 
@@ -33,38 +47,51 @@ export default function EPCRRetrievalPage({changeView, setView, setIncidentDetai
 
     async function retrieveFromDatabase(){
         console.log('Retrieving...');
-        axios.get('http://10.140.176.60:3000/epcrs/')
+        axios.get('http://192.168.1.134:3000/epcrs/')
         .then( function(response){
           console.log(response.data);
           console.log(response.data[0].incident_id)
           setAllEPCRRecords(response.data);
         })
-      }
+    }
     
-  return (
-    <>
-    <View style={styles.layout}>
-
-            <TouchableOpacity onPress={()=>{retrieveFromDatabase()}} style={styles.retrieveButton}>
-                <Text style={styles.medicationText}>Retrieve Data!</Text>
-            </TouchableOpacity>
+    return (
+        <>
+      <View style={styles.layout}>
+          <TouchableOpacity onPress={()=>{retrieveFromDatabase()}} style={styles.retrieveButton}>
+                <Text style={styles.text}>Retrieve Data!</Text>
+              </TouchableOpacity>
+        <View style={styles.header}>
+              
+              <TextInput
+                value={searchInput}
+                onChangeText={setSearchInput}
+                placeholder={'Search by ID'}
+                placeholderTextColor = '#000'
+                  style={styles.wideInput} /> 
+              <TouchableOpacity onPress={() => { searchFromDatabase(searchInput) }} style={styles.retrieveButton}>
+                <Text style={styles.text}>Search Data!</Text>
+              </TouchableOpacity>             
+        </View>
 
         <View style={styles.scrollcontent}>
-        <ScrollView style = {styles.scrollbox} >
-        {allEPCRRecords.length===0? <View><Text>No EPCR Records Avaialble</Text></View> : <></>}
-        {allEPCRRecords.map(singleRecord=>{
+            <ScrollView style = {styles.scrollbox} >
+                {allEPCRRecords.length===0? <View><Text>No EPCR Records Avaialble</Text></View> : <></>}
+                {allEPCRRecords.map(singleRecord=>{
                     return(
-                        <TouchableOpacity onPress={()=>{setAllData(singleRecord)}} key={uuid.v4()} style={styles.medicationBox}>
-                            <Text style={styles.medicationText}>{singleRecord.first_name} {singleRecord.last_name}</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{setAllData(singleRecord)}} key={uuid.v4()} style={styles.medicationBox}>
+                        <Text style={styles.text}>{singleRecord.first_name} {singleRecord.last_name}</Text>
+                    </TouchableOpacity>
                     )
                 })}
-        </ScrollView>
-        </View>
+            </ScrollView>
     </View>
-    <RetrievalFooter
-        changeView={changeView}/>
-    </>
+    </View>    
+        <RetrievalFooter
+              changeView={changeView} />
+          <ExpoStatusBar style="auto" />
+
+     </> 
   )
 }
 
@@ -75,8 +102,8 @@ const commonStyle = {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-        margin: 10,
-        backgroundColor: 'white'
+    margin: 10,
+        backgroundColor: '#fff',
 }
 
 const styles = StyleSheet.create({
@@ -90,6 +117,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#4A96C9',  
         paddingTop: 20
 
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '10%',
+        backgroundColor: '#4A96C9',
+        marginBottom: 10
     },
     scrollcontent:{
         flexDirection: 'column',
@@ -116,8 +152,8 @@ const styles = StyleSheet.create({
         height: '15%',
         marginTop: 'auto'  
     },
-    medicationText:{
-        fontSize: 30
+    text:{
+        fontSize: 30,
     },
     deleteButton:{
         ...commonStyle,
@@ -132,8 +168,8 @@ const styles = StyleSheet.create({
     },
     retrieveButton:{
         ...commonStyle,
-        width: '90%',
-        backgroundColor: 'green'
+        width: '50%',
+        backgroundColor: '#4DFF70'
     },
     input:{
         ...commonStyle,

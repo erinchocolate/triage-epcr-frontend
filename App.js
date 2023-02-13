@@ -84,7 +84,7 @@ export default function App() {
   async function sendToDatabase(){
 
     if(incID==='Auto-Generated'){
-    axios.post('http://10.140.176.60:3000/epcrs/',{
+    axios.post('http://192.168.1.134:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -158,7 +158,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://10.140.176.60:3000/epcrs/${incID}`,{
+    axios.put(`http://192.168.1.134:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
