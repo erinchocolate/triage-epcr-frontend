@@ -71,7 +71,6 @@ export default function App() {
 
   function changeView(argument){
     setView(argument);
-    console.log(incidentDetails);  
   }
 
   function convertArray(array){
@@ -85,7 +84,6 @@ export default function App() {
   async function sendToDatabase(){
 
     if(incID==='Auto-Generated'){
-      console.log(publicIncidentType)
     axios.post('http://10.140.176.60:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
@@ -153,7 +151,6 @@ export default function App() {
       interventions: convertArray(allIv)
     })
     .then(function (response){
-      console.log(response.request._response);
       setIncID(response.request._response);
     })
     .catch(function (error){
