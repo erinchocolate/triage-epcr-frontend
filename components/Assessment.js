@@ -124,12 +124,6 @@ export default function Assessment({assTransInfo, setAssTransInfo, changeView, s
             <Text>Take Photo</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.saveButton}>
-          <TouchableOpacity onPress={()=>sendToDatabase()}>
-            <Text>Save</Text>
-          </TouchableOpacity>
-        </View>
-       
       </View>
     </View>
   );

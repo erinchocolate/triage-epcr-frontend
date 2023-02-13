@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, TextInput} from 'react-native';
 import { useState } from 'react';
 
-export default function TextBox({time, setAllIv, IVRowId }) { 
+export default function MedicationTextBox({time, setAllMedication, medicationRowID }) { 
 
     const timestamp = new Date().toLocaleString();
     const [text, setText] = useState( time || timestamp);
@@ -12,13 +12,13 @@ export default function TextBox({time, setAllIv, IVRowId }) {
                 value={text}
                 onChangeText={text=>{
                     setText(text);
-                    setAllIv(prevAllIv=>{
+                    setAllMedication(prevAllMedication=>{
                         return(
-                        prevAllIv.map(existingIV=>{
-                            if(existingIV.IVRowId===IVRowId){
-                                return({...existingIV, IVTime: text})
+                        prevAllMedication.map(existingMedication=>{
+                            if(existingMedication.medicationRowID===medicationRowID){
+                                return({...existingMedication, medicationTime: text})
                             }
-                            return existingIV;
+                            return existingMedication;
                         })
                         )
                     }) 

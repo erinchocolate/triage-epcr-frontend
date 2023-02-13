@@ -125,6 +125,7 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
             <View style={styles.title}>
                 <Text style={styles.myText}>Location </Text>
             </View>
+            
             <Text>
                 <GooglePlacesAutocomplete
                value={location}
@@ -140,6 +141,7 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 components: 'country:nz',
 
     }}
+
     styles={{
         textInputContainer: {
         width: 200,
@@ -149,6 +151,7 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
         },
        
     }}
+    
   />
 
   
@@ -220,5 +223,6 @@ const styles = StyleSheet.create({
         width: '25%',
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
-    }
+    },
+  
 })

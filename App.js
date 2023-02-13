@@ -1,5 +1,9 @@
+// Thirdparty Imports
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar, Dimensions } from 'react-native';
+import { useState } from 'react';
+import axios from 'axios';
+// Local Imports
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IncidentDetails from './components/IncidentDetails';
@@ -10,11 +14,14 @@ import Intervention from './components/Intervention';
 import Assessment from './components/Assessment';
 import Vital from './components/Vital';
 import Homepage from './components/HomePage';
+import ButtonPage from './components/ButtonPage';
 import EPCRRetrievalPage from './components/EPCRRetrievalPage';
-import { useState } from 'react';
+import ClinicalPracticeGuidelines from './components/ClinicalPracticeGuidelines';
 import PatientPDF from './components/PatientPDF';
 import OpenCamera from './components/CameraScreen';
-import axios from 'axios';
+import CheckList from './components/checkList';
+
+
 
 export default function App() {
 
@@ -34,14 +41,15 @@ export default function App() {
   const [allMedication, setAllMedication] = useState([]);
   //Data to be stored - Assessment & Transport
   const [assTransInfo, setAssTransInfo] = useState({});
+  //Data to be stored - CheckList
+  const [checkLists, setCheckLists] = useState({});
   //Change View
-  const [view, setView] = useState('Vital');
-
+  const [view, setView] = useState('buttonpage');
   //Incident ID
   const [incID, setIncID] = useState('Auto-Generated');
 
   //Data handling for retrieval
-  const dataFunctions = {setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
+  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -51,10 +59,6 @@ export default function App() {
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
                             publicVehicleType: publicVehicleType};
-  
-
-
-
 
 
   function changeView(argument){
@@ -62,11 +66,19 @@ export default function App() {
     console.log(incidentDetails);  
   }
 
+  function convertArray(array){
+    let string = "[" + array.map(function(obj){
+      return JSON.stringify(obj);
+    }).join(",") + "]";
+
+    return string;
+  }
+
   async function sendToDatabase(){
 
     if(incID==='Auto-Generated'){
       console.log(publicIncidentType)
-    axios.post('http://10.140.34.240:3000/epcrs/',{
+    axios.post('http://10.140.176.60:3000/epcrs/',{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -84,7 +96,7 @@ export default function App() {
       located_time: incidentDetails.locatedT, 
       departed_time: incidentDetails.departedT,
       destination_time: incidentDetails.destinationT, 
-      location_note: incidentDetails.location, 
+      incident_location: incidentDetails.location, 
       subjective_note: assTransInfo.subjective,
       objective_note: assTransInfo.objective, 
       assessment_note: assTransInfo.assessment, 
@@ -93,14 +105,14 @@ export default function App() {
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
-      incident_medication: '', 
+      incident_medication: convertArray(allMedication), 
       cardioversion: procedures.cardioversion, 
       pacing: procedures.pacing, 
       cardiac_arrest: procedures.cardiacArrest, 
       rsi: procedures.rsi, 
       mechanical_ventilation: procedures.mechVent, 
       cpap: procedures.cpap, 
-      sugical_cric: procedures.cric, 
+      surgical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
       fi_block: procedures.fiBlock,
@@ -146,7 +158,7 @@ export default function App() {
     })
   }
   else{
-    axios.put(`http://10.140.34.240:3000/epcrs/${incID}`,{
+    axios.put(`http://10.140.176.60:3000/epcrs/${incID}`,{
       first_name: patientInfo.fName,
       middle_name: patientInfo.mName, 
       last_name: patientInfo.lName, 
@@ -164,7 +176,7 @@ export default function App() {
       located_time: incidentDetails.locatedT, 
       departed_time: incidentDetails.departedT,
       destination_time: incidentDetails.destinationT, 
-      location_note: incidentDetails.location, 
+      incident_location: incidentDetails.location, 
       subjective_note: assTransInfo.subjective,
       objective_note: assTransInfo.objective, 
       assessment_note: assTransInfo.assessment, 
@@ -173,14 +185,14 @@ export default function App() {
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
-      incident_medication: '', 
+      incident_medication: convertArray(allMedication), 
       cardioversion: procedures.cardioversion, 
       pacing: procedures.pacing, 
       cardiac_arrest: procedures.cardiacArrest, 
       rsi: procedures.rsi, 
       mechanical_ventilation: procedures.mechVent, 
       cpap: procedures.cpap, 
-      sugical_cric: procedures.cric, 
+      surgical_cric: procedures.cric, 
       needle_decompression: procedures.needleDecomp, 
       finger_thoracostomy: procedures.fingerThorac, 
       fi_block: procedures.fiBlock,
@@ -250,22 +262,34 @@ export default function App() {
   }
   else if(view==='cameraScreen'){
     return(
-      <OpenCamera changeView={changeView}/>
+      <OpenCamera changeView={changeView} />
+    )
+  }
+  else if (view === 'homepage') {
+    return (
+      <Homepage changeView={changeView}/>
+    )
+  }
+  else if (view === 'buttonpage') {
+    return (
+      <ButtonPage changeView={changeView}/>
     )
   }
   else{
   return (
     <View style={styles.container}>
       <Header changeView={changeView} />
-      {view==='assessment'? <Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView}/>:<></>}
+      {view === 'assessment' ?<Assessment sendToDatabase={sendToDatabase} assTransInfo={assTransInfo} setAssTransInfo={setAssTransInfo} setPublicHospital={setPublicHospital} setPublicVehicleType={setPublicVehicleType} changeView={changeView} /> : <></>}
       {view==='incident'?<IncidentDetails sendToDatabase={sendToDatabase} incID={incID} incidentDetails={incidentDetails} setIncidentDetails={setIncidentDetails} setPublicIncidentType={setPublicIncidentType}/>:<></>}
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
-      {view==='cameraScreen'?<OpenCamera />:<></>}
-      <Footer changeView={changeView}/>
+      {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
+      {view === 'cameraScreen' ? <OpenCamera /> : <></>}
+      {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines/> : <></>}
+      <Footer changeView={changeView} sendToDatabase={sendToDatabase}/>
       <ExpoStatusBar style="auto" />
     </View>
   );

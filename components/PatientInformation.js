@@ -84,6 +84,7 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 language: 'en',
                  components: 'country:nz'
                  }}
+
                  styles={{
                     textInputContainer: {
                     width: 200,
@@ -96,8 +97,8 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                     />
 
                                  
-                            </Text>
-                </View>
+            </Text>
+         </View>
                     
             </View>
         </View>
@@ -179,9 +180,6 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 placeholderTextColor = '#b3b3b3'
                 style={styles.wideInput}/>
         </View>
-        <TouchableOpacity onPress={()=>sendToDatabase()} style={styles.button}>
-            <Text>Save</Text>
-        </TouchableOpacity>
         </View>
     </View>
   )
