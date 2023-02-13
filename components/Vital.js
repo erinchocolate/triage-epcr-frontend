@@ -2,12 +2,21 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from '
 import { createContext, useState } from 'react';
 import CheckBox from '../utility/Checkbox';
 import DropDown from '../utility/DropDown';
+import moment from 'moment';
+import { Button } from 'react-native-paper';
+
 
 
 export default function Vital({vitalSigns, setVitalSigns}) {
 
+
+    //for timestamp
+   const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+      
+  
     //Text Input data
         const [BP, setBP] = useState(vitalSigns.BP || '');
+        const [Resptime, setResptime] = useState(vitalSigns.Resptime || null);
         const [heartRate, setheartRate] = useState(vitalSigns.heartRate || '');
         const [respRate, setRespRate] = useState(vitalSigns.respRate || '');
         const [temp, setTemp] = useState(vitalSigns.temp || '');
@@ -22,7 +31,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
 
     //DropDown Data
         const [GSCtotal, setGSCtotal] = useState(vitalSigns.GSCtotal || null);
-        const [eyes, setEyes] = useState(vitalSigns.eyes || null);
+        const [eyes, setEyes] = useState(vitalSigns.eyes || '');
         const [voice, setVoice] = useState(vitalSigns.voice || null);
         const [motor, setMotor] = useState(vitalSigns.motor || null);
         const [fourLead, setFourLead] = useState(vitalSigns.fourLead || null);
@@ -37,6 +46,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 <View style={styles.title}>
                     <Text style={styles.myText}>BP: </Text>
                 </View>
+
                 <TextInput
                     value={BP}
                     onChangeText={BP=>{
@@ -62,10 +72,16 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
-            <TouchableOpacity style={[styles.box, {backgroundColor: '#a9a9a9'}]}></TouchableOpacity>
-                <View style={styles.title}>
-                    <Text style={styles.myText}>Resp Rate: </Text>
-                </View>
+      <TouchableOpacity style={[styles.box, { backgroundColor: '#a9a9a9' }]} />
+      <View style={styles.title}>
+        <Text style={styles.myText}>Resp Rate: </Text>
+      </View>
+      
+    
+
+
+
+
                 <TextInput
                     value={respRate}
                     onChangeText={respRate=>{
@@ -74,7 +90,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     placeholder={'Set Resp Rate'}
                     placeholderTextColor = '#b3b3b3'
                     style={styles.input}/>
+          
             </View>
+           
             <View style={styles.row}>
             <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
                 <View style={styles.title}>
@@ -175,35 +193,44 @@ export default function Vital({vitalSigns, setVitalSigns}) {
 
         <View style={styles.wideColumn}>
             <View style={[styles.row5,{zIndex:5}]}>
-                <View style={styles.title}>
+                <View style={styles.title2}>
                     <Text style={styles.myText}>GCS: </Text>
                     
                 </View>
-                <TextInput
+                <Text
                     value={GSCtotal}
                     onChangeText={GSCtotal=>{
                         setGSCtotal(GSCtotal);
+                        {GSCtotal}
                         setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, GSCtotal: GSCtotal}))}}
-                    placeholder={'GCS Total'}
+                   
+                        placeholder={'GCS Total'}
                     placeholderTextColor = '#b3b3b3'
+                    GSCtotal = {parseInt(eyes + voice + motor)}
+                    
                     style={styles.smallInput}/>
             
                 <View style={styles.smallDropdown1}> 
                 
                     <DropDown
                         value={eyes}
+                        
                         setValue={eyes=>{
                             setEyes(eyes);
-                            setVitalSigns(prevVitalSigns=>({...prevVitalSigns, eyes: eyes}))}}
-                         placeholder = 'Eyes'
+                            console.log(eyes)
+                            setVitalSigns(prevVitalSigns=>({...prevVitalSigns, setEyes: eyes}))}}
+                         
+                            placeholder = 'Eyes'
                              items = {[
-                                {label: '1- No Response', value: 'noResponse'},
-                                {label: '2- Response to Pain', value: 'responseToPain'},
-                                {label: '3- Response to Voice', value: 'responseToVoice'},
-                                {label: '4- Spontaneous', value: 'spontaneous'},
-              
+                                {label: '1- No Response', value: '1'},
+                                {label: '2- Response to Pain', value: '2'},
+                                {label: '3- Response to Voice', value: '3'},
+                                {label: '4- Spontaneous', value: '4'},
+             
             ]}
+            
             />
+            
                         </View>
            
             <View style={styles.smallDropdown2}> 
@@ -222,8 +249,9 @@ export default function Vital({vitalSigns, setVitalSigns}) {
               {label: '5- Orientated', value: 'Orientated'},
               
             ]}
-            
+        
             />
+            
             </View>
           
             
@@ -373,7 +401,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '70%',
         height: '13%',
-        fontWeight: '700',
+        
         justifyContent: 'center',
         alignItems: 'center',
    
@@ -459,6 +487,11 @@ const styles = StyleSheet.create({
     title:{
         ...commonStyle,
         width: '45%',
+        backgroundColor: 'white'
+    },
+    title2:{
+        ...commonStyle,
+        width: '20%',
         backgroundColor: 'white'
     },
     smallTitle:{
