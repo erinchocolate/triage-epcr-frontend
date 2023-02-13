@@ -18,11 +18,19 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
     const [location, setLocation] = useState(incidentDetails.location || '');
+                const[result, setResult] = useState('');
+      const onchange = (text) => {
+        console.log(text);
+        setResult(text);
+     }
+
+    
+     
 
     function typeTest(){
         console.log(incidentType);
     }
-     
+
     return (
     <View style={styles.layout}>
         <View style={styles.row}>
@@ -129,7 +137,10 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
             <Text>
                 <GooglePlacesAutocomplete
                value={location}
-                
+               textInputProps={{
+                onChangeText: onchange,
+                onclick: result
+              }}
                 onChangeText={value=>{
                 setLocation(value)
                 console.log(value)
@@ -141,7 +152,10 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 components: 'country:nz',
 
     }}
-
+  
+            
+      
+     
     styles={{
         textInputContainer: {
         width: 200,
@@ -151,12 +165,22 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
         },
        
     }}
-    
-  />
+   
+  />  </Text>
 
-  
-</Text>
+   <View style={styles.row}>
+  <TouchableOpacity style={styles.button1}>
+                        <Text>Confirm</Text>
 
+                      
+                       
+
+                       
+     </TouchableOpacity>
+
+
+
+</View>
         </View>
     </View>
   )
@@ -224,5 +248,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#93ff33',
         marginLeft: 'auto'
     },
-  
+    button1:{
+        ...commonStyle,
+        width: '10%',
+        height: 50 ,
+        backgroundColor: '#93ff33',
+        marginleft: 300
+    },
 })
