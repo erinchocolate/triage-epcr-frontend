@@ -74,11 +74,7 @@ return(
         <View style={[styles.container, { zIndex: 5}]}>
 
         <View style={styles.checkboxGroup}>
-                    <CheckBox
-                        isChecked={iv}
-                        setChecked={iv=>{
-                        setIv(iv);
-                        setInterventions(prevInterventions=>({...prevInterventions, iv: iv}))}}/>
+                   
                     <Text>IV</Text>
          </View>
          <View style={styles.smallDropdown}>
@@ -128,11 +124,7 @@ return(
 
             <View style={[styles.container, { zIndex: 4}]}>
                  <View style={styles.checkboxGroup}>
-                    <CheckBox
-                        isChecked={io}
-                        setChecked={io=>{
-                        setIo(io);
-                        setInterventions(prevInterventions=>({...prevInterventions, io: io}))}}/>
+                    
                     <Text>IO</Text>
                     </View>
                 <View style={styles.smallDropdown}>
@@ -179,11 +171,6 @@ return(
 
             <View style={[styles.container, { zIndex: 3}]}>  
         <View style={styles.checkboxGroup}>
-            <CheckBox
-              isChecked={npa}
-              setChecked={npa=>{
-              setNpa(npa);
-              setInterventions(prevInterventions=>({...prevInterventions, npa: npa}))}}/>
              <Text>NPA</Text>
         </View>
 

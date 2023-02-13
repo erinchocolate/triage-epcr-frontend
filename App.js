@@ -49,7 +49,7 @@ export default function App() {
   const [incID, setIncID] = useState('Auto-Generated');
 
   //Data handling for retrieval
-  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
+  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
@@ -133,21 +133,15 @@ export default function App() {
       twelve_lead_ecg: vitalSigns.twelveLead,
       opa: interventions.opa,
       opa_size: "opa_size",
-      opa_location: "opa_location",
       lma: interventions.lma,
       lma_size: "lma_size",
-      lma_location: "lma_location",
-      npa: interventions.npa,
-      npa_size: "npa_size",
-      npa_location: "npa_location",
       ett: interventions.ett,
       ett_size: "ett_size",
-      ett_location: "ett_location",
-      peep: interventions.peep,
-      peep_note: "peep_note",
       suction: interventions.suction,
       suction_catheter:"suction_catheter",
-      bvm: interventions.bvm
+      peep: interventions.peep,
+      bvm: interventions.bvm,
+      interventions: convertArray(allIv)
     })
     .then(function (response){
       console.log(response.request._response);
@@ -213,21 +207,15 @@ export default function App() {
       twelve_lead_ecg: vitalSigns.twelveLead,
       opa: interventions.opa,
       opa_size: "opa_size",
-      opa_location: "opa_location",
       lma: interventions.lma,
       lma_size: "lma_size",
-      lma_location: "lma_location",
-      npa: interventions.npa,
-      npa_size: "npa_size",
-      npa_location: "npa_location",
       ett: interventions.ett,
       ett_size: "ett_size",
-      ett_location: "ett_location",
-      peep: interventions.peep,
-      peep_note: "peep_note",
       suction: interventions.suction,
       suction_catheter:"suction_catheter",
-      bvm: interventions.bvm
+      peep: interventions.peep,
+      bvm: interventions.bvm,
+      interventions: convertArray(allIv)
     })
     .then(function (response){
       console.log(response)

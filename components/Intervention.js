@@ -24,9 +24,6 @@ const [text, setText] = useState(interventions.text || '');
 
 //Dropdown Box data holders
 
-//Josh wrote this. Darina no longer uses it
-  const [airwaySize, setAirwaySize] = useState(interventions.airwaySize || null);
-
   //Need this for the Suction
   const [catheter, setCatheter] = useState(interventions.catheter || null);
 
