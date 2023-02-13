@@ -66,6 +66,14 @@ export default function App() {
     console.log(incidentDetails);  
   }
 
+  function convertArray(array){
+    let string = "[" + array.map(function(obj){
+      return JSON.stringify(obj);
+    }).join(",") + "]";
+
+    return string;
+  }
+
   async function sendToDatabase(){
 
     if(incID==='Auto-Generated'){
@@ -97,7 +105,7 @@ export default function App() {
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
-      incident_medication: '', 
+      incident_medication: convertArray(allMedication), 
       cardioversion: procedures.cardioversion, 
       pacing: procedures.pacing, 
       cardiac_arrest: procedures.cardiacArrest, 
@@ -177,7 +185,7 @@ export default function App() {
       transport_status: assTransInfo.transport, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
-      incident_medication: '', 
+      incident_medication: convertArray(allMedication), 
       cardioversion: procedures.cardioversion, 
       pacing: procedures.pacing, 
       cardiac_arrest: procedures.cardiacArrest, 

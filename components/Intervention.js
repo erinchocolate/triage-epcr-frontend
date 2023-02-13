@@ -68,7 +68,7 @@ const [text, setText] = useState(interventions.text || '');
                     open={openSizeOPA}
                     value={valueSizeOPA}
                     setOpen={setOpenSizeOPA}
-                    setValue={setValueSizeOPA}            
+                    setValue={setValueSizeOPA}  
                     placeholder = 'Size'
                     items = {[
                       {label: '00', value: '00'},

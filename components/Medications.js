@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Dimensions} from 'react-native';
 import { useState } from 'react';
 import uuid from 'react-native-uuid';
-import TextBox from '../utility/TextBox';
+import MedicationTextBox from '../utility/MedicationTextBox';
 
 export default function Medications({allMedication, setAllMedication}) {
 
@@ -60,10 +60,10 @@ export default function Medications({allMedication, setAllMedication}) {
         {allMedication.map(singleMedication=>{
                     return(
                         <View key={singleMedication.medicationRowId} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '90%', marginLeft: 40}}>
-                             <TextBox
+                             <MedicationTextBox
                                     time={singleMedication.medicationTime}
                                     setAllMedication={setAllMedication}
-                                    MedicationRowId={singleMedication.MedicationRowId}/> 
+                                    medicationRowId={singleMedication.medicationRowId}/> 
                             <View style={styles.medicationBox}><Text  style={styles.medicationText}>{singleMedication.medicationName} {singleMedication.medicationAmount}</Text></View>
                             <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteMedication(singleMedication.medicationRowId)} ><Text>X</Text></TouchableOpacity>
                         </View>
