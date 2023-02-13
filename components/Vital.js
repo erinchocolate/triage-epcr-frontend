@@ -488,7 +488,7 @@ const styles = StyleSheet.create({
         ...commonStyle,
         width: '80%',
         height: '80%',
-        backgroundColor: '#93ff33',
+        backgroundColor: '#4DFF70',
       
     },
     box: {
