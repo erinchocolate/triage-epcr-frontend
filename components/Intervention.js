@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions} from 'react-native';
 import { useState } from 'react';
 import DropDown from '../utility/DropDown';
 import React from 'react';
@@ -8,19 +8,18 @@ import TextBox from '../utility/TextBox';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 
-export default function Intervention({interventions, setInterventions, allIv, setAllIv}) { 
+export default function Intervention({interventions, setInterventions, allIv, setAllIv, setPublicOpaSize, setPublicEttSize, setPublicLmaSize, setPublicCatheter}) { 
 
   //CheckBox Data holders
   const [opa, setOpa] = useState(interventions.opa || false);
   const [lma, setLma] = useState(interventions.lma || false);
-  const [npa, setNpa] = useState(interventions.npa || false);
   const [ett, setEtt] = useState(interventions.ett || false);
   const [peep, setPeep] = useState(interventions.peep || false);
   const [suction, setSuction] = useState(interventions.suction || false);
   const [bvm, setBvm] = useState(interventions.bvm || false);
 
 //this is used for the state of the keypad
-const [text, setText] = useState(interventions.text || '');
+const [peepText, setPeepText] = useState(interventions.peepText || '');
 
 //Dropdown Box data holders
 
@@ -29,17 +28,14 @@ const [text, setText] = useState(interventions.text || '');
 
  
   //Darina made this. Needs to be linked to backend
-  const [sizeOPA, setOPASize] = useState(interventions.OPASize || null);
   const [openSizeOPA, setOpenSizeOPA] = useState(false);
-  const[valueSizeOPA, setValueSizeOPA] = useState(null);
+  const[valueSizeOPA, setValueSizeOPA] = useState(interventions.valueSizeOPA || null);
 
-  const [sizeLMA, setLMASize] = useState(interventions.LMASize || null);
   const [openSizeLMA, setOpenSizeLMA] = useState(false);
-  const[valueSizeLMA, setValueSizeLMA] = useState(null);
+  const[valueSizeLMA, setValueSizeLMA] = useState(interventions.valueSizeLMA || null);
 
-  const [sizeETT, setETTSize] = useState(interventions.ETTSize || null);
   const [openSizeETT, setOpenSizeETT] = useState(false);
-  const[valueSizeETT, setValueSizeETT] = useState(null);
+  const[valueSizeETT, setValueSizeETT] = useState(interventions.valueSizeETT || null);
   
 
  return (
@@ -65,7 +61,10 @@ const [text, setText] = useState(interventions.text || '');
                     open={openSizeOPA}
                     value={valueSizeOPA}
                     setOpen={setOpenSizeOPA}
-                    setValue={setValueSizeOPA}  
+                    setValue={valueSizeOPA=>{
+                      setValueSizeOPA(valueSizeOPA);
+                      setPublicOpaSize(valueSizeOPA);
+                      setInterventions(prevInterventions=>({...prevInterventions, valueSizeOPA: valueSizeOPA}))}}           
                     placeholder = 'Size'
                     items = {[
                       {label: '00', value: '00'},
@@ -99,7 +98,10 @@ const [text, setText] = useState(interventions.text || '');
                     open={openSizeLMA}
                     value={valueSizeLMA}
                     setOpen={setOpenSizeLMA}
-                    setValue={setValueSizeLMA}            
+                    setValue={valueSizeLMA=>{
+                      setValueSizeLMA(valueSizeLMA);
+                      setPublicLmaSize(valueSizeLMA);
+                      setInterventions(prevInterventions=>({...prevInterventions, valueSizeLMA: valueSizeLMA}))}}           
                     placeholder = 'Size'
                     items = {[
               {label: '1', value: '1'},
@@ -134,7 +136,12 @@ const [text, setText] = useState(interventions.text || '');
                     open={openSizeETT}
                     value={valueSizeETT}
                     setOpen={setOpenSizeETT}
-                    setValue={setValueSizeETT}            
+                    setValue={valueSizeETT=>{
+                      setValueSizeETT(valueSizeETT);
+                      setPublicEttSize(valueSizeETT);
+                      setInterventions(prevInterventions=>({...prevInterventions, valueSizeETT: valueSizeETT}))
+                    }}
+          
                     placeholder = 'Size'
                     items = {[
                       {label: '3', value: '3'},
@@ -170,6 +177,7 @@ const [text, setText] = useState(interventions.text || '');
                 value={catheter}
                 setValue={catheter=>{
                     setCatheter(catheter);
+                    setPublicCatheter(catheter)
                     setInterventions(prevInterventions=>({...prevInterventions, catheter: catheter}))}}
               placeholder = 'Suction Catheter'
               items = {[
@@ -198,10 +206,10 @@ const [text, setText] = useState(interventions.text || '');
 
           <TextInput
             style={styles.input}
-            value={text}
-            onChangeText={text=>{
-                setText(text)
-                setInterventions(prevInterventions=>({...prevInterventions, text: text}))} 
+            value={peepText}
+            onChangeText={peepText=>{
+                setPeepText(peepText)
+                setInterventions(prevInterventions=>({...prevInterventions, peepText: peepText}))} 
             }
             placeholder="Bring up a keypad"
           />

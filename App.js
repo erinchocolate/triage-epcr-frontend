@@ -49,16 +49,24 @@ export default function App() {
   const [incID, setIncID] = useState('Auto-Generated');
 
   //Data handling for retrieval
-  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
+  const dataFunctions = {setView, setIncidentDetails, setPatientInfo, setVitalSigns, setInterventions, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}
 
   //For SQL Stuff
   const [publicIncidentType, setPublicIncidentType] = useState('');
   const [publicHospital, setPublicHospital] = useState('');
   const [publicVehicleType, setPublicVehicleType] = useState(''); 
+  const [publicOpaSize, setPublicOpaSize] = useState('');
+  const [publicEttSize, setPublicEttSize] = useState('');
+  const [publicLmaSize, setPublicLmaSize] = useState('');
+  const [publicCatheter, setPublicCatheter] = useState('');
 
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
-                            publicVehicleType: publicVehicleType};
+                            publicVehicleType: publicVehicleType,
+                            publicOpaSize: publicOpaSize,
+                            publicEttSize: publicEttSize,
+                            publicLmaSize: publicLmaSize,
+                            publicCatheter: publicCatheter};
 
 
   function changeView(argument){
@@ -132,14 +140,15 @@ export default function App() {
       four_lead_ecg: vitalSigns.fourLead,
       twelve_lead_ecg: vitalSigns.twelveLead,
       opa: interventions.opa,
-      opa_size: "opa_size",
+      opa_size: publicOpaSize,
       lma: interventions.lma,
-      lma_size: "lma_size",
+      lma_size: publicLmaSize,
       ett: interventions.ett,
-      ett_size: "ett_size",
+      ett_size: publicEttSize,
       suction: interventions.suction,
-      suction_catheter:"suction_catheter",
+      suction_catheter: publicCatheter,
       peep: interventions.peep,
+      peep_note: interventions.peepText,
       bvm: interventions.bvm,
       interventions: convertArray(allIv)
     })
@@ -206,14 +215,15 @@ export default function App() {
       four_lead_ecg: vitalSigns.fourLead,
       twelve_lead_ecg: vitalSigns.twelveLead,
       opa: interventions.opa,
-      opa_size: "opa_size",
+      opa_size: publicOpaSize,
       lma: interventions.lma,
-      lma_size: "lma_size",
+      lma_size: publicLmaSize,
       ett: interventions.ett,
-      ett_size: "ett_size",
+      ett_size: publicEttSize,
       suction: interventions.suction,
-      suction_catheter:"suction_catheter",
+      suction_catheter: publicCatheter,
       peep: interventions.peep,
+      peep_note: interventions.peepText,
       bvm: interventions.bvm,
       interventions: convertArray(allIv)
     })
@@ -272,7 +282,7 @@ export default function App() {
       {view==='patientInfo'?<PatientInformation sendToDatabase={sendToDatabase} patientInfo={patientInfo} setPatientInfo={setPatientInfo}/>:<></>}
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
-      {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} allIv={allIv} setAllIv={setAllIv}/> : <></>}
+      {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} setPublicCatheter={setPublicCatheter} setPublicLmaSize={setPublicLmaSize} setPublicEttSize={setPublicEttSize} setPublicOpaSize={setPublicOpaSize} allIv={allIv} setAllIv={setAllIv}/> : <></>}
       {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}

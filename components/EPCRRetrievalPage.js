@@ -5,7 +5,7 @@ import uuid from 'react-native-uuid';
 import RetrievalFooter from './RetrievalFooter';
 
 export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatientInfo, 
-    setVitalSigns, setAllIv, setProcedures, setAllMedication, setAssTransInfo, setIncID}) {
+    setVitalSigns, setAllIv, setInterventions, setProcedures, setAllMedication, setAssTransInfo, setIncID}) {
 
 
     const [allEPCRRecords, setAllEPCRRecords] = useState([]);
@@ -21,6 +21,7 @@ export default function EPCRRetrievalPage({setView, setIncidentDetails, setPatie
         setView('incident');
         setIncID(singleRecord.incident_id.toString());
         setAllIv(convertToJson(singleRecord.interventions));
+        setInterventions({opa: singleRecord.opa , lma: singleRecord.lma ,ett: singleRecord.ett , peep: singleRecord.peep ,suction: singleRecord.suction , bvm: singleRecord.bvm , peepText: singleRecord.peep_note  , catheter: singleRecord.suction_catheter , valueSizeLMA: singleRecord.lma_size , valueSizeOPA: singleRecord.opa_size  , valueSizeETT: singleRecord.ett_size})
         setIncidentDetails({type: singleRecord.incident_type , notes: singleRecord.incident_note , notifyT: singleRecord.notified_time , responseT: singleRecord.responded_time , locatedT: singleRecord.located_time ,departedT: singleRecord.departed_time ,destinationT: singleRecord.destination_time , location:singleRecord.incident_location });
         setPatientInfo({fName: singleRecord.first_name , mName: singleRecord.middle_name ,lName: singleRecord.last_name , address: singleRecord.address ,nhiNo: singleRecord.nhi_number ,dob: singleRecord.dob ,age: singleRecord.age ,gender: singleRecord.gender ,medications: singleRecord.patient_medication ,allergies: singleRecord.patient_allergy});
         setVitalSigns({BP: singleRecord.bp ,heartRate: singleRecord.heart_rate ,respRate: singleRecord.resp_rate ,temp: singleRecord.temp ,BSL: singleRecord.bsl ,SPo2: singleRecord.spo2 ,ETCo2: singleRecord.etco2, monitor: singleRecord.monitor , manual: singleRecord.manual , palpatation: singleRecord.palpatation , eyes: singleRecord.eye_response , voice: singleRecord.voice_response, motor: singleRecord.motor_response ,fourLead: singleRecord.four_lead_ecg ,twelveLead: singleRecord.twelve_lead_ecg});
