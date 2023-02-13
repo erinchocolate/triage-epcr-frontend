@@ -212,7 +212,8 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         <View style={styles.wideColumn}>
             <View style={[styles.row5,{zIndex:5}]}>
                 <View style={styles.title2}>
-                    <Text style={styles.myText}>GCS: </Text>
+                    <Text style={styles.myText}>GCS: {result}
+                    </Text>
                     
                 </View>
 
@@ -284,7 +285,6 @@ export default function Vital({vitalSigns, setVitalSigns}) {
 
           
       </View>
-      <Text>Result: {result}</Text>
           
             <View style={[styles.row5,{zIndex:4}]}>
             <View style={styles.title}>
@@ -399,6 +399,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent:'center',
+        marginBottom:'9%'
     },
     row:{
         flexDirection: 'row',
@@ -433,7 +434,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '43%',
+        marginBottom: '60%',
         
     },
     row5:{

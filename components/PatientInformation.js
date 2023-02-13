@@ -73,14 +73,15 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 </View>
                 <View style={styles.addressInputContainer}>
                 <Text>
-                    <GooglePlacesAutocomplete
+                <GooglePlacesAutocomplete
                      placeholder={'Address'}
                      value={address}
-                        onChangeText={address=>{
-                     setAddress(address)
-                     setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: address}))}}
+                     
+                     textInputProps={{
+                        onChangeText :address}}
+                 
                     query={{
-                  key: 'AIzaSyBXO7i7AbWTfmEjiYU-cmyaxL-WvKORejU',
+                  key: '',
                 language: 'en',
                  components: 'country:nz'
                  }}
