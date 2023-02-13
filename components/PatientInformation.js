@@ -18,7 +18,10 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
         const [gender, setGender] = useState(patientInfo.gender || '');
         const [medications, setMedications] = useState(patientInfo.medications || '');
         const [allergies, setAllergies] = useState(patientInfo.allergies || '');
-
+        const onchange = (text) => {
+            console.log(text);
+          
+         }
   return (
     <View style={styles.layout}>
         <View style = {styles.column}>
@@ -76,9 +79,11 @@ export default function PatientInformation({patientInfo, setPatientInfo, sendToD
                 <GooglePlacesAutocomplete
                      placeholder={'Address'}
                      value={address}
-                     
                      textInputProps={{
-                        onChangeText :address}}
+                        onChangeText: onchange,
+                        
+                      }}
+                    
                  
                     query={{
                   key: '',
