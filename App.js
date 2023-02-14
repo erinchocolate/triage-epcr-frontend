@@ -60,6 +60,12 @@ export default function App() {
   const [publicEttSize, setPublicEttSize] = useState('');
   const [publicLmaSize, setPublicLmaSize] = useState('');
   const [publicCatheter, setPublicCatheter] = useState('');
+  const [publicEyes, setPublicEyes] = useState('');
+  const [publicVoice, setPublicVoice] = useState('');
+  const [publicMotor, setPublicMotor] = useState('');
+  const [publicFourLeadECG, setPublicFourLeadECG] = useState('');
+  const [publicTwelveLeadECG, setPublicTwelveLeadECG] = useState('');
+
 
   const publicVariables = {publicIncidentType: publicIncidentType, 
                             publicHospital: publicHospital,
@@ -95,8 +101,8 @@ export default function App() {
       gender: patientInfo.gender, 
       age: patientInfo.age, 
       address: patientInfo.address, 
-      patient_medication: '', 
-      patient_allergy: '', 
+      patient_medication: patientInfo.medications, 
+      patient_allergy: patientInfo.allergies, 
       incident_type: publicIncidentType, 
       incident_note: incidentDetails.notes,         
       notified_time: incidentDetails.notifyT, 
@@ -110,7 +116,7 @@ export default function App() {
       assessment_note: assTransInfo.assessment, 
       plan_note: assTransInfo.plan, 
       vehicle: publicVehicleType, 
-      transport_status: assTransInfo.transport, 
+      transport_status: publicTransportStatus, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
       incident_medication: convertArray(allMedication), 
@@ -134,11 +140,12 @@ export default function App() {
       monitor: vitalSigns.monitor,
       manual: vitalSigns.manual,
       palpatation: vitalSigns.palpatation,
-      eye_response: vitalSigns.eyes,
-      voice_response:vitalSigns.voice,
-      motor_response:vitalSigns.motor,
-      four_lead_ecg: vitalSigns.fourLead,
-      twelve_lead_ecg: vitalSigns.twelveLead,
+      gcs: vitalSigns.gcs,
+      eye_response: publicEyes,
+      voice_response:publicVoice,
+      motor_response:publicMotor,
+      four_lead_ecg: publicFourLeadECG,
+      twelve_lead_ecg: publicTwelveLeadECG,
       opa: interventions.opa,
       opa_size: publicOpaSize,
       lma: interventions.lma,
@@ -150,7 +157,8 @@ export default function App() {
       peep: interventions.peep,
       peep_note: interventions.peepText,
       bvm: interventions.bvm,
-      interventions: convertArray(allIv)
+      interventions: convertArray(allIv),
+    
     })
     .then(function (response){
       setIncID(response.request._response);
@@ -169,8 +177,8 @@ export default function App() {
       gender: patientInfo.gender, 
       age: patientInfo.age, 
       address: patientInfo.address, 
-      patient_medication: '', 
-      patient_allergy: '', 
+      patient_medication: patientInfo.medications, 
+      patient_allergy: patientInfo.allergies, 
       incident_type: publicIncidentType, 
       incident_note: incidentDetails.notes,         
       notified_time: incidentDetails.notifyT, 
@@ -184,7 +192,7 @@ export default function App() {
       assessment_note: assTransInfo.assessment, 
       plan_note: assTransInfo.plan, 
       vehicle: publicVehicleType, 
-      transport_status: assTransInfo.transport, 
+      transport_status: publicTransportStatus, 
       destination: publicHospital, 
       estimate_arrival_time: assTransInfo.arrivalTime, 
       incident_medication: convertArray(allMedication), 
@@ -208,11 +216,12 @@ export default function App() {
       monitor: vitalSigns.monitor,
       manual: vitalSigns.manual,
       palpatation: vitalSigns.palpatation,
-      eye_response: vitalSigns.eyes,
-      voice_response:vitalSigns.voice,
-      motor_response:vitalSigns.motor,
-      four_lead_ecg: vitalSigns.fourLead,
-      twelve_lead_ecg: vitalSigns.twelveLead,
+      gcs: vitalSigns.gcs,
+      eye_response: publicEyes,
+      voice_response:publicVoice,
+      motor_response:publicMotor,
+      four_lead_ecg: publicFourLeadECG,
+      twelve_lead_ecg: publicTwelveLeadECG,
       opa: interventions.opa,
       opa_size: publicOpaSize,
       lma: interventions.lma,
@@ -285,7 +294,7 @@ export default function App() {
       {view==='procedures'?<Procedures procedures={procedures} setProcedures={setProcedures}/>:<></>}
       {view === 'medications' ? <Medications allMedication={allMedication} setAllMedication={setAllMedication}/> : <></>}
       {view === 'intervention' ? <Intervention interventions={interventions} setInterventions={setInterventions} setPublicCatheter={setPublicCatheter} setPublicLmaSize={setPublicLmaSize} setPublicEttSize={setPublicEttSize} setPublicOpaSize={setPublicOpaSize} allIv={allIv} setAllIv={setAllIv}/> : <></>}
-      {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns}/>:<></>}
+      {view==='vital'?<Vital vitalSigns={vitalSigns} setVitalSigns={setVitalSigns} setPublicEyes={setPublicEyes} setPublicVoice={setPublicVoice} setPublicMotor={setPublicMotor} setPublicFourLeadECG={setPublicFourLeadECG} setPublicTwelveLeadECG={setPublicTwelveLeadECG}/>:<></>}
       {view==='checkList'?<CheckList checkLists={checkLists} setCheckLists={setCheckLists}/>:<></>}
       {view === 'cameraScreen' ? <OpenCamera /> : <></>}
       {view === 'clinicalPracticeGuidelines' ? <ClinicalPracticeGuidelines/> : <></>}

@@ -19,11 +19,16 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
     const [departedTime, setDepartedTime] = useState(incidentDetails.departedT || '');
     const [destinationTime, setDestinationTime] = useState(incidentDetails.destinationT || '');
     const [location, setLocation] = useState(incidentDetails.location || '');
-
-    function typeTest(){
-        console.log(incidentType);
+    const [result, setResult] = useState('');
+   
+    const onchange = (text) =>{
+        setLocation(text);
+        setResult(text);
+        console.log(location);
+        setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: text}));
     }
-     
+
+
     return (
     <View style={styles.layout}>
         <View style={styles.row}>
@@ -54,14 +59,40 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 placeholder='Type'/>
             </View>
             
-            <TextInput
-                value={incidentNotes}
-                onChangeText={incidentNotes=>{
-                    setIncidentNotes(incidentNotes)
-                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notes: incidentNotes}))}}
-                placeholder={'Notes'}
-                placeholderTextColor = '#b3b3b3'
-                style={styles.wideInput}/>
+            <Text>
+                <GooglePlacesAutocomplete
+               value={result}
+               textInputProps={{
+                onChangeText: onchange,
+                onclick: result
+               }}
+                                
+                query={{
+                key: process.env.API_KEY,
+                language: 'en',
+                components: 'country:nz',
+
+    }}
+    placeholder={'Location'}
+
+    styles={{
+        textInputContainer: {
+        width: 200,
+        backgroundColor: "white",
+        marginTop: 10,
+        marginLeft: 10,
+        zIndex: 1000,
+        elevation: 1000
+        },
+       
+    }}
+    
+  />
+
+  
+</Text>
+            
+            
         </View>
         <View style = {styles.row}>
             <View style={styles.title}>
@@ -123,41 +154,14 @@ export default function IncidentDetails({incID, incidentDetails, setIncidentDeta
                 style={styles.input}/>
         </View>
         <View style={styles.row}>
-            <View style={styles.title}>
-                <Text style={styles.myText}>Location </Text>
-            </View>
-            
-            <Text>
-                <GooglePlacesAutocomplete
-               value={location}
-                
-                onChangeText={value=>{
-                setLocation(value)
-                console.log(value)
-                setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, location: location}))}}
-                
-                query={{
-                key: '',
-                language: 'en',
-                components: 'country:nz',
-
-    }}
-
-    styles={{
-        textInputContainer: {
-        width: 200,
-        backgroundColor: "white",
-        marginTop: 10,
-        marginLeft: 10,
-        },
-       
-    }}
-    
-  />
-
-  
-</Text>
-
+        <TextInput
+                value={incidentNotes}
+                onChangeText={incidentNotes=>{
+                    setIncidentNotes(incidentNotes)
+                    setIncidentDetails(prevIncidentDetails=>({...prevIncidentDetails, notes: incidentNotes}))}}
+                placeholder={'Notes'}
+                placeholderTextColor = '#b3b3b3'
+                style={styles.wideInput}/>
         </View>
     </View>
   )
@@ -200,7 +204,9 @@ const styles = StyleSheet.create({
     title:{
         ...commonStyle,
         width: '13%',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        zIndex: -1,
+        elevation: -1
 
     },
     input:{
@@ -208,15 +214,17 @@ const styles = StyleSheet.create({
         width: '15%',
         paddingLeft: 10,
         backgroundColor: 'white',
-        zIndex: 1,
-        elevation: 1
+        zIndex: -1000,
+        elevation: -1000
 
     },
     wideInput:{
         ...commonStyle,
         width: '34%',
         paddingLeft: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        zIndex: -1000,
+        elevation: -1000
 
     },
     button:{

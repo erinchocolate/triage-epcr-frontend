@@ -5,7 +5,7 @@ import DropDown from '../utility/DropDown';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export default function Vital({vitalSigns, setVitalSigns}) {
+export default function Vital({vitalSigns, setVitalSigns, setPublicEyes, setPublicMotor, setPublicVoice, setPublicFourLeadECG, setPublicTwelveLeadECG}) {
 
 
     //for timestamp
@@ -28,10 +28,6 @@ export default function Vital({vitalSigns, setVitalSigns}) {
         const [palpatation, setPalpatation] = useState(vitalSigns.palpatation || false);
 
     //DropDown Data
-        const [GSCtotal, setGSCtotal] = useState(vitalSigns.GSCtotal || null);
-        const [eyes, setEyes] = useState(vitalSigns.eyes || '');
-        const [voice, setVoice] = useState(vitalSigns.voice || null);
-        const [motor, setMotor] = useState(vitalSigns.motor || null);
         const [fourLead, setFourLead] = useState(vitalSigns.fourLead || null);
         const [twelveLead, setTwelveLead] = useState(vitalSigns.twelveLead || null);
 
@@ -39,13 +35,13 @@ export default function Vital({vitalSigns, setVitalSigns}) {
     const [value1, setValue1] = useState(0);
     const [value2, setValue2] = useState(0);
     const [value3, setValue3] = useState(0);
-    const [result, setResult] = useState(0);
+    const [result, setResult] = useState(vitalSigns.gcs || 0);
 
     //to set dropdown values to values above
-    const handleValueChange = (value, setter) => {
+    function handleValueChange(value, setter){
         setter(value);
         setResult(value1 + value2 + value3 );
-      };
+    };
 
       //For the first dropbox
       const [open, setOpen] = useState(false);
@@ -226,7 +222,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     setOpen={setOpen}
                     setValue={setValue}
                     selectedValue={value1}
-                    onChangeValue={(value) => handleValueChange(value, setValue1)}
+                    onChangeValue={(value) => {
+                        handleValueChange(value, setValue1);
+                        setPublicEyes(value);
+                        }}
                     placeholder='Eyes'
                     items = {[
                         {label: '1- No Response', value: 1},
@@ -245,7 +244,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     setOpen={setOpenSec}
                     setValue={setValueSec}
                     selectedValue={value2}
-                    onChangeValue={(value) => handleValueChange(value, setValue2)}
+                    onChangeValue={(value) => {
+                        handleValueChange(value, setValue2);
+                        setPublicVoice(value);
+                        }}
                     placeholder='Voice'
                     items = {[
                         {label: '1- No response', value: 1},
@@ -268,7 +270,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                     setOpen={setOpenThird}
                     setValue={setValueThird}
                     selectedValue={value3}
-                    onChangeValue={(value) => handleValueChange(value, setValue3)}
+                    onChangeValue={(value) => {
+                        handleValueChange(value, setValue3);
+                        setPublicMotor(value);
+                        }}
                     placeholder = 'Motor'
                     items = {[
                       {label: '1- No Response', value: 1},
@@ -296,6 +301,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 value={fourLead}
                 setValue={fourLead=>{
                     setFourLead(fourLead);
+                    setPublicFourLeadECG(fourLead);
                     setVitalSigns(prevVitalSigns=>({...prevVitalSigns, fourLead: fourLead}))}}
 
             placeholder = 'Sinus Rhythm'
@@ -326,6 +332,7 @@ export default function Vital({vitalSigns, setVitalSigns}) {
                 value={twelveLead}
                 setValue={twelveLead=>{
                     setTwelveLead(twelveLead);
+                    setPublicTwelveLeadECG(twelveLead);
                     setVitalSigns(prevVitalSigns=>({...prevVitalSigns, twelveLead: twelveLead}))}}
 
           placeholder = 'Sinus Rhythm'
@@ -347,6 +354,10 @@ export default function Vital({vitalSigns, setVitalSigns}) {
             </View>
             
         </View>
+                    
+                    <TouchableOpacity onPress={()=>setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, gcs: result}))} style={styles.button3}>
+                         <Text>Save Vitals</Text>   
+                     </TouchableOpacity>
         <View style={styles.row}>
         </View>
         </View>
@@ -399,7 +410,6 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         alignItems: 'center',
         justifyContent:'center',
-        marginBottom:'9%'
     },
     row:{
         flexDirection: 'row',
@@ -543,6 +553,13 @@ const styles = StyleSheet.create({
         ...commonStyle,
         width: '80%',
         height: '80%',
+        backgroundColor: '#4DFF70',
+      
+    },
+    button3:{
+        ...commonStyle,
+        width: '80%',
+        height: '20%',
         backgroundColor: '#4DFF70',
       
     },

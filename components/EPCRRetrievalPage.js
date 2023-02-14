@@ -69,7 +69,7 @@ export default function EPCRRetrievalPage({ changeView, setView, setIncidentDeta
                 placeholder={'Search by ID'}
                 placeholderTextColor = '#000'
                   style={styles.wideInput} /> 
-              <TouchableOpacity onPress={() => { searchFromDatabase(searchInput) }} style={styles.retrieveButton}>
+              <TouchableOpacity onPress={() => { searchFromDatabase(searchInput) }} style={styles.searchButton}>
                 <Text style={styles.text}>Search Data!</Text>
               </TouchableOpacity>             
         </View>
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '88%',
+        height: Dimensions.get('screen').height*0.8,
         width: '100%',
         backgroundColor: '#4A96C9',  
         paddingTop: 20
@@ -167,6 +167,12 @@ const styles = StyleSheet.create({
         width: '90%'
     },
     retrieveButton:{
+        ...commonStyle,
+        width: '50%',
+        height: '15%',
+        backgroundColor: '#4DFF70'
+    },
+    searchButton:{
         ...commonStyle,
         width: '50%',
         backgroundColor: '#4DFF70'

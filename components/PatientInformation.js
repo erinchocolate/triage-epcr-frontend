@@ -17,6 +17,13 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
         const [gender, setGender] = useState(patientInfo.gender || '');
         const [medications, setMedications] = useState(patientInfo.medications || '');
         const [allergies, setAllergies] = useState(patientInfo.allergies || '');
+        const [result, setResult] = useState('');
+        
+        const onchange = (text) => {
+            setAddress(text);
+            setResult(text);
+            setPatientInfo(prevPatientInfo=>({...prevPatientInfo, address: text}));
+        }
 
   return (
     <View style={styles.layout}>
@@ -75,12 +82,14 @@ export default function PatientInformation({patientInfo, setPatientInfo}) {
                 <GooglePlacesAutocomplete
                      placeholder={'Address'}
                      value={address}
-                     
+                
                      textInputProps={{
-                        onChangeText :address}}
+                        onChangeText : onchange,
+                        onclick: result
+                    }}
                  
                     query={{
-                  key: '',
+                  key: process.env.API_KEY,
                 language: 'en',
                  components: 'country:nz'
                  }}
