@@ -112,7 +112,7 @@ export default function Vital({vitalSigns, setVitalSigns, setPublicEyes, setPubl
             </View>
            
             <View style={styles.row}>
-            <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#4A96C9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>Temp: </Text>
                 </View>
@@ -126,7 +126,7 @@ export default function Vital({vitalSigns, setVitalSigns, setPublicEyes, setPubl
                     style={styles.input}/>
             </View>
             <View style={styles.row}>
-            <TouchableOpacity style={[styles.box, {backgroundColor: '#9dc8e2'}]}></TouchableOpacity>
+            <TouchableOpacity style={[styles.box, {backgroundColor: '#4A96C9'}]}></TouchableOpacity>
                 <View style={styles.title}>
                     <Text style={styles.myText}>BSL: </Text>
                 </View>
@@ -356,7 +356,7 @@ export default function Vital({vitalSigns, setVitalSigns, setPublicEyes, setPubl
         </View>
                     
                     <TouchableOpacity onPress={()=>setVitalSigns(prevIncidentDetails=>({...prevIncidentDetails, gcs: result}))} style={styles.button3}>
-                         <Text>Save Vitals</Text>   
+                         <Text>Save GCS</Text>   
                      </TouchableOpacity>
         <View style={styles.row}>
         </View>
