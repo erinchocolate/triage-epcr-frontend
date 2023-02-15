@@ -26,7 +26,7 @@ export default function OpenCamera({ changeView}) {
   const takePicture = async () =>{
     if(cameraRef){
       try{
-        const data = await cameraRef.current.takePictureAsync();
+        const data = await cameraRef.current.takePictureAsync({ fixOrientation: true });
         console.log(data);
         setImage(data.uri);
       }catch(e){
