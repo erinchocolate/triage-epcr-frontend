@@ -11,7 +11,7 @@ export default function EPCRRetrievalPage({ changeView, setView, setIncidentDeta
            
     async function searchFromDatabase(searchInput){
             console.log('Searching...');
-            axios.get(`http://10.140.176.60:3000/epcrs/${searchInput}`)
+            axios.get(`http://192.168.1.134:3000/epcrs/${searchInput}`)
                 .then(function (response) {
                     if (response.data.length === 0) {
                         alert('No records found');
@@ -47,7 +47,7 @@ export default function EPCRRetrievalPage({ changeView, setView, setIncidentDeta
 
     async function retrieveFromDatabase(){
         console.log('Retrieving...');
-        axios.get('http://10.140.176.60:3000/epcrs/')
+        axios.get('http://192.168.1.134:3000/epcrs/')
         .then( function(response){
           console.log(response.data);
           console.log(response.data[0].incident_id)
